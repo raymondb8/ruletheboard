@@ -1,0 +1,129 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--space-section-x);
+  border-bottom: var(--border-width) solid var(--color-border-soft);
+  position: relative;
+  z-index: 50;
+  background: var(--color-cream);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.itemLabel {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 8px 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donateButton {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 26px;
+  border: var(--border-width) solid var(--color-navy);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburgerBar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-navy);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 54;
+}
+
+.mobilePanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 84vw);
+  background: var(--color-cream);
+  border-left: var(--border-width) solid var(--color-border);
+  z-index: 55;
+  transform: translateX(100%);
+  transition: transform 200ms ease;
+  overflow-y: auto;
+}
+
+.mobilePanelOpen {
+  transform: translateX(0);
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  padding: 88px 24px 24px;
+}
+
+.mobileLink {
+  padding: 16px 0;
+  border-bottom: var(--border-width) solid var(--color-border-soft);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mobileDonate {
+  margin-top: 24px;
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px;
+  text-align: center;
+  border: var(--border-width) solid var(--color-navy);
+}
+
+@media (max-width: 900px) {
+  .items {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

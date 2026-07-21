@@ -1,0 +1,41 @@
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+}
+
+@media (max-width: 700px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pillarCard {
+  border: var(--border-width) solid var(--color-border);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pillarMark {
+  width: 44px;
+  height: 44px;
+  border: var(--border-width) solid var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.pillarTitle {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.pillarBody {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-body);
+}

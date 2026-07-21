@@ -1,0 +1,96 @@
+/* Shared building blocks reused across the sitemap placeholder pages. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap);
+}
+
+@media (max-width: 700px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: var(--border-width) solid var(--color-border);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.cardMeta {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.cardBody {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+.ctaRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  background: var(--color-navy);
+  color: var(--color-cream);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 32px;
+  width: fit-content;
+}
+
+.ctaOutline {
+  background: transparent;
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 32px;
+  border: var(--border-width) solid var(--color-navy);
+  width: fit-content;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--color-border);
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: var(--border-width) solid var(--color-border);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
