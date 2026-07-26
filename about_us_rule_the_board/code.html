@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | Rule the Board</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e1e0ff",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "error": "#ba1a1a",
+                    "background": "#faf9f5",
+                    "on-primary-container": "#7c839b",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-primary-fixed": "#131b2e",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-secondary-container": "#701801",
+                    "surface-variant": "#e3e2df",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#7073ff",
+                    "secondary-container": "#fc7f5e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e9e8e4",
+                    "surface-tint": "#565e74",
+                    "outline-variant": "#c6c6cd",
+                    "on-surface-variant": "#45464d",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "surface-dim": "#dbdad6",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#1b1c1a",
+                    "surface-bright": "#faf9f5",
+                    "outline": "#76777d",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "primary": "#000000",
+                    "on-error-container": "#93000a",
+                    "secondary": "#a33d22",
+                    "surface-container": "#efeeea",
+                    "on-secondary-fixed": "#3c0800",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "secondary-fixed": "#ffdbd2",
+                    "tertiary-container": "#07006c",
+                    "primary-container": "#131b2e",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#83260d",
+                    "surface-container-highest": "#e3e2df",
+                    "surface-container-low": "#f4f4f0",
+                    "surface": "#faf9f5",
+                    "inverse-surface": "#2f312e",
+                    "secondary-fixed-dim": "#ffb4a2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "container-max": "1200px",
+                    "margin-mobile": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Bricolage Grotesque"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Bricolage Grotesque"],
+                    "headline-md": ["Bricolage Grotesque"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Bricolage Grotesque"],
+                    "label-bold": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tactile-button {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            box-shadow: 0 4px 0 0 #701801; /* Darker secondary for lift */
+        }
+        .tactile-button:hover {
+            transform: translateY(1px);
+            box-shadow: 0 3px 0 0 #701801;
+        }
+        .tactile-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 0 #701801;
+        }
+        .soft-card {
+            box-shadow: 0 10px 30px -10px rgba(19, 27, 46, 0.04);
+            border: 1px solid #E2E8F0;
+        }
+        .chess-pattern {
+            background-image: radial-gradient(#fc7f5e 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto bg-background dark:bg-background border-b border-outline-variant">
+<div class="text-headline-md font-headline-md text-primary dark:text-primary">Rule the Board</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Home</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1" href="#">About Us</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Get Involved</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Programs</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Events</a>
+</nav>
+<button class="tactile-button bg-secondary text-on-secondary px-6 py-2.5 rounded-xl font-label-bold text-label-bold uppercase tracking-wider">
+            DONATE
+        </button>
+</header>
+<main class="relative overflow-hidden">
+<!-- Hero Decorative Asset -->
+<div class="absolute top-0 right-0 -z-10 w-1/3 h-1/2 chess-pattern"></div>
+<!-- Our Story Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24 grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full mb-6">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="text-label-sm font-label-bold uppercase">Our Journey</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">Empowering Young Minds, One Move at a Time.</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-8 max-w-xl">
+                    Founded with the belief that strategic thinking is a life skill, Rule the Board serves students in grades 3-8 through the timeless game of chess. We bridge the gap between classroom learning and competitive play, providing scholarships that open doors for the grandmasters of tomorrow.
+                </p>
+<div class="space-y-4">
+<div class="flex gap-4 p-4 bg-white rounded-2xl soft-card">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">school</span>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-primary mb-1">Grades 3-5: The Foundation</h3>
+<p class="text-on-surface-variant text-body-md">Building focus, patience, and basic tactics through interactive workshops.</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 bg-white rounded-2xl soft-card">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">psychology</span>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-primary mb-1">Grades 6-8: Advanced Strategy</h3>
+<p class="text-on-surface-variant text-body-md">Preparing students for high-level competition and critical decision-making.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2 relative">
+<div class="aspect-square rounded-[40px] overflow-hidden bg-surface-container shadow-2xl relative">
+<img class="w-full h-full object-cover" data-alt="A warm, bright light-mode photo of a diverse group of middle school students in grades 3 to 8 playing chess together in a sunlit classroom. The atmosphere is encouraging and studious, with soft cream and navy blue accents in the background environment. A teacher is seen smiling and offering guidance in a soft-focus background, emphasizing mentorship and growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ln3RznUie-VGx49WcLLy_ZDqYkVG-dHjGo8nI0uO5fk-7OMupApTox0RyuwqaTsJwc4KGQ5b1zBuVoM1JsS7ShGO8GbB2hqFVxXG1eMAyhAE-G3vAwZ_RzRikWfGFU-Let65zOyzslaYnsTRi-Dub1ayqJLMzBLFBHQDqpsuv0OzuuKYWxPogAMisoVZBgZcHxl6RrVtRk5-EhhvinZj9X2hO4gQIAKibORYNOYLMVH9RFITZ9RyMq5rTxX7tlZORPUUy1XTvx87"/>
+</div>
+<!-- Decorative Badge -->
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl soft-card flex flex-col items-center">
+<span class="text-headline-lg font-headline-lg text-secondary">10+</span>
+<span class="text-label-sm font-label-bold text-on-surface-variant uppercase">Years of Impact</span>
+</div>
+</div>
+</section>
+<!-- Impact Stats (Bento Grid Style) -->
+<section class="bg-surface-container-low py-20">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Our Growing Reach</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Metrics that reflect our commitment to student success across the country.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-2 bg-primary text-on-primary p-10 rounded-[32px] flex flex-col justify-between">
+<div class="mb-8">
+<span class="material-symbols-outlined text-[48px]">groups</span>
+</div>
+<div>
+<div class="text-headline-xl font-headline-xl mb-2">1,200+</div>
+<p class="text-body-lg font-body-lg opacity-80">Students currently enrolled in our scholarship programs across 15 states.</p>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container p-10 rounded-[32px] flex flex-col justify-between">
+<div class="mb-8">
+<span class="material-symbols-outlined text-[40px]">workspace_premium</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg mb-2">$450k</div>
+<p class="text-label-bold font-label-bold opacity-80 uppercase tracking-tight">Scholarships Awarded</p>
+</div>
+</div>
+<div class="bg-white p-10 rounded-[32px] border border-outline-variant flex flex-col justify-between">
+<div class="mb-8">
+<span class="material-symbols-outlined text-secondary text-[40px]">emoji_events</span>
+</div>
+<div>
+<div class="text-headline-lg font-headline-lg text-primary mb-2">85+</div>
+<p class="text-label-bold font-label-bold text-on-surface-variant uppercase tracking-tight">Tournament Wins</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Team & Board -->
+<section class="py-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">The Strategic Minds Behind RTB</h2>
+<p class="text-on-surface-variant">Our board members and staff bring decades of experience in education, competitive chess, and non-profit management.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Team Member 1 -->
+<div class="group text-center">
+<div class="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white transition-transform group-hover:scale-105 duration-300">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling woman in her 40s, Executive Director. She is wearing a soft blue blazer against a clean, warm-toned studio background. The style is modern, bright, and friendly, reflecting the encouraging grandmaster personality of the Rule the Board brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9WChCQm0extF_pNhxsd7OvcBb5Huu_9px1bRBVxgeuQC6MH_WiIeWAqODFzkL4FxPFj9VkqPYFhHZbwYmmhI5Vcnp8a5-uGqb4AdA8unvD21-v4U1Dk1SDqWYF1CuQqBhsKoOoFr75zx9w2WlPqNErhdg8lBVZDB2UxJvKYWGzhgyEuvUlQeOOJihOjQunsxn_bFmgk6ps8cSJAFPVGqrJ18yNVp3QdehrqOcbdQWF8YmPw9_orpPITaUxVef6QWYZ57sA979nPY4"/>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary uppercase">Dr. Sarah Chen</h4>
+<p class="text-label-sm font-label-sm text-secondary">Executive Director</p>
+</div>
+<!-- Team Member 2 -->
+<div class="group text-center">
+<div class="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white transition-transform group-hover:scale-105 duration-300">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a distinguished man in his 50s, Board President. He has a warm, approachable smile and is wearing a dark navy sweater. The background is a soft cream color, maintaining a high-contrast, clean light-mode aesthetic consistent with educational leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCczHVbN6GdRz8opr25-XZc6k_np9P_BGgOaMS20YrYt3wLaFEnHhdWHHuWWS1-B_wiOaaqovnun4cPDKRWk9T2E2ppsM3ucT9T411T0ZAP5sNl8wHAjU7XUPQBp4Nl9MLcetSIQvkIlsvT2tLiPiKjP9o7wkFFK5tXmmEECtPbiADN1ei9hPhHXpDSf-WAAFmWXiCGDg-lMCSwpiXtebTLQUHHtOSga2JfeubNFuz5B-vDSZtNbe24dwtswpOTwAj4xaz2cpPY1s5V"/>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary uppercase">Marcus Thorne</h4>
+<p class="text-label-sm font-label-sm text-secondary">Board President</p>
+</div>
+<!-- Team Member 3 -->
+<div class="group text-center">
+<div class="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white transition-transform group-hover:scale-105 duration-300">
+<img class="w-full h-full object-cover" data-alt="A headshot of a younger male educator in his late 20s, Lead Chess Coach. He looks enthusiastic and friendly, wearing a simple white polo shirt. The lighting is soft and natural, with a clean, minimalist background that suggests an inviting learning environment for students." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZnH9b45DGe1zX5KKAcPPvpXkG9R28fMYrmjvD_DmAqTYM9AIYgD6V8DHV0g4A4wvTOMSjCi7A-5Vr4moMUp-na7cFzzKdaTDpWpWSG9u2xAfbYSfwgrGOlWi7bMv3FVnG5Xh-D_ZQ5oTDMNse6bJI70gl42kgV0B43pGWuNhQrnfyTL5XqYMo-0TtfutoIJ8bUzAfR7JqDno11Rp4Bq1-sVjRTpAzQUX4N3qqrHAtYlBEJcCPcdNPHQzLcykECljnC_vx2wlTPtv7"/>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary uppercase">Julian Velez</h4>
+<p class="text-label-sm font-label-sm text-secondary">Lead Chess Coach</p>
+</div>
+<!-- Team Member 4 -->
+<div class="group text-center">
+<div class="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white transition-transform group-hover:scale-105 duration-300">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a woman in her 30s, Director of Outreach. She has a bright, confident expression and is wearing a coral-colored top. The background is a slightly textured soft grey, creating a tactile and professional feel aligned with the brand's soft modernism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDnI1iaYLrkHR4MAQ1nT13cyulR4GqNFzon-JIi1aG2RK4w7YVzblw05l58DrMWhU1DVTsqr5IEJ0on_juho2tASMJzido8q3nqW-2buFRcvHDowN0xeCZB0qKk0SKt27VjZtXCciBzLBfqnGgUvK2w6EBy706QafcrRKPp7VBul52Fx5SrYhy6H95qgjvSo_NeE3nsgWakmjvj501tYm7HgQgqAyUNFNxxIOfJpyCPqWebyR-JPM-pDdwGDEDCUsDBpadBAXUGHLN"/>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary uppercase">Elena Rossi</h4>
+<p class="text-label-sm font-label-sm text-secondary">Director of Outreach</p>
+</div>
+</div>
+</section>
+<!-- Impact Report Download -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-24">
+<div class="bg-white rounded-[40px] p-8 md:p-16 soft-card relative flex flex-col md:flex-row items-center gap-12 overflow-hidden">
+<!-- Abstract Shader Background -->
+<div class="absolute inset-0 -z-10 opacity-30">
+
+</div>
+<div class="w-48 h-64 bg-surface-container-highest rounded-xl shadow-lg shrink-0 flex items-center justify-center border-2 border-outline-variant relative group cursor-pointer overflow-hidden">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500" data-alt="A mockup of a professional annual report cover titled Rule the Board Annual Impact 2024. The cover features vibrant navy and coral geometric chess pieces in a modern, flat-design style. The background is a clean off-white with bold, black typography. Soft lighting makes the paper texture appear tactile and high-quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeo-z32ovweVnMLy3hTAdpfK6mQXUQt-XhxTf1jaDNwoo9r8p1_8GlEP306drZk2BfH9knhdpJT3tZF1FiAAe2ta5mffNltIhza9EFvse4O5S3e_sBrwFayKnPRtdBVhWbKaeijXw2VAOMu5lmdrbG0ccuYE9w4-3vgtsJi-Y7HNegm7gZfK28xm87LYbsYqJB4zQq1-r9LvL_Po5tyz2bzlvK2xnBDFq26-kOfEwhnZrShmUwTh4u9lh8DsyGfATojPnSRLYdFtko"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-4xl">download</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Transparency Matters</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-8">Download our 2024 Annual Impact Report to see how your donations and support are transforming the lives of students across the nation through the power of chess education.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+<button class="tactile-button bg-secondary text-on-secondary px-8 py-4 rounded-2xl font-label-bold text-label-bold uppercase flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                            Download Report (PDF)
+                        </button>
+<button class="px-8 py-4 rounded-2xl font-label-bold text-label-bold text-primary border-2 border-primary hover:bg-surface-container transition-colors uppercase">
+                            View Financials
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col items-center gap-base bg-surface-container dark:bg-surface-container border-t border-outline-variant">
+<div class="text-headline-md font-headline-md text-primary mb-6">Rule the Board</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8">
+<a class="text-on-surface-variant font-medium hover:underline text-secondary" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-medium hover:underline text-secondary" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-medium hover:underline text-secondary" href="#">Charity Navigator</a>
+<a class="text-on-surface-variant font-medium hover:underline text-secondary" href="#">GuideStar</a>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">© 2024 Rule the Board Scholarship Program. All rights reserved.</p>
+</footer>
+<script>
+        // Micro-interaction for tactile buttons
+        document.querySelectorAll('.tactile-button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple scroll reveal effect
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

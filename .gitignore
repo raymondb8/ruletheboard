@@ -12,13 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Raw source photography/video dumps — not web assets, too large to commit.
-# Pull specific photos into src/assets/images/ (resized) as needed.
-/raw-media/
-
-# Local Claude Code permission allowlist (machine-specific, not shared project config)
-.claude/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,48 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
-@import './styles/tokens.css';
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
-* {
-  box-sizing: border-box;
+html {
+  scroll-behavior: smooth;
 }
 
-html,
-body {
-  margin: 0;
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
 
-body {
-  background: var(--color-cream);
-  color: var(--color-navy);
-  font-family: var(--font-body);
+/* Tactile "lift" buttons (Home page) */
+.lift-button {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+}
+.lift-button:hover {
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+.lift-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 0 rgba(0, 0, 0, 0.2);
+}
+.coral-lift {
+  box-shadow: 0 4px 0 0 #83260d;
+}
+.coral-lift:active {
+  box-shadow: 0 0px 0 0 #83260d;
+}
+.navy-lift {
+  box-shadow: 0 4px 0 0 #000000;
+}
+.navy-lift:active {
+  box-shadow: 0 0px 0 0 #000000;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
 }
 
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Tactile buttons (About / Get Involved / Programs / Events) */
+.tactile-button {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 4px 0 0 #701801;
+}
+.tactile-button:hover {
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 0 #701801;
+}
+.tactile-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 0 #701801;
 }
 
-a {
-  color: var(--color-navy);
-  text-decoration: none;
+.soft-card {
+  box-shadow: 0 10px 30px -10px rgba(19, 27, 46, 0.04);
+  border: 1px solid #e2e8f0;
 }
 
-a:hover {
-  color: var(--color-gold);
+.card-shadow {
+  box-shadow: 0 4px 12px rgba(19, 27, 46, 0.04);
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-heading);
-  margin: 0;
+.input-focus:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
-p {
-  margin: 0;
+.chess-pattern {
+  background-image: radial-gradient(#fc7f5e 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.1;
 }
 
-img {
-  max-width: 100%;
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+  }
 }

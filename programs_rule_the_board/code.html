@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Programs - Rule the Board</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e1e0ff",
+                      "tertiary-fixed-dim": "#c0c1ff",
+                      "error": "#ba1a1a",
+                      "background": "#faf9f5",
+                      "on-primary-container": "#7c839b",
+                      "inverse-on-surface": "#f2f1ed",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#000000",
+                      "on-primary-fixed": "#131b2e",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-tertiary-fixed": "#07006c",
+                      "on-secondary-container": "#701801",
+                      "surface-variant": "#e3e2df",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-container": "#7073ff",
+                      "secondary-container": "#fc7f5e",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#e9e8e4",
+                      "surface-tint": "#565e74",
+                      "outline-variant": "#c6c6cd",
+                      "on-surface-variant": "#45464d",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1b1c1a",
+                      "surface-dim": "#dbdad6",
+                      "inverse-primary": "#bec6e0",
+                      "on-background": "#1b1c1a",
+                      "surface-bright": "#faf9f5",
+                      "outline": "#76777d",
+                      "on-tertiary-fixed-variant": "#2f2ebe",
+                      "primary": "#000000",
+                      "on-error-container": "#93000a",
+                      "secondary": "#a33d22",
+                      "surface-container": "#efeeea",
+                      "on-secondary-fixed": "#3c0800",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "secondary-fixed": "#ffdbd2",
+                      "tertiary-container": "#07006c",
+                      "primary-container": "#131b2e",
+                      "primary-fixed": "#dae2fd",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#83260d",
+                      "surface-container-highest": "#e3e2df",
+                      "surface-container-low": "#f4f4f0",
+                      "surface": "#faf9f5",
+                      "inverse-surface": "#2f312e",
+                      "secondary-fixed-dim": "#ffb4a2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "40px",
+                      "container-max": "1200px",
+                      "margin-mobile": "16px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Bricolage Grotesque"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Bricolage Grotesque"],
+                      "headline-md": ["Bricolage Grotesque"],
+                      "label-sm": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Bricolage Grotesque"],
+                      "label-bold": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .tactile-button {
+            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 0 0 rgba(163, 61, 34, 1);
+        }
+        .tactile-button:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 rgba(163, 61, 34, 1);
+        }
+        .tactile-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 rgba(163, 61, 34, 1);
+        }
+        .soft-card {
+            box-shadow: 0 4px 20px -2px rgba(19, 27, 46, 0.04);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto bg-background border-b border-outline-variant">
+<div class="text-headline-md font-headline-md text-primary">Rule the Board</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">About Us</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Get Involved</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 hover:text-secondary transition-colors duration-200" href="#">Programs</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Events</a>
+</nav>
+<button class="tactile-button bg-secondary text-on-secondary px-6 py-2 rounded-lg font-label-bold active:scale-95 transition-transform duration-100 uppercase">
+            DONATE
+        </button>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="py-16 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto">
+<h1 class="font-headline-xl text-headline-xl mb-6 text-primary">Find Your Winning Move</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Whether you're just learning the names of the pieces or you're ready to master the Sicilian Defense, we have a chair waiting for you. Our programs are designed for grades 3-8 to inspire confidence and strategic thinking.
+            </p>
+</section>
+<!-- Programs Grid -->
+<section class="pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Full Scholarship Program Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[32px] p-8 md:p-12 soft-card flex flex-col relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-tertiary-fixed-dim/20 rounded-full blur-3xl group-hover:bg-tertiary-fixed-dim/40 transition-colors duration-500"></div>
+<div class="mb-8">
+<div class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-primary text-4xl" data-icon="workspace_premium">workspace_premium</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
+<p class="font-body-md text-on-surface-variant mb-6">The definitive scholarship program for committed young players looking to reach master level.</p>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-label-bold mb-8">
+<span class="material-symbols-outlined text-sm" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+                            FULL SCHOLARSHIP
+                        </div>
+</div>
+<div class="space-y-4 mb-10 flex-grow">
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Weekly 1-on-1 Grandmaster Coaching</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Paid Entry to National Tournaments</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Academic Mentorship &amp; College Prep</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Elite Chess Books &amp; Equipment Pack</span>
+</div>
+</div>
+<button class="tactile-button bg-secondary text-on-secondary w-full py-5 rounded-2xl font-label-bold text-lg uppercase">
+                        Apply for Scholarship
+                    </button>
+<div class="mt-6 text-center">
+<p class="font-label-sm text-on-surface-variant">Applications close August 15th</p>
+</div>
+</div>
+<!-- Intro Class Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[32px] p-8 md:p-12 soft-card flex flex-col relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-secondary-fixed/20 rounded-full blur-3xl group-hover:bg-secondary-fixed/40 transition-colors duration-500"></div>
+<div class="mb-8">
+<div class="w-16 h-16 bg-secondary-container rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
+<p class="font-body-md text-on-surface-variant mb-6">A beginner-friendly intensive workshop designed to take students from novice to confident player in 8 weeks.</p>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-bold mb-8">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                            8-WEEK WORKSHOP
+                        </div>
+</div>
+<div class="space-y-4 mb-10 flex-grow">
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Fundamental Rules &amp; Piece Movements</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Basic Endgames &amp; Mating Patterns</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">Interactive Play Sessions</span>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-body-md text-on-surface">End-of-Summer Student Tournament</span>
+</div>
+</div>
+<button class="tactile-button bg-primary text-on-primary w-full py-5 rounded-2xl font-label-bold text-lg uppercase" style="box-shadow: 0 4px 0 0 rgba(19, 27, 46, 1);">
+                        Reserve a Spot
+                    </button>
+<div class="mt-6 text-center">
+<p class="font-label-sm text-on-surface-variant">No prior experience required</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Illustration / Mood Section -->
+<section class="bg-surface-container py-20 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/2">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-6">Strategy Beyond the Board</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                            Chess isn't just about moving wood—it's about learning patience, critical thinking, and the courage to make a plan. Our grandmasters focus on building the person, not just the player.
+                        </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="p-6 bg-surface-bright rounded-2xl border border-outline-variant">
+<div class="text-secondary font-headline-md mb-2">95%</div>
+<p class="text-label-sm text-on-surface-variant">Improvement in academic focus reported by parents.</p>
+</div>
+<div class="p-6 bg-surface-bright rounded-2xl border border-outline-variant">
+<div class="text-secondary font-headline-md mb-2">500+</div>
+<p class="text-label-sm text-on-surface-variant">Scholarships awarded to aspiring young chess stars.</p>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 relative">
+<div class="w-full h-80 rounded-[40px] overflow-hidden soft-card">
+<img class="w-full h-full object-cover" data-alt="A warm and inviting interior of a modern chess academy. Sunlight streams through large windows illuminating thick wooden chess boards. Several young students are smiling while deep in thought over their games. The aesthetic is clean, creamy, and educational, with soft modernism furniture and tactile learning materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_jwAzUpDLaK0MgHGQNrCy-qAjt7mElw5c9NmPbGKYtwvU4W9Co5subGE74WE6bFuXgoDSnMIwZVujWZbYyE-kbitlB1fpwTxqeCjvC14ENNptwYGlAR1Z5Tw_dlcfJjtgQsPwgDNnrLBJaYINrstPDPBR4UImBzh85CyNtkBGWu7-rKOCJPq3KOMHPoYPAtenFydWlFj-w--WgHoAxReu0XYiaEu-kC_cWJ2ItY5bdlB6BWbDcbS0drrakUp6wtrb9-qLMKwH9S97"/>
+</div>
+<!-- Playful Floating Chess Piece Icon -->
+<div class="absolute -bottom-6 -left-6 bg-secondary-container p-6 rounded-3xl shadow-xl animate-bounce">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="chess">chess</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col items-center gap-base bg-surface-container border-t border-outline-variant">
+<div class="text-headline-md font-headline-md text-primary mb-4">Rule the Board</div>
+<nav class="flex flex-wrap justify-center gap-6 mb-8">
+<a class="font-label-sm text-on-surface-variant hover:underline text-secondary" href="#">Privacy Policy</a>
+<a class="font-label-sm text-on-surface-variant hover:underline text-secondary" href="#">Terms of Service</a>
+<a class="font-label-sm text-on-surface-variant hover:underline text-secondary" href="#">Charity Navigator</a>
+<a class="font-label-sm text-on-surface-variant hover:underline text-secondary" href="#">GuideStar</a>
+</nav>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">© 2024 Rule the Board Scholarship Program. All rights reserved.</p>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.tactile-button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.style.boxShadow = 'none';
+                this.style.transform = 'translateY(4px)';
+            });
+            button.addEventListener('mouseup', function() {
+                const color = this.classList.contains('bg-secondary') ? 'rgba(163, 61, 34, 1)' : 'rgba(19, 27, 46, 1)';
+                this.style.boxShadow = `0 4px 0 0 ${color}`;
+                this.style.transform = 'translateY(0px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                const color = this.classList.contains('bg-secondary') ? 'rgba(163, 61, 34, 1)' : 'rgba(19, 27, 46, 1)';
+                this.style.boxShadow = `0 4px 0 0 ${color}`;
+                this.style.transform = 'translateY(0px)';
+            });
+        });
+    </script>
+</body></html>
