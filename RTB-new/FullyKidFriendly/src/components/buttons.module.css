@@ -1,0 +1,106 @@
+/* Shared "slam button" mechanics — a hard offset shadow that shrinks on hover
+   and fully collapses on press, reused across every page's CTAs. */
+.slam {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-md);
+  border: var(--border-width-thick) solid var(--color-navy);
+  padding: 16px 32px;
+  transition:
+    transform 100ms ease,
+    box-shadow 100ms ease;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.slam:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-navy);
+}
+
+.slam:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-navy);
+}
+
+.slamSm {
+  padding: 10px 20px;
+  font-size: 13px;
+}
+
+.slamLg {
+  padding: 20px 40px;
+  font-size: 18px;
+}
+
+.coral {
+  background: var(--color-coral);
+  color: #fff;
+}
+.coral:hover {
+  color: #fff;
+}
+
+.coralContainer {
+  background: var(--color-coral-container);
+  color: var(--color-navy);
+}
+.coralContainer:hover {
+  color: var(--color-navy);
+}
+
+.navy {
+  background: var(--color-navy);
+  color: #fff;
+}
+.navy:hover {
+  color: #fff;
+}
+
+.gold {
+  background: var(--color-gold-container);
+  color: var(--color-navy);
+}
+.gold:hover {
+  color: var(--color-navy);
+}
+
+.white {
+  background: #fff;
+  color: var(--color-navy);
+}
+.white:hover {
+  color: var(--color-navy);
+}
+
+/* Shared "adventure card" mechanics — thick border, hard shadow, slight
+   rotation that straightens and grows on hover. */
+.card {
+  border: var(--border-width-thick) solid var(--color-navy);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hard-md);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.rotateLeft {
+  transform: rotate(-1.5deg);
+}
+.rotateLeft:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.rotateRight {
+  transform: rotate(1.5deg);
+}
+.rotateRight:hover {
+  transform: rotate(0deg) scale(1.02);
+}

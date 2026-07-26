@@ -1,0 +1,120 @@
+.footer {
+  background: var(--color-navy);
+  color: var(--color-cream);
+  border-top: var(--border-width-thicker) solid var(--color-navy);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 48px var(--space-section-x) 32px;
+  margin-top: auto;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 32px;
+  border-bottom: var(--border-width) solid var(--color-footer-border);
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.tagline {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.donateButton {
+  background: var(--color-coral);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  width: fit-content;
+  border-radius: var(--radius-pill);
+  border: var(--border-width-thick) solid var(--color-cream);
+  box-shadow: 4px 4px 0 var(--color-coral-container);
+}
+
+.donateButton:hover {
+  color: #fff;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.colTitle {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gold-fixed);
+  margin-bottom: 4px;
+}
+
+.col a,
+.placeholderLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-cream);
+  opacity: 0.85;
+}
+
+.placeholderLink {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.legal {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.legal a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-cream);
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+}

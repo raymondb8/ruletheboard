@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rule the Board | Big Games &amp; Epic Battles!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config with Theme Tokens -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary": "#735c00",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#574500",
+                "on-primary-fixed": "#000767",
+                "on-primary-container": "#8690ee",
+                "inverse-surface": "#303036",
+                "inverse-on-surface": "#f2eff8",
+                "surface-dim": "#dbd9e1",
+                "on-tertiary-container": "#4e3d00",
+                "on-secondary-fixed": "#410001",
+                "primary": "#000666",
+                "surface-container": "#efecf5",
+                "on-tertiary": "#ffffff",
+                "surface-container-high": "#eae7ef",
+                "outline": "#767683",
+                "surface-tint": "#4c56af",
+                "secondary": "#ac332a",
+                "secondary-fixed-dim": "#ffb4aa",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed-dim": "#ebc23e",
+                "surface-container-low": "#f5f2fb",
+                "outline-variant": "#c6c5d4",
+                "on-error-container": "#93000a",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#8b1a16",
+                "inverse-primary": "#bdc2ff",
+                "primary-fixed-dim": "#bdc2ff",
+                "on-secondary-container": "#6d0005",
+                "surface-variant": "#e4e1ea",
+                "surface-container-highest": "#e4e1ea",
+                "tertiary-container": "#cda721",
+                "on-primary": "#ffffff",
+                "tertiary-fixed": "#ffe087",
+                "secondary-fixed": "#ffdad5",
+                "on-background": "#1b1b21",
+                "on-secondary": "#ffffff",
+                "surface": "#fbf8ff",
+                "on-surface-variant": "#454652",
+                "on-error": "#ffffff",
+                "background": "#fbf8ff",
+                "primary-container": "#1a237e",
+                "surface-bright": "#fbf8ff",
+                "on-primary-fixed-variant": "#343d96",
+                "primary-fixed": "#e0e0ff",
+                "secondary-container": "#fd6e60",
+                "on-surface": "#1b1b21",
+                "on-tertiary-fixed": "#241a00"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "stack-gap": "12px",
+                "margin-desktop": "40px",
+                "base": "8px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-xl": ["Bricolage Grotesque"],
+                "body-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "headline-lg-mobile": ["Bricolage Grotesque"],
+                "label-bold": ["Plus Jakarta Sans"],
+                "headline-lg": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "800"}],
+                "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 6px 6px 0px 0px #000666;
+        }
+        .hard-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #000666;
+        }
+        .slam-button {
+            transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 4px 4px 0px 0px #000666;
+        }
+        .slam-button:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 6px 6px 0px 0px #000666;
+        }
+        .slam-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #000666;
+        }
+        .adventure-card {
+            transition: all 0.3s ease;
+            border: 3px solid #000666;
+        }
+        .adventure-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+        }
+        .bubble-accent {
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface z-50 border-b-4 border-primary shadow-[4px_4px_0px_0px_#000666] px-gutter py-4 flex justify-between items-center max-w-full mx-auto">
+<div class="text-headline-lg font-headline-xl font-extrabold text-secondary tracking-tight">Rule the Board</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold hover:text-secondary transition-all hover:translate-y-[2px]" href="#">Home</a>
+<a class="text-primary font-bold hover:text-secondary transition-all hover:translate-y-[2px]" href="#">Our Story</a>
+<a class="text-primary font-bold hover:text-secondary transition-all hover:translate-y-[2px]" href="#">Join the Fun!</a>
+<a class="text-primary font-bold hover:text-secondary transition-all hover:translate-y-[2px]" href="#">Cool Programs</a>
+<a class="text-secondary font-black border-b-4 border-secondary transition-all" href="#">Big Events</a>
+</nav>
+<button class="slam-button bg-secondary text-on-secondary px-6 py-2 rounded font-bold uppercase text-label-bold">
+            SUPPORT US
+        </button>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-12 space-y-24">
+<!-- Hero Section -->
+<section class="relative text-center space-y-6">
+<div class="inline-block bg-tertiary-container text-on-tertiary-container px-4 py-1 rounded-full font-label-bold uppercase tracking-wider mb-2 border-2 border-primary transform -rotate-2">
+                Tournament Season 2024
+            </div>
+<h1 class="font-headline-xl text-headline-xl md:text-[64px] leading-tight text-primary uppercase">
+                Big Games &amp; <span class="text-secondary">Epic Battles!</span>
+</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto opacity-80">
+                Ready to show off your chess powers? Pick your level, grab your crown, and let the games begin! Every move counts toward the grand trophy.
+            </p>
+<div class="absolute -top-12 -left-8 hidden lg:block animate-bounce duration-1000">
+<span class="material-symbols-outlined text-[80px] text-tertiary-container opacity-30 select-none" style="font-variation-settings: 'FILL' 1;">chess_pawn</span>
+</div>
+<div class="absolute -bottom-8 -right-8 hidden lg:block animate-pulse duration-700">
+<span class="material-symbols-outlined text-[100px] text-secondary-container opacity-20 select-none" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+</section>
+<!-- Upcoming Tournaments: Game-Level Selection Screen -->
+<section class="space-y-12">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg text-headline-lg text-primary flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+                    Upcoming Tournaments
+                </h2>
+<div class="hidden md:flex gap-4">
+<div class="bg-surface-container-high border-2 border-primary rounded-full px-4 py-1 flex items-center gap-2">
+<span class="w-3 h-3 bg-green-500 rounded-full"></span>
+<span class="text-label-bold">2,401 Players Online</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid / Game Levels -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Level 1: Beginner -->
+<div class="md:col-span-4 adventure-card bg-surface-container-low rounded-lg p-8 flex flex-col justify-between transform -rotate-1 relative overflow-hidden group">
+<div class="absolute top-4 right-4 bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold border border-green-800">LEVEL 1</div>
+<div class="space-y-4">
+<div class="w-16 h-16 bg-white border-2 border-primary rounded-2xl flex items-center justify-center slam-button">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">child_care</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary uppercase">The Tiny Knights Cup</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Perfect for new strategy masters. Learn as you play and win cool stickers!</p>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-label-bold"><span class="material-symbols-outlined text-green-600">calendar_today</span> Oct 12th</li>
+<li class="flex items-center gap-2 text-label-bold"><span class="material-symbols-outlined text-green-600">group</span> Ages 6-9</li>
+</ul>
+</div>
+<button class="slam-button mt-8 w-full bg-secondary-container text-on-secondary-container py-4 rounded-xl font-black uppercase text-xl border-b-4 border-primary group-hover:bg-secondary group-hover:text-white">
+                        REGISTER NOW!
+                    </button>
+</div>
+<!-- Level 2: Intermediate (Featured) -->
+<div class="md:col-span-4 adventure-card bg-primary-container text-white rounded-lg p-8 flex flex-col justify-between transform rotate-1 relative overflow-hidden group">
+<div class="absolute top-4 right-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold border border-white">LEVEL 2</div>
+<div class="space-y-4">
+<div class="w-20 h-20 bg-tertiary-container border-2 border-white rounded-2xl flex items-center justify-center slam-button">
+<span class="material-symbols-outlined text-on-tertiary-container text-5xl" style="font-variation-settings: 'FILL' 1;">swords</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white uppercase italic">Chess Brawler League</h3>
+<p class="font-body-md text-body-md text-primary-fixed opacity-90">Ready to rumble? Fast-paced blitz games for the quick thinkers. Top 3 win medals!</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold">Fast Moves</span>
+<span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold">Medal Prizes</span>
+</div>
+</div>
+<button class="slam-button mt-8 w-full bg-tertiary-container text-on-tertiary-container py-4 rounded-xl font-black uppercase text-xl border-b-4 border-black">
+                        JOIN THE FIGHT!
+                    </button>
+<!-- Background Decoration -->
+<div class="absolute -bottom-6 -right-6 opacity-10">
+<span class="material-symbols-outlined text-[150px]">rocket_launch</span>
+</div>
+</div>
+<!-- Level 3: Pro -->
+<div class="md:col-span-4 adventure-card bg-surface-container-low rounded-lg p-8 flex flex-col justify-between transform -rotate-1 relative group">
+<div class="absolute top-4 right-4 bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-bold border border-red-800">LEVEL 3</div>
+<div class="space-y-4">
+<div class="w-16 h-16 bg-white border-2 border-primary rounded-2xl flex items-center justify-center slam-button">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary uppercase">Grandmaster Gauntlet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The ultimate test. Play against the best in the city for the Rule the Board Trophy.</p>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-label-bold"><span class="material-symbols-outlined text-secondary">location_on</span> Main Library</li>
+<li class="flex items-center gap-2 text-label-bold"><span class="material-symbols-outlined text-secondary">star</span> Trophy Event</li>
+</ul>
+</div>
+<button class="slam-button mt-8 w-full bg-secondary text-on-secondary py-4 rounded-xl font-black uppercase text-xl border-b-4 border-primary">
+                        CLAIM MY SEAT!
+                    </button>
+</div>
+<!-- Custom/Wildcard Slot -->
+<div class="md:col-span-12 adventure-card bg-tertiary text-on-tertiary rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 transform rotate-0 border-dashed border-4 border-white/40">
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 rounded-full bg-tertiary-fixed flex items-center justify-center border-4 border-white animate-spin-slow" style="animation-duration: 10s;">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-6xl" style="font-variation-settings: 'FILL' 1;">mystery</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg uppercase leading-none">Mystery Flash Match</h4>
+<p class="font-body-md opacity-80 mt-1">Happening NOW in the Digital Den. No sign-up, just play!</p>
+</div>
+</div>
+<button class="slam-button bg-white text-tertiary px-8 py-3 rounded-full font-black uppercase flex items-center gap-2">
+                        JUMP IN <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+</section>
+<!-- First Time? FAQ Coach Bot -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-4 bg-primary text-white p-8 rounded-xl hard-shadow space-y-6 relative overflow-hidden">
+<div class="relative z-10 space-y-4">
+<div class="w-20 h-20 bg-secondary-container rounded-full border-4 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg uppercase leading-tight">Meet <br/>Coach Bot 3000</h3>
+<p class="font-body-md opacity-90 italic">"Beep-boop! First time entering a tournament? Don't sweat it, human friend! I've scanned the data and have all your answers right here."</p>
+</div>
+<!-- Decoration -->
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-8xl">precision_manufacturing</span>
+</div>
+</div>
+<div class="md:col-span-8 space-y-4">
+<h3 class="font-headline-lg text-headline-lg text-primary uppercase mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">quiz</span>
+                    Frequently Asked Missions
+                </h3>
+<!-- FAQ Accordions (styled as chat bubbles) -->
+<div class="space-y-4">
+<div class="adventure-card bg-white p-6 rounded-2xl rounded-tl-none relative border-2 border-primary hover:bg-surface-container-low cursor-pointer group">
+<div class="flex justify-between items-center">
+<h4 class="font-label-bold text-lg text-primary uppercase">"Do I need to be a pro to play?"</h4>
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<p class="mt-4 font-body-md text-on-surface-variant hidden group-active:block group-hover:block">Nope! We have brackets for every skill level. If you know how the pieces move, you're ready for Battle Level 1!</p>
+</div>
+<div class="adventure-card bg-white p-6 rounded-2xl rounded-tl-none relative border-2 border-primary hover:bg-surface-container-low cursor-pointer group">
+<div class="flex justify-between items-center">
+<h4 class="font-label-bold text-lg text-primary uppercase">"What do I bring with me?"</h4>
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<p class="mt-4 font-body-md text-on-surface-variant hidden group-active:block group-hover:block">Just your brain and a positive attitude! We provide the boards, timers, and even some healthy snacks.</p>
+</div>
+<div class="adventure-card bg-white p-6 rounded-2xl rounded-tl-none relative border-2 border-primary hover:bg-surface-container-low cursor-pointer group">
+<div class="flex justify-between items-center">
+<h4 class="font-label-bold text-lg text-primary uppercase">"Can my parents watch?"</h4>
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<p class="mt-4 font-body-md text-on-surface-variant hidden group-active:block group-hover:block">Absolutely! We have a "Cheer Zone" for parents, as long as they promise not to shout moves during the game!</p>
+</div>
+<div class="adventure-card bg-white p-6 rounded-2xl rounded-tl-none relative border-2 border-primary hover:bg-surface-container-low cursor-pointer group">
+<div class="flex justify-between items-center">
+<h4 class="font-label-bold text-lg text-primary uppercase">"Are there prizes?"</h4>
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<p class="mt-4 font-body-md text-on-surface-variant hidden group-active:block group-hover:block">Every player gets a "Competitor's Pin." Winners get trophies, certificates, and the fame of being on our Wall of Legends!</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-secondary-container rounded-lg border-4 border-primary p-12 text-center hard-shadow relative overflow-hidden">
+<div class="relative z-10 space-y-6">
+<h2 class="font-headline-xl text-headline-xl text-on-primary uppercase leading-none">Still Undecided?</h2>
+<p class="font-body-lg text-on-primary-container max-w-xl mx-auto font-bold">
+                    Join our Friday Practice Arena for a casual game. No points, no pressure, just pure fun!
+                </p>
+<div class="flex flex-col md:flex-row gap-6 justify-center pt-4">
+<button class="slam-button bg-white text-primary px-10 py-5 rounded-2xl font-black uppercase text-xl border-4 border-primary">
+                        VIEW PRACTICE SCHEDULE
+                    </button>
+<button class="slam-button bg-primary text-white px-10 py-5 rounded-2xl font-black uppercase text-xl border-4 border-white">
+                        TALK TO A COACH
+                    </button>
+</div>
+</div>
+<!-- Background Chess Grid Overlay -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#000666 2px, transparent 2px); background-size: 30px 30px;"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-primary dark:bg-primary-container border-t-4 border-primary mt-24 px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-stack-gap text-on-primary">
+<div class="text-headline-lg font-headline-lg">Rule the Board</div>
+<div class="flex flex-col items-center md:items-end gap-4">
+<nav class="flex gap-8">
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform" href="#">Privacy</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform" href="#">Terms</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform" href="#">Fun Stuff</a>
+</nav>
+<p class="font-body-md text-body-md opacity-70">© Rule the Board - Go Play!</p>
+</div>
+</footer>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-secondary text-white rounded-full slam-button flex items-center justify-center border-4 border-primary z-[100] group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-125 transition-transform">add_comment</span>
+<div class="absolute right-20 bg-white text-primary px-4 py-2 rounded-lg font-bold border-2 border-primary hidden group-hover:block whitespace-nowrap shadow-md">
+            Need Help?
+        </div>
+</button>
+<script>
+        // Interactive Slam Effect logic is mostly handled via CSS transitions & translate-y,
+        // but we can add a little sparkle on button clicks
+        document.querySelectorAll('.slam-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">star</span>';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = `${e.clientX}px`;
+                sparkle.style.top = `${e.clientY}px`;
+                sparkle.style.color = '#735c00';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '9999';
+                sparkle.className = 'animate-ping';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 500);
+            });
+        });
+
+        // Bouncy hover effect for FAQ cards
+        document.querySelectorAll('.adventure-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = `rotate(${Math.random() * 2 - 1}deg) scale(1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                const originalRotate = card.classList.contains('rotate-1') ? '1deg' : (card.classList.contains('-rotate-1') ? '-1deg' : '0deg');
+                card.style.transform = `rotate(${originalRotate}) scale(1)`;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 48;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .bouncy-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bouncy-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        .slam-button {
+            transition: all 0.1s ease;
+        }
+        .slam-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #000666 !important;
+        }
+        .slam-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000666 !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#735c00",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary-fixed": "#000767",
+                        "on-primary-container": "#8690ee",
+                        "inverse-surface": "#303036",
+                        "inverse-on-surface": "#f2eff8",
+                        "surface-dim": "#dbd9e1",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-secondary-fixed": "#410001",
+                        "primary": "#000666",
+                        "surface-container": "#efecf5",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eae7ef",
+                        "outline": "#767683",
+                        "surface-tint": "#4c56af",
+                        "secondary": "#ac332a",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ebc23e",
+                        "surface-container-low": "#f5f2fb",
+                        "outline-variant": "#c6c5d4",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#8b1a16",
+                        "inverse-primary": "#bdc2ff",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "on-secondary-container": "#6d0005",
+                        "surface-variant": "#e4e1ea",
+                        "surface-container-highest": "#e4e1ea",
+                        "tertiary-container": "#cda721",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffe087",
+                        "secondary-fixed": "#ffdad5",
+                        "on-background": "#1b1b21",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "on-surface-variant": "#454652",
+                        "on-error": "#ffffff",
+                        "background": "#fbf8ff",
+                        "primary-container": "#1a237e",
+                        "surface-bright": "#fbf8ff",
+                        "on-primary-fixed-variant": "#343d96",
+                        "primary-fixed": "#e0e0ff",
+                        "secondary-container": "#fd6e60",
+                        "on-surface": "#1b1b21",
+                        "on-tertiary-fixed": "#241a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-gap": "12px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Bricolage Grotesque"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Bricolage Grotesque"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Bricolage Grotesque"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "800"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-container">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-50 bg-surface border-b-4 border-primary shadow-[4px_4px_0px_0px_#000666] flex justify-between items-center px-gutter py-4 max-w-full mx-auto">
+<div class="text-headline-lg font-headline-xl font-extrabold text-secondary tracking-tight">Rule the Board</div>
+<!-- Desktop Links -->
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold hover:text-secondary hover:translate-y-[2px] transition-all" href="#">Home</a>
+<a class="text-primary font-bold hover:text-secondary hover:translate-y-[2px] transition-all" href="#">Our Story</a>
+<a class="text-primary font-bold hover:text-secondary hover:translate-y-[2px] transition-all" href="#">Join the Fun!</a>
+<a class="text-secondary font-black border-b-4 border-secondary hover:translate-y-[2px] transition-all" href="#">Cool Programs</a>
+<a class="text-primary font-bold hover:text-secondary hover:translate-y-[2px] transition-all" href="#">Big Events</a>
+</div>
+<button class="slam-button bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-bold uppercase shadow-[4px_4px_0px_0px_#000666] border-2 border-primary">
+            SUPPORT US
+        </button>
+</nav>
+<main class="min-h-screen overflow-x-hidden pb-24">
+<!-- Hero Section -->
+<section class="relative pt-16 pb-12 px-gutter text-center max-w-5xl mx-auto">
+<div class="absolute -top-10 -left-10 opacity-20 hidden lg:block">
+<span class="material-symbols-outlined text-[120px] text-tertiary transform -rotate-12">casino</span>
+</div>
+<div class="absolute -top-5 -right-10 opacity-20 hidden lg:block">
+<span class="material-symbols-outlined text-[120px] text-secondary transform rotate-12">extension</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-4 drop-shadow-sm">
+                Choose Your <span class="text-secondary">Mission!</span>
+</h1>
+<p class="text-body-lg max-w-2xl mx-auto font-bold opacity-80">
+                Ready to level up your brain? Pick a program and start your legendary chess adventure today!
+            </p>
+</section>
+<!-- Mission Cards Grid -->
+<section class="px-gutter max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+<!-- Program 1: Rule the Board -->
+<div class="bouncy-card bg-surface-container-low border-[3px] border-primary rounded-lg p-8 shadow-[8px_8px_0px_0px_#000666] transform -rotate-1">
+<div class="flex items-start justify-between mb-6">
+<div>
+<span class="bg-tertiary-container text-on-tertiary-container px-4 py-1 rounded-full font-label-bold text-xs uppercase mb-2 inline-block">Scholarship Program</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Rule the Board</h2>
+<p class="text-secondary font-extrabold text-xl">"Go from Newbie to Pro!"</p>
+</div>
+<div class="w-20 h-20 bg-primary-container rounded-xl flex items-center justify-center rotate-3 border-2 border-primary">
+<span class="material-symbols-outlined text-4xl text-on-primary-container filled-icon">military_tech</span>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">Weekly Masterclasses with Chess Wizards</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">Special Tournament Badges &amp; Gear</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">1-on-1 Strategy Secret Sessions</p>
+</div>
+</div>
+<button class="slam-button w-full bg-secondary text-on-secondary font-headline-lg text-lg py-5 rounded-lg border-b-4 border-primary shadow-[6px_6px_0px_0px_#000666] flex items-center justify-center gap-3">
+                    APPLY NOW 
+                    <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+<!-- Program 2: Checkmate Your Summer -->
+<div class="bouncy-card bg-surface-container-low border-[3px] border-primary rounded-lg p-8 shadow-[8px_8px_0px_0px_#000666] transform rotate-1">
+<div class="flex items-start justify-between mb-6">
+<div>
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-bold text-xs uppercase mb-2 inline-block">Summer Camp</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Checkmate Your Summer</h2>
+<p class="text-tertiary font-extrabold text-xl">"Best. Summer. Ever."</p>
+</div>
+<div class="w-20 h-20 bg-tertiary-container rounded-xl flex items-center justify-center -rotate-3 border-2 border-primary">
+<span class="material-symbols-outlined text-4xl text-on-tertiary-container filled-icon">sunny</span>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">Daily Chess Puzzles &amp; Pizza Parties</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">Outdoor Giant Chess Challenges</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim flex items-center justify-center border-2 border-primary shadow-[2px_2px_0px_0px_#000666] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-sm filled-icon">check</span>
+</div>
+<p class="font-bold text-on-surface">Make New Friends &amp; Team Duels</p>
+</div>
+</div>
+<button class="slam-button w-full bg-tertiary-container text-on-tertiary-container font-headline-lg text-lg py-5 rounded-lg border-b-4 border-primary shadow-[6px_6px_0px_0px_#000666] flex items-center justify-center gap-3">
+                    JOIN THE CAMP
+                    <span class="material-symbols-outlined">emoji_events</span>
+</button>
+</div>
+</section>
+<!-- Dynamic Bento Section -->
+<section class="px-gutter max-w-7xl mx-auto mt-20">
+<h3 class="font-headline-lg text-headline-lg text-primary text-center mb-10">Why We're the Coolest!</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Stat 1 -->
+<div class="bg-primary-container text-on-primary-container p-8 rounded-lg border-[3px] border-primary shadow-[4px_4px_0px_0px_#000666] flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-5xl mb-4 filled-icon">workspace_premium</span>
+<h4 class="font-headline-lg text-2xl mb-2">5,000+</h4>
+<p class="font-bold opacity-80">Future Grandmasters Graduated</p>
+</div>
+<!-- Interactive Asset -->
+<div class="md:col-span-1 rounded-lg border-[3px] border-primary shadow-[4px_4px_0px_0px_#000666] overflow-hidden relative min-h-[250px]">
+
+<div class="absolute inset-0 flex items-center justify-center bg-primary/20 p-4">
+<p class="text-white font-headline-lg text-center drop-shadow-lg">Supercharged Learning Magic!</p>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-secondary-container text-on-secondary-container p-8 rounded-lg border-[3px] border-primary shadow-[4px_4px_0px_0px_#000666] flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-5xl mb-4 filled-icon">psychology</span>
+<h4 class="font-headline-lg text-2xl mb-2">100%</h4>
+<p class="font-bold opacity-80">Brain-Boosting Fun Guaranteed</p>
+</div>
+</div>
+</section>
+<!-- Visual Highlight Section -->
+<section class="px-gutter max-w-7xl mx-auto mt-24">
+<div class="flex flex-col lg:flex-row items-center gap-12 bg-surface-container-highest rounded-xl p-12 border-[3px] border-primary shadow-[12px_12px_0px_0px_#000666]">
+<div class="flex-1 space-y-6">
+<h2 class="font-headline-xl text-headline-xl text-primary leading-tight">Ready to start your <span class="text-secondary underline underline-offset-4">Mission?</span></h2>
+<p class="text-body-lg font-bold">Whether you want to win tournaments or just have the best summer ever, we've got a seat at the board waiting for you.</p>
+<div class="flex flex-wrap gap-4">
+<div class="bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold flex items-center gap-2 border-2 border-primary shadow-[4px_4px_0px_0px_#000666]">
+<span class="material-symbols-outlined filled-icon">school</span>
+                            SCHOLARSHIPS
+                        </div>
+<div class="bg-secondary text-on-secondary px-6 py-3 rounded-full font-label-bold flex items-center gap-2 border-2 border-primary shadow-[4px_4px_0px_0px_#000666]">
+<span class="material-symbols-outlined filled-icon">diversity_3</span>
+                            FRIENDS
+                        </div>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="w-full h-[400px] rounded-lg border-[4px] border-primary shadow-[8px_8px_0px_0px_#000666] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-energy, vibrant photo of a diverse group of kids playing a giant floor chess game in a sunlit modern community center. The scene is filled with laughter, teamwork, and excitement. The lighting is bright and cheerful with pops of coral and navy colors, matching a neo-brutalistic playful design system. Close up on a 10-year-old girl making a bold move with a massive white knight piece." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCagmrC8oxQhR_272A-X6VqUzhPqGmXtK_6U4-vPZMyyk6FZxFVC544zz-PDe7FBIGzEDRqaGpxQmwIZs3_mr4NIc6AqEeiTyfF1lq2fjU3FXvjG9qVQduxgmi3YfN8iF8ik6DeveTe0hEboVd4Xhv8qdauupxEWW0X7dcMf5Y_7mTglOQ87HUvDf1J3gYX-DmDU3yrgVTJf2Rh7a7sDm7bLgsZ6_4VKpaa4MwLlJ6VNfF8c3rQlRjGOjMhJUREUMmFFyMHNsVfA_BO"/>
+</div>
+<!-- Decorative Floating Icon -->
+<div class="absolute -bottom-6 -right-6 bg-tertiary-fixed text-on-tertiary-fixed p-4 rounded-full border-4 border-primary shadow-[4px_4px_0px_0px_#000666] animate-bounce">
+<span class="material-symbols-outlined text-4xl filled-icon">star</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-primary border-t-4 border-primary flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 gap-stack-gap text-on-primary">
+<div class="text-headline-lg font-headline-lg text-on-primary">Rule the Board</div>
+<div class="flex flex-wrap justify-center gap-8 items-center font-body-md text-body-md">
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform cursor-pointer" href="#">Privacy</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform cursor-pointer" href="#">Terms</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform cursor-pointer" href="#">Fun Stuff</a>
+</div>
+<div class="font-body-md text-body-md opacity-80">© Rule the Board - Go Play!</div>
+</footer>
+<!-- FAB (Suppressed based on guidelines for Detail/Listing pages) -->
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('.slam-button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                // Slam effect handled by CSS classes but can add sound or vibrations here
+            });
+        });
+
+        // Toggle mobile nav (Simplified for this UI)
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-[8px_8px_0px_0px_#000666]');
+            } else {
+                nav.classList.remove('shadow-[8px_8px_0px_0px_#000666]');
+            }
+        });
+    </script>
+</body></html>

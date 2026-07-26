@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rule the Board | Kids Chess Club</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#735c00",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-primary-fixed": "#000767",
+                    "on-primary-container": "#8690ee",
+                    "inverse-surface": "#303036",
+                    "inverse-on-surface": "#f2eff8",
+                    "surface-dim": "#dbd9e1",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-secondary-fixed": "#410001",
+                    "primary": "#000666",
+                    "surface-container": "#efecf5",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eae7ef",
+                    "outline": "#767683",
+                    "surface-tint": "#4c56af",
+                    "secondary": "#ac332a",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#ebc23e",
+                    "surface-container-low": "#f5f2fb",
+                    "outline-variant": "#c6c5d4",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#8b1a16",
+                    "inverse-primary": "#bdc2ff",
+                    "primary-fixed-dim": "#bdc2ff",
+                    "on-secondary-container": "#6d0005",
+                    "surface-variant": "#e4e1ea",
+                    "surface-container-highest": "#e4e1ea",
+                    "tertiary-container": "#cda721",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffe087",
+                    "secondary-fixed": "#ffdad5",
+                    "on-background": "#1b1b21",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fbf8ff",
+                    "on-surface-variant": "#454652",
+                    "on-error": "#ffffff",
+                    "background": "#fbf8ff",
+                    "primary-container": "#1a237e",
+                    "surface-bright": "#fbf8ff",
+                    "on-primary-fixed-variant": "#343d96",
+                    "primary-fixed": "#e0e0ff",
+                    "secondary-container": "#fd6e60",
+                    "on-surface": "#1b1b21",
+                    "on-tertiary-fixed": "#241a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-gap": "12px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Bricolage Grotesque"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Bricolage Grotesque"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "800"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .slam-button {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .slam-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000666;
+        }
+        .slam-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #000666;
+        }
+        .adventure-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .adventure-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        .bouncy-hero {
+            animation: bounce 3s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="w-full top-0 sticky bg-surface dark:bg-on-background border-b-4 border-primary dark:border-primary-fixed shadow-[4px_4px_0px_0px_#000666] flex justify-between items-center px-gutter py-4 max-w-full mx-auto z-50">
+<div class="text-headline-lg font-headline-xl font-extrabold text-secondary tracking-tight">Rule the Board</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-secondary dark:text-secondary-fixed font-black border-b-4 border-secondary font-headline-lg text-headline-lg" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold hover:text-secondary font-headline-lg text-headline-lg hover:translate-y-[2px] transition-all" href="#">Our Story</a>
+<a class="text-primary dark:text-primary-fixed font-bold hover:text-secondary font-headline-lg text-headline-lg hover:translate-y-[2px] transition-all" href="#">Join the Fun!</a>
+<a class="text-primary dark:text-primary-fixed font-bold hover:text-secondary font-headline-lg text-headline-lg hover:translate-y-[2px] transition-all" href="#">Cool Programs</a>
+<a class="text-primary dark:text-primary-fixed font-bold hover:text-secondary font-headline-lg text-headline-lg hover:translate-y-[2px] transition-all" href="#">Big Events</a>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold border-4 border-primary shadow-[4px_4px_0px_0px_#000666] slam-button">
+            SUPPORT US
+        </button>
+</nav>
+<!-- Hero Section -->
+<section class="relative px-margin-mobile md:px-margin-desktop pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<span class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-full border-2 border-primary font-bold inline-block mb-6 -rotate-2">
+                    #1 KIDS CHESS CLUB! 🚀
+                </span>
+<h1 class="font-headline-xl text-headline-xl mb-6 leading-none">
+                    Master the Game! <br/>
+<span class="text-secondary">Rule the Board!</span>
+</h1>
+<p class="font-body-lg text-body-lg mb-10 text-on-surface-variant max-w-lg">
+                    Join the coolest chess club ever! We turn curious kids into strategic wizards. Ready to make your first move? It's going to be EPIC!
+                </p>
+<div class="flex flex-wrap gap-6">
+<button class="bg-secondary-container text-on-secondary-container text-headline-lg font-headline-lg px-12 py-6 rounded-xl border-4 border-primary shadow-[6px_6px_0px_0px_#000666] slam-button bouncy-hero">
+                        JOIN THE FUN!
+                    </button>
+<button class="bg-surface text-primary text-headline-lg font-headline-lg px-8 py-6 rounded-xl border-4 border-primary shadow-[4px_4px_0px_0px_#000666] slam-button">
+                        WATCH RECAP
+                    </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-tertiary rounded-full border-4 border-primary opacity-20 animate-pulse"></div>
+<div class="relative z-10 border-[6px] border-primary rounded-xl overflow-hidden shadow-[12px_12px_0px_0px_#ac332a] rotate-2">
+<img class="w-full aspect-video object-cover" data-alt="A group of diverse, happy children sitting around colorful chess boards in a brightly lit, modern playroom. The room is decorated with oversized chess piece sculptures in vibrant yellow, red, and blue. The kids are laughing and engaged in high-energy games. The lighting is sunny and warm, reflecting a cheerful and welcoming atmosphere for learning and play." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6OblJV9SU8d0yCUbU0XFxbvnE89lKRipa3LT7l9R36CauO4KiRE3CE7HXY8RavijXlJAUmJJEubKuJPDp5H6bnn12z97JwSzjwS5KpD6kIyQgFrT97_wP4HIfWOXEMUmNaGJhdlOFjkdGG3gcyMfAVbgPb7-YcfWZYCy_ZtIlbUfByGxv2IfRyi6Rj_grhk-vCJFoIvHUk2-zcAeUndgky5prKk8DpiJF1ycyPqtSLJHFk1IEpxIARyMWMmeZJFtXHUK2dZRqv-zD"/>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-primary text-on-primary p-6 rounded-lg border-4 border-secondary-container -rotate-3 hidden md:block">
+<p class="font-bold text-xl">"I love winning!" <br/>— Leo, age 9</p>
+</div>
+</div>
+</div>
+</section>
+<!-- What We Do Section -->
+<section class="bg-surface-container py-24 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-xl text-headline-xl mb-4">What We Do</h2>
+<div class="w-24 h-2 bg-secondary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Brain Power -->
+<div class="adventure-card bg-surface p-8 rounded-xl border-[4px] border-primary shadow-[8px_8px_0px_0px_#000666] -rotate-1">
+<div class="w-20 h-20 bg-tertiary-container rounded-full border-4 border-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-on-tertiary-container" data-icon="psychology">psychology</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Brain Power</h3>
+<p class="text-body-md">Chess isn't just a game; it's a super-workout for your brain! Level up your memory and focus while having a blast.</p>
+</div>
+<!-- Cool Gear -->
+<div class="adventure-card bg-surface p-8 rounded-xl border-[4px] border-primary shadow-[8px_8px_0px_0px_#000666] rotate-1">
+<div class="w-20 h-20 bg-secondary-container rounded-full border-4 border-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-on-secondary-container" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Cool Gear</h3>
+<p class="text-body-md">Get exclusive club merch, custom chess sets, and digital badges to show off your rank to your friends!</p>
+</div>
+<!-- Pro Coaches -->
+<div class="adventure-card bg-surface p-8 rounded-xl border-[4px] border-primary shadow-[8px_8px_0px_0px_#000666] -rotate-1">
+<div class="w-20 h-20 bg-primary-container rounded-full border-4 border-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-on-primary-container" data-icon="sports_esports">sports_esports</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Pro Coaches</h3>
+<p class="text-body-md">Learn from the best! Our coaches are funny, friendly, and know every secret move to make you unstoppable.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Join the Squad Stats -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-10">
+<div class="absolute top-10 left-10 text-8xl font-black rotate-12">♔</div>
+<div class="absolute bottom-20 right-20 text-8xl font-black -rotate-12">♘</div>
+<div class="absolute top-1/2 left-1/4 text-6xl font-black rotate-45">♗</div>
+</div>
+<div class="max-w-7xl mx-auto bg-primary text-on-primary rounded-xl p-12 border-[6px] border-secondary relative z-10 shadow-[16px_16px_0px_0px_#ac332a]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div>
+<div class="text-headline-xl font-headline-xl text-secondary-fixed mb-2">500+</div>
+<p class="font-headline-lg text-headline-lg">Future Grandmasters!</p>
+</div>
+<div>
+<div class="text-headline-xl font-headline-xl text-tertiary-fixed mb-2">12,000+</div>
+<p class="font-headline-lg text-headline-lg">Matches Played!</p>
+</div>
+<div>
+<div class="text-headline-xl font-headline-xl text-secondary-fixed mb-2">50+</div>
+<p class="font-headline-lg text-headline-lg">Epic Trophies Won!</p>
+</div>
+</div>
+<div class="mt-16 text-center">
+<p class="font-headline-lg text-headline-lg mb-8 italic">"The best decision I ever made! Chess is my superpower."</p>
+<button class="bg-on-primary text-primary text-headline-lg font-headline-lg px-12 py-6 rounded-full border-4 border-secondary shadow-[8px_8px_0px_0px_#ac332a] slam-button">
+                    BECOME A MEMBER!
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-t-4 border-primary dark:border-primary-fixed flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 gap-stack-gap">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<div class="text-headline-lg font-headline-lg text-on-primary">Rule the Board</div>
+<p class="font-body-md text-body-md opacity-90">© Rule the Board - Go Play!</p>
+</div>
+<div class="flex gap-8 items-center">
+<a class="text-on-primary opacity-90 hover:opacity-100 font-body-md text-body-md hover:scale-105 transition-transform cursor-pointer" href="#">Privacy</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 font-body-md text-body-md hover:scale-105 transition-transform cursor-pointer" href="#">Terms</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 font-body-md text-body-md hover:scale-105 transition-transform cursor-pointer" href="#">Fun Stuff</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-on-primary rounded-full flex items-center justify-center text-primary hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+</div>
+<div class="w-10 h-10 bg-on-primary rounded-full flex items-center justify-center text-primary hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for that bouncy, tactile feel
+        document.querySelectorAll('.adventure-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const colors = ['#ac332a', '#735c00', '#000666'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                card.style.borderColor = randomColor;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = '#000666';
+            });
+        });
+
+        // Background floating elements interaction
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.absolute.font-black').forEach(el => {
+                const speed = 20;
+                const moveX = (x - 0.5) * speed;
+                const moveY = (y - 0.5) * speed;
+                el.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${parseInt(el.style.transform.split('rotate(')[1]) || 0}deg)`;
+            });
+        });
+    </script>
+</body></html>

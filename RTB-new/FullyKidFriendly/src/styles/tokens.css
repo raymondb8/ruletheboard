@@ -1,0 +1,54 @@
+/*
+  Rule the Board — "Playful Neo-Brutalism" design tokens.
+  Single source of truth for brand colors, type, spacing, and shape.
+  Every component should read these variables rather than hardcoding values,
+  so new pages automatically match the brand.
+*/
+:root {
+  /* Colors */
+  --color-navy: #000666;
+  --color-navy-container: #1a237e;
+  --color-coral: #ac332a;
+  --color-coral-container: #fd6e60;
+  --color-coral-tint: #ffdad5;
+  --color-gold: #735c00;
+  --color-gold-container: #cda721;
+  --color-gold-fixed: #ffe087;
+  --color-gold-fixed-dim: #ebc23e;
+  --color-cream: #fbf8ff;
+  --color-surface-low: #f5f2fb;
+  --color-surface: #efecf5;
+  --color-surface-high: #eae7ef;
+  --color-surface-highest: #e4e1ea;
+  --color-ink: #1b1b21;
+  --color-body: #454652;
+  --color-border-soft: rgba(0, 6, 102, 0.12);
+  --color-footer-border: rgba(251, 248, 255, 0.15);
+  --color-footer-border-strong: rgba(251, 248, 255, 0.3);
+
+  /* Typography */
+  --font-heading: 'Bricolage Grotesque', 'Trebuchet MS', Arial, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
+  --font-icon: 'Material Symbols Outlined';
+
+  /* Spacing */
+  --space-section-x: 40px;
+  --space-section-x-mobile: 16px;
+  --grid-gap: 24px;
+
+  /* Shape */
+  --border-width: 1px;
+  --border-width-thick: 3px;
+  --border-width-thicker: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* "Slam" hard offset shadows — solid navy, no blur */
+  --shadow-hard-sm: 4px 4px 0 var(--color-navy);
+  --shadow-hard-md: 6px 6px 0 var(--color-navy);
+  --shadow-hard-lg: 10px 10px 0 var(--color-navy);
+  --shadow-hard-coral: 8px 8px 0 var(--color-coral);
+}

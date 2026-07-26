@@ -1,0 +1,293 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-navy-container);
+  color: #fff;
+  padding: 72px var(--space-section-x);
+  text-align: center;
+}
+
+.heroBlobA,
+.heroBlobB {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.heroBlobA {
+  top: -80px;
+  left: -80px;
+  width: 220px;
+  height: 220px;
+  background: var(--color-coral);
+}
+
+.heroBlobB {
+  bottom: -100px;
+  right: -100px;
+  width: 320px;
+  height: 320px;
+  background: var(--color-gold-container);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.heroBody {
+  font-size: 17px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 36px;
+}
+
+.heroCtas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.coachSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  padding: 72px var(--space-section-x);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.coachCard {
+  background: #fff;
+  padding: 40px;
+}
+
+.coachCard h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: 16px;
+}
+
+.coachCard p {
+  font-size: 16px;
+  color: var(--color-body);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.perkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.perkList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.perkList .material-symbols-outlined {
+  color: var(--color-coral);
+}
+
+.signupCard {
+  background: var(--color-coral-container);
+  padding: 40px;
+  text-align: center;
+}
+
+.signupCard h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: 16px;
+}
+
+.signupCard p {
+  font-size: 15px;
+  color: var(--color-navy);
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+
+.donateSection {
+  background: var(--color-surface);
+  padding: 72px var(--space-section-x);
+  text-align: center;
+}
+
+.donateSection h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-coral);
+  margin-bottom: 16px;
+}
+
+.donateIntro {
+  max-width: 600px;
+  margin: 0 auto 48px;
+  font-size: 16px;
+  color: var(--color-body);
+}
+
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.tierCard {
+  position: relative;
+  background: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tierFeatured {
+  transform: scale(1.06);
+  z-index: 1;
+  background: var(--color-coral-tint);
+}
+
+.mostPopular {
+  position: absolute;
+  top: -14px;
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.tierIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: var(--border-width-thick) solid var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tierIcon .material-symbols-outlined {
+  font-size: 40px;
+  color: var(--color-navy);
+}
+
+.tierCard h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: 6px;
+}
+
+.tierAmount {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-coral);
+  margin-bottom: 16px;
+}
+
+.tierCard p {
+  font-size: 14px;
+  color: var(--color-body);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.tierCta {
+  width: 100%;
+}
+
+.squadSection {
+  background: var(--color-navy);
+  color: #fff;
+  padding: 72px var(--space-section-x);
+  text-align: center;
+}
+
+.squadSection h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.squadGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.squadItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-navy-container);
+  color: #fff;
+  padding: 24px 32px;
+  border-radius: var(--radius-md);
+  border: var(--border-width-thick) solid var(--color-cream);
+  font-weight: 800;
+  font-size: 13px;
+  transition: transform 150ms ease;
+}
+
+.squadItem:hover {
+  color: #fff;
+  transform: scale(1.06);
+}
+
+.squadItem .material-symbols-outlined {
+  font-size: 32px;
+}
+
+.finalCta {
+  text-align: center;
+  padding: 56px var(--space-section-x);
+}
+
+@media (max-width: 900px) {
+  .coachSection {
+    grid-template-columns: 1fr;
+  }
+
+  .tiersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tierFeatured {
+    transform: none;
+  }
+}

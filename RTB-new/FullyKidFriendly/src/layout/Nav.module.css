@@ -1,0 +1,168 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--space-section-x);
+  border-bottom: var(--border-width-thicker) solid var(--color-navy);
+  box-shadow: var(--shadow-hard-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-cream);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-coral);
+  letter-spacing: -0.01em;
+}
+
+.logo:hover {
+  color: var(--color-coral);
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.itemLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy);
+  padding: 8px 0;
+  border-bottom: var(--border-width-thicker) solid transparent;
+  transition: transform 150ms ease;
+}
+
+.itemLabel:hover {
+  color: var(--color-coral);
+  transform: translateY(2px);
+}
+
+.itemLabelActive {
+  color: var(--color-coral);
+  border-bottom-color: var(--color-coral);
+  font-weight: 800;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donateButton {
+  background: var(--color-coral);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  border: var(--border-width-thick) solid var(--color-navy);
+  box-shadow: var(--shadow-hard-sm);
+  transition:
+    transform 100ms ease,
+    box-shadow 100ms ease;
+}
+
+.donateButton:hover {
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-navy);
+}
+
+.donateButton:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-navy);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburgerBar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--color-navy);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 6, 102, 0.4);
+  z-index: 54;
+}
+
+.mobilePanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 84vw);
+  background: var(--color-cream);
+  border-left: var(--border-width-thicker) solid var(--color-navy);
+  box-shadow: -6px 0 0 rgba(0, 6, 102, 0.15);
+  z-index: 55;
+  transform: translateX(100%);
+  transition: transform 200ms ease;
+  overflow-y: auto;
+}
+
+.mobilePanelOpen {
+  transform: translateX(0);
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  padding: 88px 24px 24px;
+}
+
+.mobileLink {
+  padding: 16px 0;
+  border-bottom: var(--border-width) solid var(--color-border-soft);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-navy);
+}
+
+.mobileDonate {
+  margin-top: 24px;
+  background: var(--color-coral);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: var(--border-width-thick) solid var(--color-navy);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+@media (max-width: 900px) {
+  .items {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

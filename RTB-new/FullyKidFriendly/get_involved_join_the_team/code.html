@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Be a Hero! Join the Team! | Rule the Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary": "#735c00",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#574500",
+                "on-primary-fixed": "#000767",
+                "on-primary-container": "#8690ee",
+                "inverse-surface": "#303036",
+                "inverse-on-surface": "#f2eff8",
+                "surface-dim": "#dbd9e1",
+                "on-tertiary-container": "#4e3d00",
+                "on-secondary-fixed": "#410001",
+                "primary": "#000666",
+                "surface-container": "#efecf5",
+                "on-tertiary": "#ffffff",
+                "surface-container-high": "#eae7ef",
+                "outline": "#767683",
+                "surface-tint": "#4c56af",
+                "secondary": "#ac332a",
+                "secondary-fixed-dim": "#ffb4aa",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed-dim": "#ebc23e",
+                "surface-container-low": "#f5f2fb",
+                "outline-variant": "#c6c5d4",
+                "on-error-container": "#93000a",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#8b1a16",
+                "inverse-primary": "#bdc2ff",
+                "primary-fixed-dim": "#bdc2ff",
+                "on-secondary-container": "#6d0005",
+                "surface-variant": "#e4e1ea",
+                "surface-container-highest": "#e4e1ea",
+                "tertiary-container": "#cda721",
+                "on-primary": "#ffffff",
+                "tertiary-fixed": "#ffe087",
+                "secondary-fixed": "#ffdad5",
+                "on-background": "#1b1b21",
+                "on-secondary": "#ffffff",
+                "surface": "#fbf8ff",
+                "on-surface-variant": "#454652",
+                "on-error": "#ffffff",
+                "background": "#fbf8ff",
+                "primary-container": "#1a237e",
+                "surface-bright": "#fbf8ff",
+                "on-primary-fixed-variant": "#343d96",
+                "primary-fixed": "#e0e0ff",
+                "secondary-container": "#fd6e60",
+                "on-surface": "#1b1b21",
+                "on-tertiary-fixed": "#241a00"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "stack-gap": "12px",
+                "margin-desktop": "40px",
+                "base": "8px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-xl": ["Bricolage Grotesque"],
+                "body-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "headline-lg-mobile": ["Bricolage Grotesque"],
+                "label-bold": ["Plus Jakarta Sans"],
+                "headline-lg": ["Bricolage Grotesque"]
+            },
+            "fontSize": {
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "800"}],
+                "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .slam-button {
+            box-shadow: 4px 4px 0px 0px #000666;
+            transition: all 0.1s ease-in-out;
+        }
+        .slam-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000666;
+        }
+        .slam-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #000666;
+        }
+
+        .adventure-card {
+            border: 3px solid #000666;
+            box-shadow: 6px 6px 0px 0px #000666;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .adventure-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 10px 10px 0px 0px #000666;
+        }
+
+        .bouncy-input:focus {
+            border-width: 5px;
+            border-color: #241a00; /* Checkmate Green concept */
+            outline: none;
+        }
+
+        .rotate-slight-left { transform: rotate(-1.5deg); }
+        .rotate-slight-right { transform: rotate(1.5deg); }
+
+        .floating-blob {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface z-50 border-b-4 border-primary shadow-[4px_4px_0px_0px_#000666] flex justify-between items-center px-gutter py-4 max-w-full mx-auto">
+<div class="text-headline-lg font-headline-xl font-extrabold text-secondary tracking-tight">Rule the Board</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Home</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Our Story</a>
+<a class="text-secondary font-black border-b-4 border-secondary transition-all" href="#">Join the Fun!</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Cool Programs</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Big Events</a>
+</nav>
+<button class="slam-button bg-secondary text-on-primary px-6 py-3 rounded-full font-label-bold uppercase text-label-bold tracking-widest hover:translate-y-[2px] transition-all">
+            SUPPORT US
+        </button>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="py-20 px-gutter flex flex-col items-center text-center bg-primary-container text-on-primary relative overflow-hidden">
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-secondary rounded-full opacity-20 floating-blob"></div>
+<div class="absolute -bottom-20 -right-20 w-96 h-96 bg-tertiary rounded-full opacity-20 floating-blob" style="animation-delay: 2s;"></div>
+<div class="z-10 max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl mb-6 leading-tight">BE A HERO! JOIN THE TEAM! 🏆</h1>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-2xl mx-auto mb-10">
+                    Ever wanted to be a Chess Wizard? Now's your chance! We're building the biggest, funniest, and most EPIC chess squad ever and we need YOU!
+                </p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="slam-button bg-secondary-container text-on-secondary-container px-8 py-5 rounded-lg font-headline-lg text-headline-lg-mobile flex items-center gap-3" href="#coach">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+                        COACH US!
+                    </a>
+<a class="slam-button bg-tertiary-container text-on-tertiary-container px-8 py-5 rounded-lg font-headline-lg text-headline-lg-mobile flex items-center gap-3" href="#donate">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+                        FUEL FUN!
+                    </a>
+</div>
+</div>
+</section>
+<!-- Be a Coach! Section -->
+<section class="py-24 px-margin-desktop max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center" id="coach">
+<div class="adventure-card p-10 bg-surface rounded-lg rotate-slight-left">
+<div class="mb-8">
+<h2 class="font-headline-xl text-headline-xl text-primary mb-4">BE A COACH! 🧠</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                        You don't need to be a Grandmaster to help! If you love games, high-fives, and helping kids level up their brain power, you're the perfect fit! 👑
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 font-label-bold text-primary">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            TEACH COOL MOVES!
+                        </li>
+<li class="flex items-center gap-4 font-label-bold text-primary">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            EARN AWESOME BADGES!
+                        </li>
+<li class="flex items-center gap-4 font-label-bold text-primary">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            MAKE NEW BEST FRIENDS!
+                        </li>
+</ul>
+</div>
+<div class="h-64 rounded-lg bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A vibrant, high-energy illustration of a friendly mentor high-fiving a diverse group of excited kids over a giant, colorful 3D chess board. The style is playful neo-brutalism with thick navy outlines and bright pops of coral and gold. The lighting is sunny and cheerful, creating a sense of community and fun." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAddwelov1aTUB-w72N8aLFGgXB20oHdMIgt5PIWSaEnjypdg6w7tJLZm7_sUW9bNstaZLY8ExfF75xHnvFZDXJKzJk9BowDEz4hSN8YgPnq3m21jHQtpe-AN5XblnQhnibBTpR37XmcI9a7WoslsAb2f86BxZCnwaD9HhFMQ6aUMrrUjOzVkq3wTlWpj4-uIQ-LGzQb-I6v4-MdCODlAQRgHwCrTLCuhnEz9da2itZbRbLuIL4XPiZcIK3ulz1ZogBVBWAyTsN0DjM"/>
+</div>
+</div>
+<div class="adventure-card p-10 bg-secondary-container text-on-secondary-container rounded-lg rotate-slight-right">
+<h3 class="font-headline-lg text-headline-lg mb-8">READY TO HELP? 🚀</h3>
+<form class="space-y-6">
+<div>
+<label class="block font-label-bold mb-2 uppercase tracking-wide">WHAT'S YOUR HERO NAME?</label>
+<input class="w-full p-4 rounded-lg border-3 border-primary bouncy-input text-on-background font-body-md" placeholder="e.g. Captain Gambit" type="text"/>
+</div>
+<div>
+<label class="block font-label-bold mb-2 uppercase tracking-wide">YOUR EMAIL (FOR SECRET COMMS)</label>
+<input class="w-full p-4 rounded-lg border-3 border-primary bouncy-input text-on-background font-body-md" placeholder="hero@powermail.com" type="email"/>
+</div>
+<div>
+<label class="block font-label-bold mb-2 uppercase tracking-wide">YOUR SUPERPOWER?</label>
+<select class="w-full p-4 rounded-lg border-3 border-primary bouncy-input text-on-background font-body-md">
+<option>Patience of a Monk</option>
+<option>Speedy Thinking</option>
+<option>Ultimate Encourager</option>
+<option>Rules Expert</option>
+</select>
+</div>
+<button class="w-full slam-button bg-primary text-on-primary py-5 rounded-lg font-headline-lg text-headline-lg mt-4" type="submit">
+                        SIGN ME UP! ⚡
+                    </button>
+</form>
+</div>
+</section>
+<!-- Fuel the Fun! Section -->
+<section class="py-24 bg-surface-container" id="donate">
+<div class="px-margin-desktop max-w-7xl mx-auto text-center">
+<h2 class="font-headline-xl text-headline-xl text-secondary mb-4">FUEL THE FUN! ⛽</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-16 max-w-2xl mx-auto">
+                    Every coin helps us buy new boards, host massive tournaments, and bring snacks for the hungry players! Choose your power-up:
+                </p>
+<div class="grid md:grid-cols-3 gap-10">
+<!-- Tier 1 -->
+<div class="adventure-card bg-surface p-8 rounded-lg flex flex-col items-center">
+<div class="w-24 h-24 mb-6 bg-tertiary-fixed rounded-full flex items-center justify-center border-4 border-primary">
+<span class="material-symbols-outlined text-[48px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">lan</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-2">PAWN POWER!</h4>
+<span class="font-headline-xl text-headline-xl text-secondary mb-4">$10</span>
+<p class="font-body-md text-on-surface-variant mb-8 flex-grow">Buys a brand new chess board for a future champion!</p>
+<button class="slam-button w-full bg-tertiary text-on-tertiary py-4 rounded-lg font-label-bold">BOOST THIS! 🔋</button>
+</div>
+<!-- Tier 2 -->
+<div class="adventure-card bg-secondary-fixed p-8 rounded-lg flex flex-col items-center scale-105 relative z-10 border-4 border-primary">
+<div class="absolute -top-6 bg-primary text-on-primary px-4 py-1 rounded-full font-label-bold animate-bounce">MOST POPULAR!</div>
+<div class="w-24 h-24 mb-6 bg-secondary-container rounded-full flex items-center justify-center border-4 border-primary">
+<span class="material-symbols-outlined text-[48px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">flight</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-2">KNIGHT JUMP!</h4>
+<span class="font-headline-xl text-headline-xl text-secondary mb-4">$25</span>
+<p class="font-body-md text-on-surface-variant mb-8 flex-grow">Feeds a whole team at our next big tournament!</p>
+<button class="slam-button w-full bg-secondary text-on-primary py-4 rounded-lg font-label-bold">LAUNCH IT! 🚀</button>
+</div>
+<!-- Tier 3 -->
+<div class="adventure-card bg-surface p-8 rounded-lg flex flex-col items-center">
+<div class="w-24 h-24 mb-6 bg-primary-fixed-dim rounded-full flex items-center justify-center border-4 border-primary">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-2">KING'S CROWN!</h4>
+<span class="font-headline-xl text-headline-xl text-secondary mb-4">$50+</span>
+<p class="font-body-md text-on-surface-variant mb-8 flex-grow">Sponsors an entire classroom for a month of lessons!</p>
+<button class="slam-button w-full bg-primary text-on-primary py-4 rounded-lg font-label-bold">RULE THE BOARD! 👑</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Find the Squad Section -->
+<section class="py-24 px-margin-desktop bg-primary text-on-primary text-center">
+<h2 class="font-headline-xl text-headline-xl mb-12">FIND THE SQUAD! 📱</h2>
+<div class="flex flex-wrap justify-center gap-10">
+<a class="slam-button bg-on-primary-container p-6 rounded-2xl flex flex-col items-center gap-3 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+<span class="font-label-bold">INSTA-FUN</span>
+</a>
+<a class="slam-button bg-on-primary-container p-6 rounded-2xl flex flex-col items-center gap-3 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">video_library</span>
+<span class="font-label-bold">TUBE-TIME</span>
+</a>
+<a class="slam-button bg-on-primary-container p-6 rounded-2xl flex flex-col items-center gap-3 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-bold">THE LAB</span>
+</a>
+<a class="slam-button bg-on-primary-container p-6 rounded-2xl flex flex-col items-center gap-3 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="font-label-bold">CHESS CHAT</span>
+</a>
+</div>
+<!-- Progress Bar Mock -->
+<div class="mt-24 max-w-2xl mx-auto adventure-card bg-surface p-8 rounded-xl text-on-background">
+<div class="flex justify-between items-center mb-4">
+<span class="font-headline-lg text-headline-lg text-primary">SQUAD GOALS!</span>
+<span class="font-label-bold text-secondary">85% LOADED</span>
+</div>
+<div class="w-full h-8 bg-primary-fixed-dim rounded-full border-4 border-primary overflow-hidden relative">
+<div class="h-full bg-tertiary-container w-[85%] rounded-r-full relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 bg-secondary rounded-full flex items-center justify-center border-2 border-primary shadow-lg">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="mt-6 font-body-md italic text-on-surface-variant">We're so close to unlocking the Summer Mega-Tournament! Help us hit 100%!</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-primary text-on-primary border-t-4 border-primary flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 gap-stack-gap">
+<div class="text-headline-lg font-headline-lg text-on-primary">Rule the Board</div>
+<div class="flex flex-col md:flex-row items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform font-body-md" href="#">Privacy</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform font-body-md" href="#">Terms</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform font-body-md" href="#">Fun Stuff</a>
+</nav>
+<p class="font-body-md text-body-md opacity-75">© Rule the Board - Go Play!</p>
+</div>
+</footer>
+<!-- Floating Action Button - Mobile Only -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="slam-button bg-secondary text-on-primary w-16 h-16 rounded-full flex items-center justify-center shadow-2xl">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">heart_plus</span>
+</button>
+</div>
+<script>
+        // Micro-interaction for inputs
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('scale-105');
+                el.parentElement.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('scale-105');
+            });
+        });
+
+        // Simple slam effect for any element with class slam-button
+        document.querySelectorAll('.slam-button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'translate(4px, 4px)';
+                btn.style.boxShadow = '0px 0px 0px 0px #000666';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = '';
+                btn.style.boxShadow = '';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+                btn.style.boxShadow = '';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rule the Board - Our Epic Story!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 48;
+        }
+        .slam-button {
+            transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .slam-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000666 !important;
+        }
+        .slam-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #000666 !important;
+        }
+        .adventure-card {
+            transition: all 0.2s ease;
+        }
+        .adventure-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 8px 8px 0px 0px #000666 !important;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(-1deg); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#735c00",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#000767",
+                      "on-primary-container": "#8690ee",
+                      "inverse-surface": "#303036",
+                      "inverse-on-surface": "#f2eff8",
+                      "surface-dim": "#dbd9e1",
+                      "on-tertiary-container": "#4e3d00",
+                      "on-secondary-fixed": "#410001",
+                      "primary": "#000666",
+                      "surface-container": "#efecf5",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#eae7ef",
+                      "outline": "#767683",
+                      "surface-tint": "#4c56af",
+                      "secondary": "#ac332a",
+                      "secondary-fixed-dim": "#ffb4aa",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed-dim": "#ebc23e",
+                      "surface-container-low": "#f5f2fb",
+                      "outline-variant": "#c6c5d4",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#8b1a16",
+                      "inverse-primary": "#bdc2ff",
+                      "primary-fixed-dim": "#bdc2ff",
+                      "on-secondary-container": "#6d0005",
+                      "surface-variant": "#e4e1ea",
+                      "surface-container-highest": "#e4e1ea",
+                      "tertiary-container": "#cda721",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffe087",
+                      "secondary-fixed": "#ffdad5",
+                      "on-background": "#1b1b21",
+                      "on-secondary": "#ffffff",
+                      "surface": "#fbf8ff",
+                      "on-surface-variant": "#454652",
+                      "on-error": "#ffffff",
+                      "background": "#fbf8ff",
+                      "primary-container": "#1a237e",
+                      "surface-bright": "#fbf8ff",
+                      "on-primary-fixed-variant": "#343d96",
+                      "primary-fixed": "#e0e0ff",
+                      "secondary-container": "#fd6e60",
+                      "on-surface": "#1b1b21",
+                      "on-tertiary-fixed": "#241a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "stack-gap": "12px",
+                      "margin-desktop": "40px",
+                      "base": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-xl": ["Bricolage Grotesque"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Bricolage Grotesque"],
+                      "label-bold": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Bricolage Grotesque"]
+              },
+              "fontSize": {
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "800"}],
+                      "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-white overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="w-full top-0 sticky bg-surface z-50 border-b-4 border-primary shadow-[4px_4px_0px_0px_#000666] flex justify-between items-center px-gutter py-4 max-w-full mx-auto">
+<div class="text-headline-lg font-headline-xl font-extrabold text-secondary tracking-tight">Rule the Board</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Home</a>
+<a class="text-secondary font-black border-b-4 border-secondary" href="#">Our Story</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Join the Fun!</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Cool Programs</a>
+<a class="text-primary font-bold hover:text-secondary transition-all" href="#">Big Events</a>
+</div>
+<button class="slam-button bg-secondary text-white font-bold px-6 py-2 rounded-full border-2 border-primary shadow-[4px_4px_0px_0px_#000666] transition-all">
+            SUPPORT US
+        </button>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="max-w-7xl mx-auto text-center relative z-10">
+<div class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-bold px-4 py-1 rounded-full mb-6 border-2 border-primary shadow-[3px_3px_0px_0px_#000666] -rotate-2">
+                    LEVEL UP YOUR BRAIN!
+                </div>
+<h1 class="font-headline-xl text-[64px] md:text-[84px] leading-tight mb-8 text-primary drop-shadow-[4px_4px_0px_#fd6e60]">
+                    Our Epic Story!
+                </h1>
+<p class="font-body-lg text-headline-lg max-w-2xl mx-auto text-on-surface-variant mb-12">
+                    Forget boring textbooks. We're on a mission to turn every kid into a grandmaster of strategy, fun, and total board-room domination!
+                </p>
+<div class="flex flex-wrap justify-center gap-6">
+<div class="floating">
+<span class="material-symbols-outlined text-secondary text-6xl" style="font-variation-settings: 'FILL' 1;">chess</span>
+</div>
+<div class="floating" style="animation-delay: 0.5s">
+<span class="material-symbols-outlined text-tertiary text-6xl" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div class="floating" style="animation-delay: 1s">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">trophy</span>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-20 -left-10 w-40 h-40 bg-secondary-container rounded-full opacity-20 blur-3xl"></div>
+<div class="absolute bottom-10 -right-10 w-64 h-64 bg-tertiary-container rounded-full opacity-20 blur-3xl"></div>
+</section>
+<!-- Timeline Section: How it all started -->
+<section class="py-20 bg-surface-container-low px-margin-mobile md:px-margin-desktop">
+<div class="max-w-5xl mx-auto">
+<h2 class="font-headline-xl text-center mb-16 text-primary">How It All Started</h2>
+<div class="relative space-y-12">
+<!-- Timeline Vertical Line -->
+<div class="absolute left-1/2 transform -translate-x-1/2 w-2 h-full bg-primary hidden md:block"></div>
+<!-- Step 1 -->
+<div class="flex flex-col md:flex-row items-center justify-between w-full">
+<div class="md:w-5/12 adventure-card bg-white border-4 border-primary p-8 rounded-lg shadow-[8px_8px_0px_0px_#000666] -rotate-1">
+<span class="text-tertiary font-black text-xl mb-2 block">2021: THE SPARK</span>
+<h3 class="font-headline-lg text-primary mb-4">A Bored Knight</h3>
+<p class="text-on-surface-variant">Our founder, tired of dusty chess clubs, decided chess needed more sparkles, more snacks, and way more fun!</p>
+</div>
+<div class="w-12 h-12 bg-secondary border-4 border-primary rounded-full z-10 hidden md:flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div class="md:w-5/12 h-1"></div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col md:flex-row-reverse items-center justify-between w-full">
+<div class="md:w-5/12 adventure-card bg-white border-4 border-primary p-8 rounded-lg shadow-[8px_8px_0px_0px_#000666] rotate-1">
+<span class="text-tertiary font-black text-xl mb-2 block">2022: FIRST MOVE</span>
+<h3 class="font-headline-lg text-primary mb-4">Garage Gaming</h3>
+<p class="text-on-surface-variant">We started with 5 kids in a garage. We played chess with giant pizza-box-sized boards. It was EPIC.</p>
+</div>
+<div class="w-12 h-12 bg-secondary border-4 border-primary rounded-full z-10 hidden md:flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<div class="md:w-5/12 h-1"></div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col md:flex-row items-center justify-between w-full">
+<div class="md:w-5/12 adventure-card bg-white border-4 border-primary p-8 rounded-lg shadow-[8px_8px_0px_0px_#000666] -rotate-1">
+<span class="text-tertiary font-black text-xl mb-2 block">TODAY: BOSS MODE</span>
+<h3 class="font-headline-lg text-primary mb-4">Ruling the World</h3>
+<p class="text-on-surface-variant">Now we're hundreds strong, raiding tournaments and showing the world that kids are the true board rulers!</p>
+</div>
+<div class="w-12 h-12 bg-secondary border-4 border-primary rounded-full z-10 hidden md:flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="md:w-5/12 h-1"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section: Meet the Chess Legends -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-headline-xl text-center mb-6 text-primary">Meet the Chess Legends</h2>
+<p class="text-center font-body-lg text-on-surface-variant mb-16 max-w-xl mx-auto">The masterminds behind the movement. Part grandmasters, part professional fun-havers.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Legend 1 -->
+<div class="adventure-card bg-surface-container-high border-4 border-primary rounded-lg overflow-hidden shadow-[8px_8px_0px_0px_#000666] group">
+<div class="aspect-square bg-white border-b-4 border-primary overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A playful studio portrait of a charismatic woman in a colorful blazer, wearing large creative glasses, smiling widely. She is surrounded by floating 3D chess pieces in a vibrant pop-art style with high contrast and thick outlines. The lighting is bright and cheerful, matching a modern kid-friendly gaming UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQJWyOov5iefL5DNJ-Z26A1c8SfTAvwDsZiS5fVd16iui202npO3aquPV9WhWQYZPottSOH686f3fZHVEYIfo-nkpVG6UOVfjYjTTGhMOGahg3UD28BBuC2mSsD8KeSk3G6xJkDE8TArk4aUqfhnn__cHsT5Ojv-TJfz38icBlws7kGysf1v7JGHa6iNPqttQz8w_tbcYThP-EyDdXHWxpQgHG6bsPK1VFr2srA3d2aAim__8ORZB_I2wRViejQRbEuWgJcSjuscE7"/>
+</div>
+<div class="p-6">
+<div class="bg-secondary-container text-white text-[12px] font-black inline-block px-3 py-1 rounded-full mb-3 uppercase">Chief Strategist</div>
+<h4 class="font-headline-lg text-primary mb-1">Coach "The Queen"</h4>
+<p class="text-on-surface-variant text-sm">Can see 10 moves ahead and find the best ice cream in town simultaneously.</p>
+</div>
+</div>
+<!-- Legend 2 -->
+<div class="adventure-card bg-surface-container-high border-4 border-primary rounded-lg overflow-hidden shadow-[8px_8px_0px_0px_#000666] rotate-1 group">
+<div class="aspect-square bg-white border-b-4 border-primary overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A professional yet whimsical photo of a young man with a friendly face, wearing a headset and a t-shirt with a cool knight chess piece logo. He is in a brightly lit room filled with board games and tech gadgets. The style is neon-brutalism, featuring energetic colors like teal and coral with hard shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdrrIWbZ3dZkTxFd9JdIwMNlUR-jD66EiMnb4zQQPolN92QyrS8z7mwo1w35SBI9iLGOM_xS90X4WWYh1mJvINxUA-JLIpwwtEiFSK0PD-9day2YzsU7DH-Zu602u4arNL3dtKZOww40W1F9GelqnpSD4LmqL1RsdhQIXAtsDlzp8tprzVENa8_xIo6W2BEkS_q_p__upMRbnJv8QrFGiop_S-FgoqChVp-FyvArfEoUSH9HMky8uGRC43MXA_CckCAOX8-z5P41H0"/>
+</div>
+<div class="p-6">
+<div class="bg-tertiary-container text-on-tertiary-container text-[12px] font-black inline-block px-3 py-1 rounded-full mb-3 uppercase">Knight of Knowledge</div>
+<h4 class="font-headline-lg text-primary mb-1">Sir Solve-a-Lot</h4>
+<p class="text-on-surface-variant text-sm">Master of tactics and the human encyclopedia of weird chess facts.</p>
+</div>
+</div>
+<!-- Legend 3 -->
+<div class="adventure-card bg-surface-container-high border-4 border-primary rounded-lg overflow-hidden shadow-[8px_8px_0px_0px_#000666] -rotate-1 group">
+<div class="aspect-square bg-white border-b-4 border-primary overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A cool, artistic portrait of a woman with dyed blue hair, holding a giant oversized chess pawn. The background is a vibrant gradient of purple and orange. The image has a thick 4px black border around the subject, creating a comic book feel consistent with high-energy gamified UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeOlEAH-W-VPDbNvdS8gudAlY31lN8XMNzz_Z8MsLQO5qhPADnD1cR2nHzvFK7l-FybU4jkAiXFxFipCvMWi2fQy71Wl4KmWPmvxjz3TjLkQfIw8K2wU1rcT9ohFGJ2qJcMfNLmz84HMI0flig680wdrwKNlKh8tWCOz1uHVm0xYXZhxnbe4UCtRmmBY8OVXaDiWSzMdwkXiE7x2cbz71hgvUZLhbcjFTehbJfM_XfP26d-bMu4YXxA2Dg2mgoKMujpaUs042keoIu"/>
+</div>
+<div class="p-6">
+<div class="bg-primary-container text-on-primary-container text-[12px] font-black inline-block px-3 py-1 rounded-full mb-3 uppercase">Pawn-Star Designer</div>
+<h4 class="font-headline-lg text-primary mb-1">Pixel Polly</h4>
+<p class="text-on-surface-variant text-sm">Makes sure our boards look cooler than your favorite video game.</p>
+</div>
+</div>
+<!-- Legend 4 -->
+<div class="adventure-card bg-surface-container-high border-4 border-primary rounded-lg overflow-hidden shadow-[8px_8px_0px_0px_#000666] rotate-2 group">
+<div class="aspect-square bg-white border-b-4 border-primary overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A funny and energetic photo of a person wearing a crown and a cape made of tournament ribbons. They are cheering and holding a trophy. The lighting is theatrical and warm, with a playful neo-brutalism background texture. The overall mood is high-energy, celebratory, and kid-focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyLTXzV4PJPa7-cjT8vjEEvTBGtWjsfM5mQOHGIMwVKGD5EA9hm_8k9o-zx8T9Y7Sn_WSFVS_J4uQN0JS5bXGNEy8Fm_l_Oc_AGWD56yf3vlISP3U_ami-qZv1XBsxZsrjE8vbE8y1K2nOuDzEra7ebFyAUOtjMYED5QKARAZYmHlHqgDAcBWxlkS3v2ss77foi3LL_ZCjkI9WpZdCA8FdjY9PBztr-Q-n4uF4iHg6srkUhnuUi-Ig3YM4p5k-0llQ-IGpMAClERVb"/>
+</div>
+<div class="p-6">
+<div class="bg-secondary text-white text-[12px] font-black inline-block px-3 py-1 rounded-full mb-3 uppercase">Hype Hero</div>
+<h4 class="font-headline-lg text-primary mb-1">Victory Vic</h4>
+<p class="text-on-surface-variant text-sm">Our professional cheerleader. If you win a match, Vic will be there to dab.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Big Wins Section: Impact Report -->
+<section class="py-24 bg-primary text-white px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="grid grid-cols-10 h-full w-full">
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div>
+<div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto relative z-10 text-center">
+<h2 class="font-headline-xl mb-16 text-white text-shadow">Big Wins! (The High Scores)</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="p-8 bg-primary-container border-4 border-white rounded-lg shadow-[8px_8px_0px_0px_#fd6e60] -rotate-1">
+<div class="text-[64px] font-black text-secondary-fixed mb-2">5,000+</div>
+<div class="font-headline-lg uppercase tracking-wider text-white">Games Played</div>
+<div class="mt-4 h-4 bg-primary rounded-full overflow-hidden border-2 border-white">
+<div class="h-full bg-secondary-container w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="p-8 bg-primary-container border-4 border-white rounded-lg shadow-[8px_8px_0px_0px_#fd6e60] scale-110 z-20">
+<div class="text-[64px] font-black text-tertiary-fixed mb-2">1,200</div>
+<div class="font-headline-lg uppercase tracking-wider text-white">Future GMs</div>
+<div class="mt-4 h-4 bg-primary rounded-full overflow-hidden border-2 border-white">
+<div class="h-full bg-tertiary w-1/2 rounded-full"></div>
+</div>
+</div>
+<div class="p-8 bg-primary-container border-4 border-white rounded-lg shadow-[8px_8px_0px_0px_#fd6e60] rotate-2">
+<div class="text-[64px] font-black text-secondary-fixed-dim mb-2">Infinite</div>
+<div class="font-headline-lg uppercase tracking-wider text-white">Pizza Slices</div>
+<div class="mt-4 h-4 bg-primary rounded-full overflow-hidden border-2 border-white">
+<div class="h-full bg-secondary w-full rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-20">
+<p class="font-body-lg text-headline-lg max-w-2xl mx-auto italic mb-8">
+                        "This place turned my brain from a sleepy potato into a tactical laser beam!"
+                    </p>
+<div class="font-black text-xl text-tertiary-fixed">— Timmy, Age 10, Tournament Champ</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop text-center">
+<div class="max-w-3xl mx-auto adventure-card bg-tertiary-fixed border-4 border-primary p-12 rounded-lg shadow-[12px_12px_0px_0px_#000666]">
+<h2 class="font-headline-xl text-primary mb-6">Ready to Join the Fun?</h2>
+<p class="font-body-lg text-on-tertiary-fixed-variant mb-10">We've got a chair and a crown waiting just for you. No boring stuff allowed!</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="slam-button bg-primary text-white font-black text-xl px-10 py-5 rounded-lg border-4 border-primary shadow-[6px_6px_0px_0px_#000666]">
+                        JOIN THE CREW!
+                    </button>
+<button class="slam-button bg-white text-primary font-black text-xl px-10 py-5 rounded-lg border-4 border-primary shadow-[6px_6px_0px_0px_#000666]">
+                        EXPLORE PROGRAMS
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-lg bg-primary border-t-4 border-primary dark:border-primary-fixed flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 gap-stack-gap text-on-primary">
+<div class="text-headline-lg font-headline-lg text-on-primary">Rule the Board</div>
+<div class="flex gap-8 my-8 md:my-0">
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform cursor-pointer font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-primary opacity-90 hover:opacity-100 hover:scale-105 transition-transform cursor-pointer font-body-md text-body-md" href="#">Terms</a>
+<a class="text-secondary-fixed font-bold underline hover:scale-105 transition-transform cursor-pointer font-body-md text-body-md" href="#">Fun Stuff</a>
+</div>
+<div class="font-body-md text-body-md opacity-80">© Rule the Board - Go Play!</div>
+</footer>
+<!-- Interactive script for bouncy effects -->
+<script>
+        document.querySelectorAll('.adventure-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+                audio.volume = 0.1;
+                // audio.play(); // Optional: Play micro-sound on hover
+            });
+        });
+    </script>
+</body></html>
