@@ -36,7 +36,7 @@ export default {
         'on-tertiary-fixed-variant': '#2f2ebe',
         primary: '#000000',
         'on-error-container': '#93000a',
-        secondary: '#c51112',
+        secondary: '#F05354',
         'surface-container': '#efeeea',
         'on-secondary-fixed': '#380505',
         'on-primary-fixed-variant': '#3f465c',
