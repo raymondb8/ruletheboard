@@ -10,7 +10,7 @@ export default function Home() {
               <span className="font-label-bold text-label-bold uppercase">Empowering Strategy</span>
             </div>
             <h1 className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
-              Empowering young minds through the strategy <span className="text-secondary">of chess.</span>
+              Empowering young minds through the strategy <span className="text-secondary-container">of chess.</span>
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl mx-auto lg:mx-0">
               We provide high-quality coaching, professional equipment, and lifelong mentorship to students from all
