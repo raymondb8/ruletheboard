@@ -46,15 +46,15 @@ html {
 /* Tactile buttons (About / Get Involved / Programs / Events) */
 .tactile-button {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
-  box-shadow: 0 4px 0 0 #53090a;
+  box-shadow: 0 4px 0 0 #450808;
 }
 .tactile-button:hover {
   transform: translateY(1px);
-  box-shadow: 0 3px 0 0 #53090a;
+  box-shadow: 0 3px 0 0 #450808;
 }
 .tactile-button:active {
   transform: translateY(4px);
-  box-shadow: 0 0px 0 0 #53090a;
+  box-shadow: 0 0px 0 0 #450808;
 }
 
 .soft-card {
