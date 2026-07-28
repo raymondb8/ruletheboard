@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Home() {
   return (
     <>
@@ -17,12 +19,18 @@ export default function Home() {
               backgrounds.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="lift-button coral-lift bg-secondary text-on-secondary px-8 py-4 rounded-xl font-label-bold text-label-bold tracking-widest uppercase">
+              <Link
+                to="/scholars"
+                className="lift-button coral-lift bg-secondary text-on-secondary px-8 py-4 rounded-xl font-label-bold text-label-bold tracking-widest uppercase text-center"
+              >
                 Join the Program
-              </button>
-              <button className="lift-button navy-lift bg-primary text-on-primary px-8 py-4 rounded-xl font-label-bold text-label-bold tracking-widest uppercase">
+              </Link>
+              <Link
+                to="/get-involved"
+                className="lift-button navy-lift bg-primary text-on-primary px-8 py-4 rounded-xl font-label-bold text-label-bold tracking-widest uppercase text-center"
+              >
                 Donate Now
-              </button>
+              </Link>
             </div>
           </div>
           <div className="relative lg:h-[500px]">
@@ -128,12 +136,12 @@ export default function Home() {
                 place for you.
               </p>
             </div>
-            <a className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group" href="#">
+            <Link to="/programs" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
               VIEW ALL PROGRAMS
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                 arrow_forward
               </span>
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
             <div className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-lg transition-all">
@@ -152,12 +160,12 @@ export default function Home() {
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
                   A full-year merit-based sponsorship covering coaching, travel, and tournament entries.
                 </p>
-                <button className="text-primary font-label-bold text-label-bold flex items-center gap-2 group">
+                <Link to="/scholars" className="text-primary font-label-bold text-label-bold flex items-center gap-2 group">
                   Learn More
                   <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                     chevron_right
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
             <div className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-lg transition-all">
@@ -176,12 +184,12 @@ export default function Home() {
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
                   Intensive 4-week summer masterclasses designed to leapfrog your rating in a fun camp environment.
                 </p>
-                <button className="text-primary font-label-bold text-label-bold flex items-center gap-2 group">
+                <Link to="/programs" className="text-primary font-label-bold text-label-bold flex items-center gap-2 group">
                   Explore Classes
                   <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
                     chevron_right
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -198,12 +206,18 @@ export default function Home() {
               building a smarter future.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="lift-button coral-lift bg-secondary text-on-secondary px-10 py-5 rounded-2xl font-label-bold text-label-bold tracking-widest uppercase">
+              <Link
+                to="/get-involved"
+                className="lift-button coral-lift bg-secondary text-on-secondary px-10 py-5 rounded-2xl font-label-bold text-label-bold tracking-widest uppercase text-center"
+              >
                 Become a Sponsor
-              </button>
-              <button className="lift-button bg-white text-primary px-10 py-5 rounded-2xl font-label-bold text-label-bold tracking-widest uppercase">
+              </Link>
+              <Link
+                to="/scholars"
+                className="lift-button bg-white text-primary px-10 py-5 rounded-2xl font-label-bold text-label-bold tracking-widest uppercase text-center"
+              >
                 Apply Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>

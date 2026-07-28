@@ -36,7 +36,7 @@ export default function Footer() {
           </a>
           <a
             className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-secondary-fixed transition-colors"
-            href="#"
+            href="mailto:hello@ruletheboard.org"
           >
             <span className="material-symbols-outlined text-primary">mail</span>
           </a>
