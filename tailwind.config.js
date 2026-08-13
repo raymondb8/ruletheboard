@@ -1,57 +1,81 @@
 /** @type {import('tailwindcss').Config} */
+
+/*
+ * Rule the Board — brand color system.
+ *
+ * The palette is deliberately tiered. It is NOT a flat list of six equal brand
+ * colors, and should not be flattened into one:
+ *
+ *   1. PRIMARY (navy)  — the dominant color. Headings, nav, body text, primary
+ *                        buttons, dark CTA bands. If in doubt, use navy.
+ *   2. SECONDARY (coral) — the second-most-present color. Key CTAs (Donate /
+ *                        Apply / Give), emphasis numbers, active states.
+ *   3. ACCENT KIT (teal / blue / orange / green) — a small supporting set used
+ *                        sparingly, the way the logo uses its sparkle details.
+ *                        Small icon glyphs, category tags, thin rules, meters.
+ *                        Never a page background, never a large block fill, and
+ *                        never all four inside the same component.
+ *
+ * Each accent carries a fixed meaning site-wide so its appearance is systematic
+ * rather than decorative:
+ *   teal   → learning & coaching
+ *   blue   → community & people
+ *   orange → events & tournaments
+ *   green  → progress & measured impact
+ *
+ * Surfaces stay white / off-white: the logo lockups are built to sit on white,
+ * and navy + coral do the heavy lifting on top of that light base.
+ */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'tertiary-fixed': '#e1e0ff',
-        'tertiary-fixed-dim': '#c0c1ff',
-        error: '#ba1a1a',
-        background: '#faf9f5',
-        'on-primary-container': '#7c839b',
-        'inverse-on-surface': '#f2f1ed',
-        'on-secondary': '#ffffff',
-        tertiary: '#000000',
-        'on-primary-fixed': '#131b2e',
-        'primary-fixed-dim': '#bec6e0',
-        'on-tertiary-fixed': '#07006c',
-        'on-secondary-container': '#450808',
-        'surface-variant': '#e3e2df',
-        'error-container': '#ffdad6',
-        'on-tertiary-container': '#7073ff',
-        'secondary-container': '#F05354',
-        'on-tertiary': '#ffffff',
-        'surface-container-high': '#e9e8e4',
-        'surface-tint': '#565e74',
-        'outline-variant': '#c6c6cd',
-        'on-surface-variant': '#45464d',
-        'on-primary': '#ffffff',
-        'on-surface': '#1b1c1a',
-        'surface-dim': '#dbdad6',
-        'inverse-primary': '#bec6e0',
-        'on-background': '#1b1c1a',
-        'surface-bright': '#faf9f5',
-        outline: '#76777d',
-        'on-tertiary-fixed-variant': '#2f2ebe',
-        primary: '#000000',
-        'on-error-container': '#93000a',
-        secondary: '#F05354',
-        'surface-container': '#efeeea',
-        'on-secondary-fixed': '#380505',
-        'on-primary-fixed-variant': '#3f465c',
-        'secondary-fixed': '#f9d2d3',
-        'tertiary-container': '#07006c',
-        'primary-container': '#131b2e',
-        'primary-fixed': '#dae2fd',
-        'on-error': '#ffffff',
-        'surface-container-lowest': '#ffffff',
-        'on-secondary-fixed-variant': '#650b0c',
-        'surface-container-highest': '#e3e2df',
-        'surface-container-low': '#f4f4f0',
-        surface: '#faf9f5',
-        'inverse-surface': '#2f312e',
-        'secondary-fixed-dim': '#f4a4a5',
+        /* ── 1. PRIMARY — Navy ───────────────────────────────── dominant ── */
+        primary: '#0E387D',
+        'primary-deep': '#082A5E', // pressed/lift shadows, footer rules
+        'primary-muted': '#3A5C97', // hover on navy fills
+        'primary-soft': '#E8EEF8', // navy tint — icon wells, chips
+        'on-primary': '#FFFFFF',
+
+        /* ── 2. SECONDARY — Coral ─────────────────────── key CTAs only ── */
+        secondary: '#F05354', // brand coral — fills, icons, borders, tints
+        // Text-bearing coral. White on #F05354 is only 3.46:1, which fails WCAG
+        // AA for the 14px bold used on buttons. This darker step is 4.73:1, so
+        // every coral surface with white text on it must use THIS, not the raw
+        // brand coral. Visually they read as the same colour side by side.
+        'secondary-strong': '#D63637',
+        'secondary-deep': '#B93536', // lift shadow under coral buttons
+        'secondary-soft': '#FDEDED', // coral tint — emphasis chips
+        'on-secondary': '#FFFFFF',
+
+        /* ── 3. ACCENT KIT ───────────── small doses, one meaning each ── */
+        'accent-teal': '#00A9AA', //   learning & coaching
+        'accent-teal-soft': '#E3F6F6',
+        'accent-blue': '#3175BB', //   community & people
+        'accent-blue-soft': '#E9F1FA',
+        'accent-orange': '#F28321', // events & tournaments
+        'accent-orange-soft': '#FEF2E4',
+        'accent-green': '#6EAA43', //  progress & impact
+        'accent-green-soft': '#EFF6E8',
+
+        /* ── Surfaces — white-dominant ─────────────────────────────────── */
+        background: '#FFFFFF',
+        surface: '#FFFFFF',
+        'surface-muted': '#F7F9FC', // alternating section bands
+        'surface-sunken': '#EFF3F9', // footer, inset wells
+
+        /* ── Text — navy family ────────────────────────────────────────── */
+        'on-background': '#0E387D',
+        'on-surface': '#0E387D',
+        'on-surface-variant': '#4A5A78', // body copy, navy-tinted slate
+
+        /* ── Lines ─────────────────────────────────────────────────────── */
+        outline: '#B9C7DC',
+        'outline-variant': '#DEE6F1',
+
+        error: '#BA1A1A',
       },
       borderRadius: {
         DEFAULT: '0.25rem',

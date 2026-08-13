@@ -5,6 +5,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: #ffffff;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
     'FILL' 0,
@@ -13,67 +17,88 @@ html {
     'opsz' 24;
 }
 
-/* Tactile "lift" buttons (Home page) */
+/* Tactile "lift" buttons — the drop edge is always a darker tone of the
+   button's own fill, so navy buttons read navy and coral buttons read coral. */
 .lift-button {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
-  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 0 0 #082a5e;
 }
 .lift-button:hover {
   transform: translateY(1px);
-  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 0 0 #082a5e;
 }
 .lift-button:active {
   transform: translateY(4px);
-  box-shadow: 0 0px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 0 0 #082a5e;
 }
 .coral-lift {
-  box-shadow: 0 4px 0 0 #650b0c;
+  box-shadow: 0 4px 0 0 #b93536;
+}
+.coral-lift:hover {
+  box-shadow: 0 3px 0 0 #b93536;
 }
 .coral-lift:active {
-  box-shadow: 0 0px 0 0 #650b0c;
+  box-shadow: 0 0px 0 0 #b93536;
 }
 .navy-lift {
-  box-shadow: 0 4px 0 0 #000000;
+  box-shadow: 0 4px 0 0 #082a5e;
+}
+.navy-lift:hover {
+  box-shadow: 0 3px 0 0 #082a5e;
 }
 .navy-lift:active {
-  box-shadow: 0 0px 0 0 #000000;
+  box-shadow: 0 0px 0 0 #082a5e;
+}
+.white-lift {
+  box-shadow: 0 4px 0 0 rgba(8, 42, 94, 0.45);
+}
+.white-lift:hover {
+  box-shadow: 0 3px 0 0 rgba(8, 42, 94, 0.45);
+}
+.white-lift:active {
+  box-shadow: 0 0px 0 0 rgba(8, 42, 94, 0.45);
 }
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(8px);
 }
 
-/* Tactile buttons (About / Get Involved / Programs / Events) */
+/* Tactile buttons (About / Get Involved / Programs / Scholars). Defaults to the
+   coral drop edge since these sit under coral CTAs; pair with .navy-lift to
+   override when the button fill is navy. */
 .tactile-button {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
-  box-shadow: 0 4px 0 0 #450808;
+  box-shadow: 0 4px 0 0 #b93536;
 }
 .tactile-button:hover {
   transform: translateY(1px);
-  box-shadow: 0 3px 0 0 #450808;
+  box-shadow: 0 3px 0 0 #b93536;
 }
 .tactile-button:active {
   transform: translateY(4px);
-  box-shadow: 0 0px 0 0 #450808;
+  box-shadow: 0 0px 0 0 #b93536;
 }
 
 .soft-card {
-  box-shadow: 0 10px 30px -10px rgba(19, 27, 46, 0.04);
-  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px -12px rgba(14, 56, 125, 0.1);
+  border: 1px solid #dee6f1;
 }
 
 .card-shadow {
-  box-shadow: 0 4px 12px rgba(19, 27, 46, 0.04);
+  box-shadow: 0 4px 12px rgba(14, 56, 125, 0.06);
 }
 
 .input-focus:focus {
   outline: none;
-  border-color: #000000;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+  border-color: #0e387d;
+  box-shadow: 0 0 0 3px rgba(14, 56, 125, 0.12);
 }
 
+/* Faint navy dot field used as a background texture. Deliberately navy rather
+   than an accent color — it covers large areas, which is exactly where the
+   accent kit must not go. */
 .chess-pattern {
-  background-image: radial-gradient(#F05354 0.5px, transparent 0.5px);
+  background-image: radial-gradient(#0f387d 0.5px, transparent 0.5px);
   background-size: 24px 24px;
   opacity: 0.1;
 }
@@ -87,5 +112,80 @@ html {
   .bento-grid {
     display: flex;
     flex-direction: column;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Focus visibility.
+
+   Nothing in the app styled :focus-visible, so every control fell back to the
+   1px near-black UA outline — thin, and off-brand against navy. One ring for
+   the whole site: navy by default, white when the control sits on a dark or
+   coral surface (those opt in with .focus-ring-invert).
+   --------------------------------------------------------------------------- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid #0e387d;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.focus-ring-invert:focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Skip link: off-screen until focused, then pinned to the top-left. */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease;
+  z-index: 100;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile menu panel. Kept mounted so it can animate both in and out; `inert`
+   plus pointer-events keep it out of the tab order while closed.
+   --------------------------------------------------------------------------- */
+.menu-panel {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+.menu-panel[data-open='true'] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s;
+}
+
+.menu-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.26s ease, transform 0.26s ease;
+}
+.menu-panel[data-open='true'] .menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Honour a reduced-motion preference: the menu still works, it just swaps
+   instantly instead of sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .menu-panel,
+  .menu-panel[data-open='true'],
+  .menu-item,
+  .menu-panel[data-open='true'] .menu-item,
+  .lift-button,
+  .tactile-button {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    transform: none !important;
   }
 }
