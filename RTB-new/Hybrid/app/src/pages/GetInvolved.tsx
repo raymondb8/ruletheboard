@@ -1,5 +1,48 @@
+import { useEffect, useRef } from 'react';
 import { Rook, Pawn, MarginMotif } from '../components/ChessMotifs';
 import Placeholder from '../components/Placeholder';
+
+/*
+ * Rule the Board plans to process donations through Givebutter, but the
+ * account isn't set up yet. Once you have a campaign live, set BOTH values
+ * below and the donation form renders embedded, in-page — visitors never
+ * leave the site:
+ *
+ *   - GIVEBUTTER_ACCOUNT_ID: Givebutter Dashboard → Settings → Developers →
+ *     Widgets. It's the "acct=" value in the script snippet shown there.
+ *   - GIVEBUTTER_WIDGET_ID: your campaign's Sharing tab → Widgets → Embed
+ *     on the widget you want (pick the "Form" widget for a full embedded
+ *     donation form, not just a button). The id is in the snippet shown:
+ *     <givebutter-widget id="THIS_PART">.
+ *
+ * Until both are set, the card below falls back to a mailto so it's never
+ * a dead button.
+ */
+const GIVEBUTTER_ACCOUNT_ID: string | null = null;
+const GIVEBUTTER_WIDGET_ID: string | null = null;
+
+function GivebutterWidget({ accountId, widgetId }: { accountId: string; widgetId: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scriptSrc = `https://widgets.givebutter.com/latest.umd.cjs?acct=${accountId}`;
+    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = scriptSrc;
+      document.head.appendChild(script);
+    }
+  }, [accountId]);
+
+  return (
+    <div
+      ref={containerRef}
+      // The widget library reads this tag from the DOM and hydrates it —
+      // it isn't a known JSX element, so it's injected directly.
+      dangerouslySetInnerHTML={{ __html: `<givebutter-widget id="${widgetId}"></givebutter-widget>` }}
+    />
+  );
+}
 
 export default function GetInvolved() {
   return (
@@ -61,31 +104,49 @@ export default function GetInvolved() {
           </div>
         </section>
 
-        {/* 2. Donate Section (Medium Card) */}
-        <section className="col-span-12 md:col-span-4 bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between border border-transparent">
-          <div>
+        {/* 2. Donate Section — full-width once the Givebutter form widget is
+            embedded (it needs the room), a compact teaser card until then. */}
+        <section
+          className={`col-span-12 ${GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? '' : 'md:col-span-4'} bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between border border-transparent`}
+        >
+          <div className={GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? 'mb-8' : ''}>
             <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mb-6">
               <span className="material-symbols-outlined text-white">payments</span>
             </div>
             <h2 className="font-headline-lg text-headline-lg text-white mb-4">Donate</h2>
             <p className="text-white/75 font-body-md mb-6">
               Your contributions provide high-quality boards, clocks, and professional coaching to underserved
-              schools.
+              students.
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">
                 <span className="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                <span className="text-white">Provide boards for a new club</span>
+                <span className="text-white">Fund a scholar's USCF membership and gear</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                <span className="text-white">Fund a tournament scholarship</span>
+                <span className="text-white">Cover a tournament entry fee</span>
               </li>
             </ul>
           </div>
-          <button className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary py-4 rounded-xl font-label-bold uppercase w-full">
-            GIVE NOW
-          </button>
+          {GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? (
+            <div className="bg-white rounded-xl p-1 sm:p-4">
+              <GivebutterWidget accountId={GIVEBUTTER_ACCOUNT_ID} widgetId={GIVEBUTTER_WIDGET_ID} />
+            </div>
+          ) : (
+            <>
+              <a
+                href="mailto:RuleTheBoardInc@gmail.com?subject=Donating%20to%20Rule%20the%20Board"
+                className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary py-4 rounded-xl font-label-bold uppercase w-full text-center"
+              >
+                Ask About Giving
+              </a>
+              <p className="text-white/60 font-label-sm text-center mt-3">
+                Online giving via Givebutter is coming soon — donations will happen right here, without leaving
+                the site.
+              </p>
+            </>
+          )}
         </section>
 
         {/* 3. Community (Small Card) */}
@@ -94,29 +155,25 @@ export default function GetInvolved() {
           <p className="text-on-surface-variant mb-8">
             Stay updated and connect with other chess lovers in our digital square.
           </p>
-          <div className="flex gap-4 mb-4">
-            <a
-              className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform"
-              href="#"
-            >
-              <span className="material-symbols-outlined">groups</span>
-            </a>
-            <a
-              className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform"
-              href="#"
-            >
-              <span className="material-symbols-outlined">share</span>
-            </a>
-            <a
-              className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform"
-              href="#"
-            >
-              <span className="material-symbols-outlined">camera_alt</span>
-            </a>
-          </div>
+          <a
+            href="https://www.instagram.com/ruletheboardinc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform mb-4"
+            aria-label="Rule the Board on Instagram"
+          >
+            <span className="material-symbols-outlined">photo_camera</span>
+          </a>
           <div className="mt-4 flex flex-col gap-2">
-            <span className="text-label-bold text-on-surface-variant">@RuleTheBoardChess</span>
-            <p className="text-label-sm text-outline">Instagram / Twitter / Facebook</p>
+            <a
+              href="https://www.instagram.com/ruletheboardinc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-label-bold text-primary hover:text-secondary hover:underline transition-colors"
+            >
+              @ruletheboardinc
+            </a>
+            <p className="text-label-sm text-outline">Instagram</p>
           </div>
         </section>
 
@@ -131,7 +188,7 @@ export default function GetInvolved() {
               <div className="mt-8 space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-secondary">mail</span>
-                  <span className="font-label-bold">hello@ruletheboard.org</span>
+                  <span className="font-label-bold">RuleTheBoardInc@gmail.com</span>
                 </div>
               </div>
             </div>

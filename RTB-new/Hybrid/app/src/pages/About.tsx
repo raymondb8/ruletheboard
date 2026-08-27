@@ -1,10 +1,54 @@
+import { useState } from 'react';
 import { Pawn, Rook, Knight, Queen, MarginMotif } from '../components/ChessMotifs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
-import Placeholder from '../components/Placeholder';
+import PdfPreviewModal from '../components/PdfPreviewModal';
+import communityPhoto from '../assets/images/about-community.jpg';
+import foundersPhoto from '../assets/images/about-founders.jpg';
+import impactReportCover from '../assets/images/impact-report-cover.jpg';
+import impactReportPage1 from '../assets/images/impact-report-page-1.jpg';
+import impactReportPage2 from '../assets/images/impact-report-page-2.jpg';
+import impactReportPage3 from '../assets/images/impact-report-page-3.jpg';
+import impactReportPage4 from '../assets/images/impact-report-page-4.jpg';
+import impactReportPage5 from '../assets/images/impact-report-page-5.jpg';
+import impactReportPage6 from '../assets/images/impact-report-page-6.jpg';
+import impactReportPage7 from '../assets/images/impact-report-page-7.jpg';
+
+const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';
+const IMPACT_REPORT_PAGES = [
+  impactReportPage1,
+  impactReportPage2,
+  impactReportPage3,
+  impactReportPage4,
+  impactReportPage5,
+  impactReportPage6,
+  impactReportPage7,
+];
+
+const team = [
+  { name: 'Leonardo Castro-Balbi', role: 'Executive Director' },
+  { name: 'Nathan Ye', role: 'Operations Director' },
+  { name: 'Arjun Garg', role: 'Education Director & Head Coach' },
+  { name: 'Abbie Yuan', role: 'Communications Director' },
+  { name: 'Raymond Boamah', role: 'Technology Director' },
+  { name: 'Evelyn Wood', role: 'Creative Director' },
+  { name: 'Owen Daum', role: 'Development Director' },
+  { name: 'David Katz', role: 'Lead Coach' },
+  { name: 'Sammy Drucker', role: 'Lead Coach' },
+];
 
 export default function About() {
+  const [showReport, setShowReport] = useState(false);
+
   return (
     <div className="relative overflow-hidden">
+      {showReport && (
+        <PdfPreviewModal
+          pages={IMPACT_REPORT_PAGES}
+          downloadHref={IMPACT_REPORT_PDF}
+          title="2025-26 Impact Report"
+          onClose={() => setShowReport(false)}
+        />
+      )}
       {/* Hero Decorative Asset */}
       <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 chess-pattern" />
 
@@ -21,7 +65,8 @@ export default function About() {
           <p className="text-body-lg font-body-lg text-on-surface-variant mb-8 max-w-xl">
             Founded with the belief that strategic thinking is a life skill, Rule the Board serves students in
             grades 3-8 through the timeless game of chess. We bridge the gap between classroom learning and
-            competitive play, providing scholarships that open doors for the grandmasters of tomorrow.
+            competitive play, providing scholarships that open doors for students who might not otherwise have
+            access to chess resources and training.
           </p>
           <div className="space-y-4">
             <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
@@ -29,20 +74,22 @@ export default function About() {
                 <span className="material-symbols-outlined text-primary">school</span>
               </div>
               <div>
-                <h3 className="font-label-bold text-label-bold text-primary mb-1">Grades 3-5: The Foundation</h3>
+                <h3 className="font-label-bold text-label-bold text-primary mb-1">Grades 3-8 Eligible</h3>
                 <p className="text-on-surface-variant text-body-md">
-                  Building focus, patience, and basic tactics through interactive workshops.
+                  Open to students currently enrolled in 3rd through 8th grade, with a pathway for returning
+                  high schoolers.
                 </p>
               </div>
             </div>
             <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
               <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-primary">psychology</span>
+                <span className="material-symbols-outlined text-primary">volunteer_activism</span>
               </div>
               <div>
-                <h3 className="font-label-bold text-label-bold text-primary mb-1">Grades 6-8: Advanced Strategy</h3>
+                <h3 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h3>
                 <p className="text-on-surface-variant text-body-md">
-                  Preparing students for high-level competition and critical decision-making.
+                  For students from underserved communities — Title I schools, free/reduced lunch, and families
+                  receiving public assistance all qualify.
                 </p>
               </div>
             </div>
@@ -52,13 +99,13 @@ export default function About() {
           <div className="aspect-square rounded-[40px] overflow-hidden bg-surface-muted soft-card relative">
             <img
               className="w-full h-full object-cover"
-              alt="A warm, bright light-mode photo of a diverse group of middle school students in grades 3 to 8 playing chess together in a sunlit classroom."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ln3RznUie-VGx49WcLLy_ZDqYkVG-dHjGo8nI0uO5fk-7OMupApTox0RyuwqaTsJwc4KGQ5b1zBuVoM1JsS7ShGO8GbB2hqFVxXG1eMAyhAE-G3vAwZ_RzRikWfGFU-Let65zOyzslaYnsTRi-Dub1ayqJLMzBLFBHQDqpsuv0OzuuKYWxPogAMisoVZBgZcHxl6RrVtRk5-EhhvinZj9X2hO4gQIAKibORYNOYLMVH9RFITZ9RyMq5rTxX7tlZORPUUy1XTvx87"
+              alt="Students competing at the 2026 Grand Prix Tournament, a large hall filled with chess boards."
+              src={communityPhoto}
             />
           </div>
           <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl soft-card flex flex-col items-center">
-            <span className="text-headline-lg font-headline-lg text-secondary">10+</span>
-            <span className="text-label-sm font-label-bold text-on-surface-variant uppercase">Years of Impact</span>
+            <span className="text-headline-lg font-headline-lg text-secondary">2025-26</span>
+            <span className="text-label-sm font-label-bold text-on-surface-variant uppercase">Our First Year</span>
           </div>
         </div>
       </section>
@@ -73,39 +120,38 @@ export default function About() {
             </div>
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">The Strategic Minds Behind RTB</h2>
             <p className="text-on-surface-variant">
-              Our board members and staff bring decades of experience in education, competitive chess, and nonprofit
-              management.
+              Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
+              tournaments to outreach.
             </p>
           </div>
-          <div className="flex gap-2">
-            <button className="w-12 h-12 rounded-full border border-outline text-primary flex items-center justify-center hover:bg-primary-soft transition-colors">
-              <span className="material-symbols-outlined">arrow_back</span>
-            </button>
-            <button className="w-12 h-12 rounded-full border border-outline text-primary flex items-center justify-center hover:bg-primary-soft transition-colors">
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </button>
-          </div>
         </div>
-        {/* Until real headshots land, each empty avatar holds a piece rather than a
-            generic person glyph — navy only, because four accent-colored pieces in
-            one row is exactly the rainbow we're avoiding. */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-          {[
-            { name: 'Name — confirm with team', role: 'Executive Director' },
-            { name: 'Name — confirm with team', role: 'Board President' },
-            { name: 'Name — confirm with team', role: 'Lead Chess Coach' },
-            { name: 'Name — confirm with team', role: 'Director of Outreach' },
-          ].map((member) => (
-            <div className="group text-center" key={member.role}>
+        {/* No individual headshots yet — each avatar holds a piece rather than a
+            generic person glyph — navy only, because nine accent-colored pieces in
+            one row is exactly the rainbow we're avoiding. The founders photo below
+            gives the section a real face in the meantime. */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-12">
+          {team.map((member) => (
+            <div className="group text-center" key={member.name}>
               <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
                 <span className="material-symbols-outlined text-outline text-5xl">person</span>
               </div>
-              <h4 className="font-label-bold text-label-bold text-primary uppercase">
-                <Placeholder>{member.name}</Placeholder>
-              </h4>
+              <h4 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h4>
               <p className="text-label-sm font-label-sm text-secondary">{member.role}</p>
             </div>
           ))}
+        </div>
+        <div className="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-3xl soft-card border border-outline-variant p-6">
+          <img
+            className="w-full sm:w-56 h-40 object-cover rounded-2xl shrink-0"
+            alt="Rule the Board's three founders, Nathan Ye, Leonardo Castro-Balbi, and Arjun Garg, sitting together outdoors."
+            src={foundersPhoto}
+          />
+          <p className="text-on-surface-variant text-body-md text-center sm:text-left">
+            Rule the Board was founded by <strong className="text-primary">Nathan Ye</strong>,{' '}
+            <strong className="text-primary">Leonardo Castro-Balbi</strong>, and{' '}
+            <strong className="text-primary">Arjun Garg</strong>, who built the Rule the Board Scholarship and
+            Checkmate Your Summer programs from the ground up.
+          </p>
         </div>
       </section>
 
@@ -207,7 +253,7 @@ export default function About() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Our Growing Reach</h2>
             <DashedRule className="mx-auto mb-4 text-accent-teal" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Metrics that reflect our commitment to student success across the country.
+              Metrics from our 2025-26 Impact Report, reflecting our first year serving students in Atlanta.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
@@ -218,11 +264,9 @@ export default function About() {
                 <span className="material-symbols-outlined text-[48px]">groups</span>
               </div>
               <div>
-                <div className="text-headline-xl font-headline-xl mb-2">
-                  <Placeholder tone="stat">1,200+</Placeholder>
-                </div>
+                <div className="text-headline-xl font-headline-xl mb-2">4</div>
                 <p className="text-body-lg font-body-lg text-white/75">
-                  Students currently enrolled in our scholarship programs across <Placeholder tone="stat">15</Placeholder> states.
+                  Inaugural scholars in our first year — growing to 8 scholars for 2026-27.
                 </p>
               </div>
             </div>
@@ -231,11 +275,9 @@ export default function About() {
                 <span className="material-symbols-outlined text-[40px]">workspace_premium</span>
               </div>
               <div>
-                <div className="text-headline-lg font-headline-lg mb-2">
-                  <Placeholder tone="stat">$450k</Placeholder>
-                </div>
+                <div className="text-headline-lg font-headline-lg mb-2">1,961</div>
                 <p className="text-label-bold font-label-bold opacity-80 uppercase tracking-tight">
-                  Scholarships Awarded
+                  Highest Scholar Rating
                 </p>
               </div>
             </div>
@@ -243,14 +285,12 @@ export default function About() {
               {/* Checker patch / green — the progress motif, marking the one tile
                   in this row that reports an outcome. */}
               <div className="mb-8">
-                <span className="material-symbols-outlined text-primary text-[40px]">emoji_events</span>
+                <span className="material-symbols-outlined text-primary text-[40px]">volunteer_activism</span>
               </div>
               <div>
-                <div className="text-headline-lg font-headline-lg text-primary mb-2">
-                  <Placeholder tone="stat">85+</Placeholder>
-                </div>
+                <div className="text-headline-lg font-headline-lg text-primary mb-2">261</div>
                 <p className="text-label-bold font-label-bold text-on-surface-variant uppercase tracking-tight">
-                  Tournament Wins
+                  Volunteer Hours (CYS)
                 </p>
               </div>
             </div>
@@ -261,10 +301,23 @@ export default function About() {
       {/* Impact Report(s) */}
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card relative flex flex-col md:flex-row items-center gap-12 overflow-hidden">
-          <div className="w-48 h-64 bg-surface-muted rounded-xl shadow-lg shrink-0 flex flex-col items-center justify-center border-2 border-outline-variant gap-2 text-center px-4">
-            <span className="material-symbols-outlined text-outline text-5xl">description</span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant">Report pending publication</span>
-          </div>
+          <button
+            type="button"
+            onClick={() => setShowReport(true)}
+            className="group relative w-48 shrink-0"
+            aria-label="View the 2025-26 Impact Report"
+          >
+            <img
+              src={impactReportCover}
+              alt="Cover of the Rule the Board 2025-26 Impact Report"
+              className="w-48 h-64 object-cover rounded-xl shadow-lg border-2 border-outline-variant transition-transform group-hover:-translate-y-1"
+            />
+            {/* Picture-in-picture: a floating "view" badge overlapping the
+                cover's corner, rather than a plain static icon box. */}
+            <span className="absolute -bottom-4 -right-4 w-14 h-14 rounded-full bg-secondary-strong text-on-secondary flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined">visibility</span>
+            </span>
+          </button>
           <div className="flex-1 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
               <span className="material-symbols-outlined text-[18px]">summarize</span>
@@ -272,17 +325,17 @@ export default function About() {
             </div>
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Transparency Matters</h2>
             <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
-              Our Annual Impact Report will show how your donations and support are transforming the lives of
-              students across the community through the power of chess education.{' '}
-              <Placeholder>Report — pending publication</Placeholder>
+              Our 2025-26 Impact Report shows how your donations and support are transforming the lives of students
+              across our community through the power of chess education.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <button className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-8 py-4 rounded-2xl font-label-bold text-label-bold uppercase flex items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowReport(true)}
+                className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-8 py-4 rounded-2xl font-label-bold text-label-bold uppercase flex items-center justify-center gap-2"
+              >
                 <span className="material-symbols-outlined">picture_as_pdf</span>
-                Download Report (PDF)
-              </button>
-              <button className="px-8 py-4 rounded-2xl font-label-bold text-label-bold text-primary border-2 border-primary hover:bg-primary-soft transition-colors uppercase">
-                View Financials
+                View Report
               </button>
             </div>
           </div>

@@ -2,45 +2,22 @@ import { Link } from 'react-router-dom';
 import { Pawn, Knight, Bishop, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
 import Placeholder from '../components/Placeholder';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
+import emoryGrandPrix from '../assets/images/programs-emory-grand-prix.jpg';
+import academyInterior from '../assets/images/programs-academy-interior.jpg';
 
-const tournaments = [
-  {
-    name: 'Spring Open Championship',
-    date: 'Date — TBD',
-    location: 'Location — confirm with team',
-    tags: ['U800', 'U1200', 'Open'],
-    entry: 'Entry fee — TBD',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuABk0kwJP4lHkLzoGCNjtg_EXsc7717XW-RPuYfg5q6uF1eeHx1sn0k-778XE2ov96PVUe6TuY0HlFUPr5FzlaEExkyEGEikIEIt_7xCGaGGEk69gB6ejeXt-aL-8PjOHshOxtB5R9USWZNVqgpJDxTvPmxQHeB7EVzaIjoSC1qEuMUI3cyuL4pou3QH1cJtDvc6jtDyngA5lvq9G6uu_doW-sdZBr5P0eOPMQppfF7el8blw0qjgRLdj4WH2SYLaWW4VTlOiGsZ0Y0',
-  },
-  {
-    name: 'Grandmaster Dreams Qualifier',
-    date: 'Date — TBD',
-    location: 'Location — confirm with team',
-    tags: ['Beginner', 'Advanced'],
-    entry: 'Entry fee — TBD',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCclj8okEXC9W5mrsLqP0o2L-fmYhySG27mo-U7l4i8V0DedOpZjtEV2zfR2vrYjFiOXMvnrAoRl5zZawankfvkKvSmN5UfOo9Qs4Ouwxkh5gacvqcPMDFbtaedYShO25sSnTXyBFZbfFekdQTBajBmR52nuJ9c1l0Ob-oJmmZofmFOMlTwxdgSodLJ3qFncR4vny3Ao4YoWCy-xBKW0a7dkf29h0zWhWCu6qbVA7oEO-lxC4_9plbbQGqXxOnTJUjmNW4Dsg3SfJpR',
-  },
-  {
-    name: 'City-Wide Scholastic Blitz',
-    date: 'Date — TBD',
-    location: 'Location — confirm with team',
-    tags: ['Blitz Only', 'K-8'],
-    entry: 'Entry fee — TBD',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCM7gqwL9FnJH-nlrgNvEPQLtvbFP56VgpUSQfxkywFUUupcGA-WKoko3_xo7bSl08JFocMnfHJUCjo6K6UUKJWre8FhQa-WUvthIHYpBGJfvTy_Xy50AtRS3PXFhm3OXDlwCz4Ex642mplwht4Hlxqioce_7-ZPHXpexRpUdEpkWQOe2pMztTI4bq7dcWu0F6z1ykcN24GFwO6eDQYDLlZ0_YsZCDeGviQYSp5KiB0kHXX16CiBCZ_bZsx5UAy87DgTf5macHvwgnz',
-  },
-  {
-    name: 'Summer Masters Invitational',
-    date: 'Date — TBD',
-    location: 'Location — confirm with team',
-    tags: ['FIDE Rated', 'USCF Required'],
-    entry: 'Entry fee — TBD',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBMRP_cYjoQcADbmSRgpHlOu-N-PZA4FM6ZHGVbEHu3ciK0CYb6jZzzmwiH0uHH5PMa1SPNBdYePtCPx6Qa59oP-29Qb4GRzPkBB_A4KuUIdGqbR5PsLcpzBxGGGzWk310B0hylE1dA8Lq0EBlffZOSOew7Ja7a_NLNeK4Mj-BxpzYTEwe64RMue9ufTMlxpWS9jB6uBnjyRoihq5qeMfjTYj9HUsvEtsW33bnCpA4aNt9LRiPEbKFnQMgzUfafRWsrMurkZYKgVfEI',
-  },
-];
+// The only tournament we have real, confirmed details for. Everything else is
+// genuinely TBD — rendered as skeleton cards below rather than invented events.
+const pastTournament = {
+  name: 'Emory Castle Chess Grand Prix',
+  date: '2026 Season',
+  location: 'Emory University, Atlanta',
+  entry: 'Covered by scholarship',
+  image: emoryGrandPrix,
+  recap:
+    'Rule the Board scholars competed in an elite tournament environment — one scholar defeated a 1000 USCF-rated player, and another played an unofficial game against the highest-rated player in the state.',
+};
+
+const UPCOMING_SKELETON_COUNT = 3;
 
 const faqs = [
   {
@@ -88,7 +65,8 @@ export default function Programs() {
               </div>
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
               <p className="font-body-md text-on-surface-variant mb-6">
-                The definitive scholarship program for committed young players looking to reach master level.
+                A one-year scholarship for Odyssey scholars ready to continue their passion for chess with
+                coaching, tournaments, and gear of their own.
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary-soft text-secondary rounded-full text-label-bold mb-8">
                 <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -99,10 +77,10 @@ export default function Programs() {
             </div>
             <div className="space-y-4 mb-10 flex-grow">
               {[
-                'Weekly 1-on-1 Grandmaster Coaching',
-                'Paid Entry to National Tournaments',
-                'Academic Mentorship & College Prep',
-                'Elite Chess Books & Equipment Pack',
+                'Biweekly/Weekly Lessons + Optional Office Hours',
+                'Up to 3 Paid Tournament Entries',
+                '1-Year USCF Membership',
+                'Professional Chess Set & Chess.com Diamond',
               ].map((item) => (
                 <div className="flex items-start gap-4" key={item}>
                   <div className="w-6 h-6 rounded-full bg-secondary-soft flex items-center justify-center flex-shrink-0 mt-1">
@@ -139,7 +117,8 @@ export default function Programs() {
               </div>
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
               <p className="font-body-md text-on-surface-variant mb-6">
-                A beginner-friendly intensive workshop designed to take students from novice to confident player.
+                An immersive summer program at Odyssey Atlanta that introduces students to the fundamentals of
+                chess through lessons, puzzles, and play.
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-muted border border-outline-variant text-on-surface-variant rounded-full text-label-bold mb-8">
                 <span className="material-symbols-outlined text-sm">schedule</span>
@@ -148,10 +127,10 @@ export default function Programs() {
             </div>
             <div className="space-y-4 mb-10 flex-grow">
               {[
-                'Fundamental Rules & Piece Movements',
-                'Basic Endgames & Mating Patterns',
-                'Interactive Play Sessions',
-                'End-of-Summer Student Tournament',
+                'Group Lessons: Openings, Tactics & Checkmates',
+                'Guided Puzzle Solving',
+                'Over-the-Board Play Against Peers',
+                'Small-Group Stations & Teamwork',
               ].map((item) => (
                 <div className="flex items-start gap-4" key={item}>
                   <div className="w-6 h-6 rounded-full bg-primary-soft flex items-center justify-center flex-shrink-0 mt-1">
@@ -166,9 +145,12 @@ export default function Programs() {
                 </div>
               ))}
             </div>
-            <button className="tactile-button navy-lift bg-primary text-on-primary w-full py-5 rounded-2xl font-label-bold text-lg uppercase">
-              Reserve a Spot
-            </button>
+            <a
+              href="mailto:RuleTheBoardInc@gmail.com?subject=Checkmate%20Your%20Summer"
+              className="tactile-button navy-lift bg-primary text-on-primary w-full py-5 rounded-2xl font-label-bold text-lg uppercase text-center"
+            >
+              Ask About This Summer
+            </a>
             <div className="mt-6 text-center">
               <p className="font-label-sm text-on-surface-variant">No prior experience required</p>
             </div>
@@ -194,15 +176,15 @@ export default function Programs() {
                     improvement figure. The number itself is navy — accent color
                     lives on the motif, never on arbitrary text. */}
                 <div className="p-6 bg-white rounded-2xl border border-outline-variant">
-                  <div className="text-primary font-headline-md mb-2"><Placeholder tone="stat">95%</Placeholder></div>
+                  <div className="text-primary font-headline-md mb-2">212</div>
                   <p className="text-label-sm text-on-surface-variant">
-                    Improvement in academic focus reported by parents.
+                    Lesson hours delivered to scholars this year.
                   </p>
                 </div>
                 <div className="p-6 bg-white rounded-2xl border border-outline-variant">
-                  <div className="text-secondary font-headline-md mb-2"><Placeholder tone="stat">500+</Placeholder></div>
+                  <div className="text-secondary font-headline-md mb-2">1,961</div>
                   <p className="text-label-sm text-on-surface-variant">
-                    Scholarships awarded to aspiring young chess stars.
+                    Highest USCF rating reached by a Rule the Board scholar.
                   </p>
                 </div>
               </div>
@@ -211,12 +193,12 @@ export default function Programs() {
               <div className="w-full h-80 rounded-[40px] overflow-hidden soft-card">
                 <img
                   className="w-full h-full object-cover"
-                  alt="A warm and inviting interior of a modern chess academy. Sunlight streams through large windows illuminating thick wooden chess boards."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_jwAzUpDLaK0MgHGQNrCy-qAjt7mElw5c9NmPbGKYtwvU4W9Co5subGE74WE6bFuXgoDSnMIwZVujWZbYyE-kbitlB1fpwTxqeCjvC14ENNptwYGlAR1Z5Tw_dlcfJjtgQsPwgDNnrLBJaYINrstPDPBR4UImBzh85CyNtkBGWu7-rKOCJPq3KOMHPoYPAtenFydWlFj-w--WgHoAxReu0XYiaEu-kC_cWJ2ItY5bdlB6BWbDcbS0drrakUp6wtrb9-qLMKwH9S97"
+                  alt="The tournament hall at the 2026 Grand Prix Tournament, rows of chess boards ready for play."
+                  src={academyInterior}
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-secondary p-6 rounded-3xl shadow-xl animate-bounce">
-                <span className="material-symbols-outlined text-white text-5xl">chess</span>
+                <Knight className="w-10 h-10 text-white" />
               </div>
             </div>
           </div>
@@ -235,71 +217,76 @@ export default function Programs() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Events & Tournaments</h2>
             <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Compete with your peers, earn rating points, and unlock scholarship opportunities on the tournament
-              circuit.
+              Rule the Board scholars compete in real tournaments throughout the year — here's a look at where
+              we've been, and what's ahead.
             </p>
           </div>
-          <div className="flex justify-between items-end mb-8">
-            <div>
-              <h3 className="font-headline-md text-headline-md text-primary mb-2">Upcoming Tournaments</h3>
-              <p className="text-on-surface-variant font-body-md">
-                Find a local event and start your competitive journey.
-              </p>
-            </div>
-            <div className="hidden md:flex gap-3">
-              <button className="p-2 rounded-full border border-outline text-primary hover:bg-primary-soft transition-colors">
-                <span className="material-symbols-outlined">filter_list</span>
-              </button>
-              <button className="p-2 rounded-full border border-outline text-primary hover:bg-primary-soft transition-colors">
-                <span className="material-symbols-outlined">map</span>
-              </button>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
-            {tournaments.map((t) => (
-              <div
-                key={t.name}
-                className="soft-card bg-white rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-primary transition-colors duration-300"
-              >
-                <div className="md:w-1/3 relative h-48 md:h-auto">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${t.image}')` }}
-                  />
-                  <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded font-label-bold text-label-sm">
-                    <Placeholder className="border-white/60">{t.date}</Placeholder>
-                  </div>
-                </div>
-                <div className="md:w-2/3 p-6 flex flex-col justify-between">
-                  <div>
-                    <h4 className="font-headline-md text-headline-md text-primary mb-2">{t.name}</h4>
-                    <div className="flex items-center gap-2 text-on-surface-variant mb-4">
-                      <span className="material-symbols-outlined text-[18px]">location_on</span>
-                      <span className="text-label-bold"><Placeholder>{t.location}</Placeholder></span>
-                    </div>
-                    <div className="flex gap-2 mb-6 flex-wrap">
-                      {t.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-surface-muted border border-outline-variant text-on-surface-variant px-2 py-1 rounded text-label-sm font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-primary font-label-bold">
-                      <Placeholder>{t.entry}</Placeholder>{' '}
-                      <span className="text-on-surface-variant font-medium text-label-sm">Entry</span>
-                    </div>
-                    <button className="text-secondary font-label-bold flex items-center gap-1 group-hover:gap-2 transition-all">
-                      REGISTER <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                    </button>
-                  </div>
+
+          {/* Past event — the one tournament we have real, confirmed details for. */}
+          <div className="mb-12">
+            <h3 className="font-headline-md text-headline-md text-primary mb-6">Past Event</h3>
+            <div className="soft-card bg-white rounded-[24px] overflow-hidden flex flex-col md:flex-row border border-outline-variant">
+              <div className="md:w-2/5 relative h-56 md:h-auto">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="Scholars competing at the Emory Castle Chess Grand Prix, a tournament hall filled with chess boards."
+                  src={pastTournament.image}
+                />
+                <div className="absolute top-4 left-4 bg-secondary-strong text-on-secondary px-3 py-1 rounded font-label-bold text-label-sm">
+                  Past Event
                 </div>
               </div>
-            ))}
+              <div className="md:w-3/5 p-8 flex flex-col justify-center">
+                <h4 className="font-headline-md text-headline-md text-primary mb-3">{pastTournament.name}</h4>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-on-surface-variant mb-4">
+                  <span className="flex items-center gap-1.5 text-label-bold">
+                    <span className="material-symbols-outlined text-[18px]">event</span>
+                    {pastTournament.date}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-label-bold">
+                    <span className="material-symbols-outlined text-[18px]">location_on</span>
+                    {pastTournament.location}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-label-bold">
+                    <span className="material-symbols-outlined text-[18px]">payments</span>
+                    {pastTournament.entry}
+                  </span>
+                </div>
+                <p className="text-on-surface-variant text-body-md">{pastTournament.recap}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Upcoming — no confirmed dates yet, so these are honest skeleton
+              cards rather than invented events. */}
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-headline-md text-headline-md text-primary">Upcoming Tournaments</h3>
+              <span className="text-label-sm font-label-bold text-on-surface-variant uppercase tracking-wide">
+                Details coming soon
+              </span>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+              {Array.from({ length: UPCOMING_SKELETON_COUNT }).map((_, i) => (
+                <div
+                  key={i}
+                  className="rounded-[24px] border-2 border-dashed border-outline-variant bg-surface-muted/60 p-6 flex flex-col gap-4"
+                  aria-hidden="true"
+                >
+                  <div className="h-32 rounded-2xl bg-outline-variant/40 animate-pulse" />
+                  <div className="h-4 w-3/4 rounded-full bg-outline-variant/40 animate-pulse" />
+                  <div className="h-3 w-1/2 rounded-full bg-outline-variant/40 animate-pulse" />
+                  <div className="h-3 w-2/3 rounded-full bg-outline-variant/40 animate-pulse" />
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-on-surface-variant text-body-md mt-6">
+              We're still finalizing next season's schedule.{' '}
+              <a href="mailto:RuleTheBoardInc@gmail.com" className="text-secondary underline underline-offset-4">
+                Ask us for an update
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>
@@ -314,16 +301,22 @@ export default function Programs() {
           <CheckerStrip className="w-[47px] h-[23px] mb-6" />
           <h2 className="font-headline-xl text-headline-xl text-white mb-6">Ready to compete?</h2>
           <p className="font-body-lg text-body-lg text-white/75 max-w-2xl mb-12">
-            Create your student profile today to track your progress, manage registrations, and see where you
-            stand on the state leaderboard.
+            The Rule the Board Scholarship covers your tournament entries, coaching, and gear — apply to join the
+            next class of scholars.
           </p>
           <div className="flex flex-col sm:flex-row gap-6">
-            <button className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-10 py-4 rounded-xl font-label-bold text-body-md uppercase">
-              Create Free Profile
-            </button>
-            <button className="px-10 py-4 rounded-xl border-2 border-white/70 text-white font-label-bold text-body-md uppercase hover:bg-white hover:text-primary transition-all">
-              View Season Rules
-            </button>
+            <Link
+              to="/scholars"
+              className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-10 py-4 rounded-xl font-label-bold text-body-md uppercase"
+            >
+              Apply for the Scholarship
+            </Link>
+            <Link
+              to="/tournament-guide"
+              className="px-10 py-4 rounded-xl border-2 border-white/70 text-white font-label-bold text-body-md uppercase hover:bg-white hover:text-primary transition-all"
+            >
+              Read the Tournament Guide
+            </Link>
           </div>
         </div>
         <div className="absolute inset-0 opacity-10 chess-pattern pointer-events-none" />
@@ -357,9 +350,9 @@ export default function Programs() {
             </div>
             <div>
               <p className="font-label-bold text-primary">Still have questions?</p>
-              <a className="text-secondary font-medium underline underline-offset-4" href="#">
-                Read our comprehensive Parents' Guide to Youth Chess
-              </a>
+              <Link className="text-secondary font-medium underline underline-offset-4" to="/tournament-guide">
+                Read our full guide to getting ready for tournaments
+              </Link>
             </div>
           </div>
         </div>

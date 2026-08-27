@@ -1,4 +1,10 @@
+import { Link } from 'react-router-dom';
 import logoWords from '../assets/rtb-words.png';
+
+const legalLinks = [
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms of Service', to: '/terms' },
+];
 
 export default function Footer() {
   return (
@@ -11,14 +17,14 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-          {['Privacy Policy', 'Terms of Service', 'Charity Navigator', 'GuideStar'].map((label) => (
-            <a
-              key={label}
+          {legalLinks.map((link) => (
+            <Link
+              key={link.label}
               className="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors"
-              href="#"
+              to={link.to}
             >
-              {label}
-            </a>
+              {link.label}
+            </Link>
           ))}
         </div>
       </div>
@@ -29,13 +35,16 @@ export default function Footer() {
         <div className="flex gap-4">
           <a
             className="w-10 h-10 rounded-full bg-surface flex items-center justify-center border border-outline-variant text-primary hover:border-primary transition-colors"
-            href="#"
+            href="https://www.instagram.com/ruletheboardinc"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Rule the Board on Instagram"
           >
-            <span className="material-symbols-outlined">public</span>
+            <span className="material-symbols-outlined">photo_camera</span>
           </a>
           <a
             className="w-10 h-10 rounded-full bg-surface flex items-center justify-center border border-outline-variant text-primary hover:border-primary transition-colors"
-            href="mailto:hello@ruletheboard.org"
+            href="mailto:RuleTheBoardInc@gmail.com"
           >
             <span className="material-symbols-outlined">mail</span>
           </a>

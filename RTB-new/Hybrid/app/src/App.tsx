@@ -7,6 +7,8 @@ import GetInvolved from './pages/GetInvolved';
 import Programs from './pages/Programs';
 import Scholars from './pages/Scholars';
 import NotFound from './pages/NotFound';
+import LegalPending from './pages/LegalPending';
+import TournamentGuide from './pages/TournamentGuide';
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="get-involved" element={<GetInvolved />} />
           <Route path="programs" element={<Programs />} />
           <Route path="scholars" element={<Scholars />} />
+          <Route path="tournament-guide" element={<TournamentGuide />} />
+          <Route path="privacy" element={<LegalPending title="Privacy Policy" />} />
+          <Route path="terms" element={<LegalPending title="Terms of Service" />} />
           {/* Every unmatched path. Vercel rewrites all URLs to index.html, so
               a genuine bad URL arrives here rather than at a server 404. */}
           <Route path="*" element={<NotFound />} />

@@ -2,27 +2,26 @@ import { Link } from 'react-router-dom';
 import { IoSchoolOutline, IoRibbonOutline, IoPeopleOutline, IoHeartOutline } from 'react-icons/io5';
 import { Pawn, Rook, Knight, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
-import Placeholder from '../components/Placeholder';
 import useCountUp from '../hooks/useCountUp';
 import useInView from '../hooks/useInView';
+import heroImage from '../assets/images/home-hero.jpg';
+import scholarshipPreview from '../assets/images/home-scholarship-preview.jpg';
+import cysPreview from '../assets/images/home-cys-preview.jpg';
 
 /*
+ * Real figures from the 2025-26 Impact Report (not illustrative anymore).
  * Each stat is split into prefix / value / suffix so the number itself can be
- * counted up while "$" / "k+" / "%" stay put around it. The old "[120]" square
- * brackets are gone — brackets read as a dev leftover, not a placeholder cue —
- * replaced by the dashed underline from <Placeholder>, the same convention
- * used for every other unconfirmed value on the site. The underlying figures
- * (120, $50k+, 15, 100%) are untouched, only the punctuation around them is.
+ * counted up while "+" stays put around it.
  *
  * One accent color per stat, cycling through the full tertiary set — this is
  * the one place those colors are assigned to plain UI rather than a chess
  * motif, done deliberately per stat rather than reused as a single tint.
  */
 const stats = [
-  { prefix: '', value: 120, suffix: '', label: 'Partner Schools', icon: IoSchoolOutline, color: 'text-accent-teal' },
-  { prefix: '$', value: 50, suffix: 'k+', label: 'Scholarships Awarded', icon: IoRibbonOutline, color: 'text-accent-orange' },
-  { prefix: '', value: 15, suffix: '', label: 'Grandmaster Tutors', icon: IoPeopleOutline, color: 'text-accent-blue' },
-  { prefix: '', value: 100, suffix: '%', label: 'Student Passion', icon: IoHeartOutline, color: 'text-accent-green' },
+  { prefix: '', value: 212, suffix: '', label: 'Lesson Hours', icon: IoSchoolOutline, color: 'text-accent-teal' },
+  { prefix: '', value: 7492, suffix: '', label: 'Puzzles Completed', icon: IoRibbonOutline, color: 'text-accent-orange' },
+  { prefix: '', value: 40, suffix: '+', label: 'Scholars Served', icon: IoPeopleOutline, color: 'text-accent-blue' },
+  { prefix: '', value: 936, suffix: '', label: 'Games Played', icon: IoHeartOutline, color: 'text-accent-green' },
 ];
 
 function Stat({ stat }: { stat: (typeof stats)[number] }) {
@@ -64,8 +63,8 @@ export default function Home() {
               Empowering young minds through the strategy <span className="text-secondary">of chess.</span>
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl mx-auto lg:mx-0">
-              We provide high-quality coaching, professional equipment, and lifelong mentorship to students from all
-              backgrounds.
+              We provide high-quality coaching, professional equipment, and tournament opportunities to students
+              from underserved communities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
@@ -88,14 +87,12 @@ export default function Home() {
             <div className="relative rounded-3xl overflow-hidden border-4 border-white soft-card h-full transform hover:rotate-1 transition-transform duration-500">
               <img
                 className="w-full h-full object-cover"
-                alt="A group of diverse grade school students laughing and intensely focusing on a large wooden chess board in a bright, modern light-filled community center."
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuALFMFbWtMdMyL0kOMs08jwEobvlhoeTd92vAPj8dzCt1z7Qiu6_pvbhqNavwxtVqyQpyLaYii8qat96UjG0L5KvArGH_XnXEJu_BKAg42GK_LIppqVYKy4Bvfk0sfWOOmk6zKZumM_FgEFJMx7mSC6_sgduFyr9xIbEqbTJ7hP3wT8pT0Cf9Da7SZyFyEcBgZzo4oWl-q3koIk-UWVxAkfvaul2MeBBPdkeHk_4E2l7sV0N4y3HoNpkRDmgcc1LuWAdVEzqJbYciXa"
+                alt="Students at the 2026 Grand Prix Tournament, smiling in a large tournament hall filled with chess boards."
+                src={heroImage}
               />
               <div className="absolute bottom-6 right-6 glass-card p-6 rounded-2xl border border-white/60 max-w-xs shadow-lg">
-                <p className="font-headline-md text-headline-md text-secondary mb-1">
-                  <Placeholder tone="stat">5,000+</Placeholder>
-                </p>
-                <p className="font-label-bold text-label-bold text-primary">Matches played this year</p>
+                <p className="font-headline-md text-headline-md text-secondary mb-1">7,492</p>
+                <p className="font-label-bold text-label-bold text-primary">Puzzles solved this year</p>
               </div>
             </div>
           </div>
@@ -140,19 +137,19 @@ export default function Home() {
                 title: 'Pro Coaching',
                 icon: 'school',
                 well: 'bg-primary-soft',
-                body: 'Access to certified instructors who translate complex strategy into fun, bite-sized lessons for grades 3-8.',
+                body: 'Weekly or biweekly lessons from our coaches, structured into a lesson plan built around each scholar.',
               },
               {
                 title: 'Equipment',
                 icon: 'inventory_2',
                 well: 'bg-primary-soft',
-                body: 'We provide tournament-grade boards, clocks, and study materials to students who need them most.',
+                body: 'Every scholar receives a professional chess set — board, pieces, and clock — plus a Chess.com Diamond membership.',
               },
               {
-                title: 'Mentorship',
+                title: 'Office Hours',
                 icon: 'groups',
                 well: 'bg-primary-soft',
-                body: 'Pairing students with local mentors to foster emotional intelligence and social-emotional learning through play.',
+                body: 'Optional weekly office hours give scholars a standing place to ask questions and get extra practice.',
               },
             ].map((card) => (
               <div
@@ -197,8 +194,8 @@ export default function Home() {
               <div className="w-full md:w-2/5 h-64 md:h-auto">
                 <img
                   className="w-full h-full object-cover"
-                  alt="A focused young girl thinking deeply about her next move during a chess tournament."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrPZdXw3XMJCSh2ODM8lqUEaelmfX9L4gc36eXbGvHUL2REuLdZ-qldT8Eyf-N45SvuBvGwa4Kwk2cHqHrEY3c_qjIPrVLR2Zf7lHe3xxEOGySDYBFkrTohfzL4_VpDdJlMdUMdxhaS1HQwYJXET4SHQo0HsT-WT0dQrmAY6mrqq0QoRJ_hIIkRbHdntArU9AOu5M7yA5stACxzbvHLtFYGVhRgsjiq4ByIq1viCIMUCZR0EP-ax5gxymEzUhMjt79DOkvZw80vejT"
+                  alt="Two Rule the Board scholars seated at their boards at the 2026 Grand Prix Tournament."
+                  src={scholarshipPreview}
                 />
               </div>
               <div className="p-8 md:w-3/5 flex flex-col justify-center">
@@ -207,7 +204,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary mb-3">Rule the Board Scholarship</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-                  A full-year merit-based sponsorship covering coaching, travel, and tournament entries.
+                  A one-year scholarship covering coaching, tournament entries, and a professional chess set.
                 </p>
                 <Link to="/scholars" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
                   Learn More
@@ -221,8 +218,8 @@ export default function Home() {
               <div className="w-full md:w-2/5 h-64 md:h-auto">
                 <img
                   className="w-full h-full object-cover"
-                  alt="An outdoor summer camp scene where children are playing chess on large lawn-sized chess boards."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8_1qySo9NAw-XjnyYZdUY0x7lOTbv0Sh_bCwfqYjd5NZLmgZoupCxDZuVhrc2o3w7zXJaThKNZkCnxpN58UZ4UDUngBrGodFaJHCjJOlgN6QbTvIiBFEDu0hC7tb1UM4fHMH_iZUyxhDcUmHFe-cK4YY9Soh6uqNt6WFabDNqo92VXeEK9UxZg0Qq8pV8qbN1VovBHfNEEN_Zo5AjatKgFezAdqv3u46laU-xlx30VgLQuQss4sJKy5csvV9Xmq4U9Y2ZMgXL1vL1"
+                  alt="Two Checkmate Your Summer students at Odyssey playing a game of chess together."
+                  src={cysPreview}
                 />
               </div>
               <div className="p-8 md:w-3/5 flex flex-col justify-center">
@@ -231,7 +228,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary mb-3">Checkmate Your Summer</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-                  Intensive 4-week summer masterclasses designed to leapfrog your rating in a fun camp environment.
+                  A summer program at Odyssey Atlanta teaching chess fundamentals through lessons, puzzles, and play.
                 </p>
                 <Link to="/programs" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
                   Explore Classes

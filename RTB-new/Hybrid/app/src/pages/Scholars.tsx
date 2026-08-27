@@ -33,21 +33,21 @@ export default function Scholars() {
               icon: 'edit_document',
               title: 'Apply',
               well: 'bg-primary-soft',
-              description: 'Fill out the application below. It takes about 10 minutes — a parent or guardian can help.',
+              description: 'Fill out the application below — a parent or guardian can help.',
             },
             {
               step: '02',
               icon: 'forum',
-              title: 'Review & Interview',
+              title: 'Review & Assessment',
               well: 'bg-primary-soft',
-              description: 'Our team reviews every application and follows up with a short conversation with you and your family.',
+              description: 'Our team reviews every application. Admitted applicants take a short assessment of their chess skill level.',
             },
             {
               step: '03',
               icon: 'chess',
               title: 'Take Your Seat',
               well: 'bg-primary-soft',
-              description: 'Accepted scholars are matched with a coach and welcomed into the program before the next season begins.',
+              description: 'Accepted scholars get their lesson plan and gear, and start biweekly or weekly lessons.',
             },
           ].map((item) => (
             <div
@@ -83,7 +83,7 @@ export default function Scholars() {
             {[
               'Currently enrolled in grades 3-8',
               'Demonstrated financial need',
-              'Willingness to commit to weekly practice',
+              'Willingness to commit to biweekly or weekly lessons',
               'No prior chess experience required',
             ].map((item) => (
               <div key={item} className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-outline-variant">

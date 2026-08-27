@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Full-res photo originals from the org Google Drive export — keep compressed
+# copies in src/assets/images/ (via scripts/resize-images.mjs) out of git instead.
+raw-media
