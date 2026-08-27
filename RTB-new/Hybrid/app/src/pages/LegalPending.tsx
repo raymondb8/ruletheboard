@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import MessagePage from '../components/MessagePage';
 
 /**
- * Shared placeholder for /privacy and /terms. Rule the Board doesn't have
+ * Placeholder for /privacy. Rule the Board doesn't have
  * finished legal copy yet — this says so honestly instead of shipping
  * invented policy text or a dead "#" link.
  */

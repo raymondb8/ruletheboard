@@ -24,7 +24,6 @@ function App() {
           <Route path="scholars" element={<Scholars />} />
           <Route path="tournament-guide" element={<TournamentGuide />} />
           <Route path="privacy" element={<LegalPending title="Privacy Policy" />} />
-          <Route path="terms" element={<LegalPending title="Terms of Service" />} />
           {/* Every unmatched path. Vercel rewrites all URLs to index.html, so
               a genuine bad URL arrives here rather than at a server 404. */}
           <Route path="*" element={<NotFound />} />

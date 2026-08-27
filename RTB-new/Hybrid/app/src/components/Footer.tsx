@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import logoWords from '../assets/rtb-words.png';
 
-const legalLinks = [
-  { label: 'Privacy Policy', to: '/privacy' },
-  { label: 'Terms of Service', to: '/terms' },
-];
+const legalLinks = [{ label: 'Privacy Policy', to: '/privacy' }];
 
 export default function Footer() {
   return (
