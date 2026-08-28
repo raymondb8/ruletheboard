@@ -186,9 +186,9 @@ export default function GetInvolved() {
                 Have questions about our programs or partnership opportunities? Reach out!
               </p>
               <div className="mt-8 space-y-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <span className="material-symbols-outlined text-secondary">mail</span>
-                  <span className="font-label-bold">RuleTheBoardInc@gmail.com</span>
+                  <span className="font-label-sm text-label-sm break-all">RuleTheBoardInc@gmail.com</span>
                 </div>
               </div>
             </div>
