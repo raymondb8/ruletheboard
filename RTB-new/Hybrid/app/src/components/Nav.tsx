@@ -10,7 +10,15 @@ import { Pawn, CheckerStrip } from './ChessMotifs';
  * bar shows them as a hover/focus dropdown; the mobile panel lists them indented
  * under their page.
  */
-const links = [
+type NavSection = { label: string; id?: string; to?: string };
+type NavLinkItem = { to: string; label: string; sections: NavSection[] };
+
+// Resolve a sub-item to its href: an explicit `to` (a standalone page) wins,
+// otherwise it's an anchor on the parent page.
+const sectionHref = (parent: string, section: NavSection) =>
+  section.to ?? `${parent}#${section.id}`;
+
+const links: NavLinkItem[] = [
   {
     to: '/',
     label: 'Home',
@@ -50,6 +58,8 @@ const links = [
       { id: 'strategy', label: 'Strategy Beyond the Board' },
       { id: 'events', label: 'Events & Tournaments' },
       { id: 'faq', label: 'Tournament FAQ' },
+      // A standalone page rather than an anchor on /programs.
+      { to: '/tournament-guide', label: 'Tournament Guide' },
     ],
   },
   {
@@ -166,8 +176,8 @@ export default function Nav() {
                   <div className="min-w-[13rem] bg-background border border-outline-variant rounded-xl p-2 card-shadow">
                     {link.sections.map((section) => (
                       <Link
-                        key={section.id}
-                        to={`${link.to}#${section.id}`}
+                        key={section.label}
+                        to={sectionHref(link.to, section)}
                         className="block whitespace-nowrap px-3 py-2 rounded-lg font-label-bold text-label-sm text-on-surface-variant hover:text-primary hover:bg-primary-soft transition-colors"
                       >
                         {section.label}
@@ -260,8 +270,8 @@ export default function Nav() {
                 <div className="flex flex-col pl-[1.625rem] pb-3">
                   {link.sections.map((section) => (
                     <Link
-                      key={section.id}
-                      to={`${link.to}#${section.id}`}
+                      key={section.label}
+                      to={sectionHref(link.to, section)}
                       className="py-2 font-label-bold text-label-bold text-on-surface-variant"
                     >
                       {section.label}
