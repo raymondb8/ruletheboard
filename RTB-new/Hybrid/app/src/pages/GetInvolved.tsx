@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Rook, Pawn, MarginMotif } from '../components/ChessMotifs';
+import { InstagramIcon } from '../components/icons';
 import Placeholder from '../components/Placeholder';
 
 /*
@@ -63,7 +64,7 @@ export default function GetInvolved() {
       {/* Bento Grid Sections */}
       <div className="bento-grid">
         {/* 1. Volunteer Section (Large Card) */}
-        <section className="col-span-12 md:col-span-8 bg-white rounded-xl p-8 card-shadow border border-outline-variant relative overflow-hidden">
+        <section id="volunteer" className="scroll-mt-28 col-span-12 md:col-span-8 bg-white rounded-xl p-8 card-shadow border border-outline-variant relative overflow-hidden">
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center">
@@ -107,7 +108,8 @@ export default function GetInvolved() {
         {/* 2. Donate Section — full-width once the Givebutter form widget is
             embedded (it needs the room), a compact teaser card until then. */}
         <section
-          className={`col-span-12 ${GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? '' : 'md:col-span-4'} bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between border border-transparent`}
+          id="donate"
+          className={`scroll-mt-28 col-span-12 ${GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? '' : 'md:col-span-4'} bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between border border-transparent`}
         >
           <div className={GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? 'mb-8' : ''}>
             <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mb-6">
@@ -150,7 +152,7 @@ export default function GetInvolved() {
         </section>
 
         {/* 3. Community (Small Card) */}
-        <section className="col-span-12 md:col-span-4 bg-white rounded-xl p-8 border border-outline-variant card-shadow flex flex-col items-center text-center">
+        <section id="community" className="scroll-mt-28 col-span-12 md:col-span-4 bg-white rounded-xl p-8 border border-outline-variant card-shadow flex flex-col items-center text-center">
           <h3 className="font-headline-md text-headline-md text-primary mb-4">Community</h3>
           <p className="text-on-surface-variant mb-8">
             Stay updated and connect with other chess lovers in our digital square.
@@ -162,7 +164,7 @@ export default function GetInvolved() {
             className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform mb-4"
             aria-label="Rule the Board on Instagram"
           >
-            <span className="material-symbols-outlined">photo_camera</span>
+            <InstagramIcon className="w-6 h-6" />
           </a>
           <div className="mt-4 flex flex-col gap-2">
             <a
@@ -178,7 +180,7 @@ export default function GetInvolved() {
         </section>
 
         {/* 4. Contact Form (Medium-Large Card) */}
-        <section className="col-span-12 md:col-span-8 bg-surface-muted rounded-xl p-8 border border-outline-variant">
+        <section id="contact" className="scroll-mt-28 col-span-12 md:col-span-8 bg-surface-muted rounded-xl p-8 border border-outline-variant">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:w-1/3">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Contact</h2>

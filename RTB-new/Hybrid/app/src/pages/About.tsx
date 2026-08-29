@@ -53,7 +53,7 @@ export default function About() {
       <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 chess-pattern" />
 
       {/* Our Story Section */}
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-14 md:py-20 grid md:grid-cols-2 gap-14 items-center">
+      <section id="our-story" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-14 md:py-20 grid md:grid-cols-2 gap-14 items-center">
         <div className="order-2 md:order-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
             <span className="material-symbols-outlined text-[18px]">history_edu</span>
@@ -99,7 +99,7 @@ export default function About() {
           <div className="aspect-square rounded-[40px] overflow-hidden bg-surface-muted soft-card relative">
             <img
               className="w-full h-full object-cover"
-              alt="Students competing at the 2026 Grand Prix Tournament, a large hall filled with chess boards."
+              alt="Checkmate Your Summer students playing chess together in the Odyssey classroom."
               src={communityPhoto}
             />
           </div>
@@ -111,14 +111,14 @@ export default function About() {
       </section>
 
       {/* The Team — Our Board */}
-      <section className="py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <section id="our-team" className="scroll-mt-28 py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
               <span className="material-symbols-outlined text-[18px]">groups</span>
               <span className="text-label-sm font-label-bold uppercase">The Team — Our Board</span>
             </div>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">The Strategic Minds Behind RTB</h2>
+            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
               Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
               tournaments to outreach.
@@ -157,7 +157,7 @@ export default function About() {
 
       {/* What We Do */}
       <WaveDivider className="text-surface-muted" />
-      <section className="py-20 bg-surface-muted relative overflow-hidden">
+      <section id="what-we-do" className="scroll-mt-28 py-20 bg-surface-muted relative overflow-hidden">
         <MarginMotif side="right" className="top-14" piece={<Queen className="w-32 h-32 text-primary/25" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mb-12">
@@ -245,7 +245,7 @@ export default function About() {
 
       {/* Impact Stats (Bento Grid Style) */}
       <WaveDivider className="text-surface-muted" flip />
-      <section className="bg-background py-20 relative overflow-hidden">
+      <section id="impact" className="scroll-mt-28 bg-background py-20 relative overflow-hidden">
         <MarginMotif side="left" className="top-12" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-12" piece={<Rook className="w-28 h-28 text-accent-blue/30" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
@@ -299,7 +299,7 @@ export default function About() {
       </section>
 
       {/* Impact Report(s) */}
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
+      <section id="impact-report" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card relative flex flex-col md:flex-row items-center gap-12 overflow-hidden">
           <button
             type="button"

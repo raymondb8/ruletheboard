@@ -54,7 +54,7 @@ export default function Programs() {
       </section>
 
       {/* Programs Grid */}
-      <section className="pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <section id="programs" className="scroll-mt-28 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Full Scholarship Program Card */}
           <div className="bg-white border border-outline-variant rounded-[32px] p-8 md:p-12 soft-card flex flex-col relative overflow-hidden group">
@@ -160,7 +160,7 @@ export default function Programs() {
 
       {/* Illustration / Mood Section */}
       <WaveDivider className="text-surface-muted" />
-      <section className="bg-surface-muted py-20 overflow-hidden relative">
+      <section id="strategy" className="scroll-mt-28 bg-surface-muted py-20 overflow-hidden relative">
         <DotField className="opacity-[0.11]" />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -193,7 +193,7 @@ export default function Programs() {
               <div className="w-full h-80 rounded-[40px] overflow-hidden soft-card">
                 <img
                   className="w-full h-full object-cover"
-                  alt="The tournament hall at the 2026 Grand Prix Tournament, rows of chess boards ready for play."
+                  alt="Students playing over-the-board games during a Checkmate Your Summer session."
                   src={academyInterior}
                 />
               </div>
@@ -207,7 +207,7 @@ export default function Programs() {
 
       {/* Events & Tournaments */}
       <WaveDivider className="text-surface-muted" flip />
-      <section className="bg-background py-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+      <section id="events" className="scroll-mt-28 bg-background py-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
         <div className="max-w-container-max mx-auto relative">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-soft text-primary font-label-bold text-label-sm mb-6">
@@ -323,7 +323,7 @@ export default function Programs() {
       </section>
 
       {/* Tournament FAQ */}
-      <section className="py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
+      <section id="faq" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
         <MarginMotif side="left" className="top-20" piece={<Bishop className="w-24 h-24 text-accent-green/35" />} />
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">

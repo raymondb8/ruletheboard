@@ -25,7 +25,7 @@ export default function Scholars() {
       </section>
 
       {/* How It Works */}
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+      <section id="how-it-works" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {[
             {
@@ -69,7 +69,7 @@ export default function Scholars() {
 
       {/* Eligibility */}
       <WaveDivider className="text-surface-muted" />
-      <section className="bg-surface-muted py-20 relative overflow-hidden">
+      <section id="eligibility" className="scroll-mt-28 bg-surface-muted py-20 relative overflow-hidden">
         <DotField className="opacity-[0.11]" />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mb-10">
@@ -99,7 +99,7 @@ export default function Scholars() {
 
       {/* Application Form */}
       <WaveDivider className="text-surface-muted" flip />
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
+      <section id="apply" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card border border-outline-variant max-w-3xl mx-auto">
           <div className="mb-10 text-center">
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Scholarship Application</h2>

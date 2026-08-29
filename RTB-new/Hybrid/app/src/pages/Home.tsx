@@ -20,7 +20,7 @@ import cysPreview from '../assets/images/home-cys-preview.jpg';
 const stats = [
   { prefix: '', value: 212, suffix: '', label: 'Lesson Hours', icon: IoSchoolOutline, color: 'text-accent-teal' },
   { prefix: '', value: 7492, suffix: '', label: 'Puzzles Completed', icon: IoRibbonOutline, color: 'text-accent-orange' },
-  { prefix: '', value: 40, suffix: '+', label: 'Scholars Served', icon: IoPeopleOutline, color: 'text-accent-blue' },
+  { prefix: '', value: 100, suffix: '+', label: 'Scholars Served', icon: IoPeopleOutline, color: 'text-accent-blue' },
   { prefix: '', value: 936, suffix: '', label: 'Games Played', icon: IoHeartOutline, color: 'text-accent-green' },
 ];
 
@@ -87,7 +87,7 @@ export default function Home() {
             <div className="relative rounded-3xl overflow-hidden border-4 border-white soft-card h-full transform hover:rotate-1 transition-transform duration-500">
               <img
                 className="w-full h-full object-cover"
-                alt="Students at the 2026 Grand Prix Tournament, smiling in a large tournament hall filled with chess boards."
+                alt="A Checkmate Your Summer student in an Odyssey shirt studying the board mid-game."
                 src={heroImage}
               />
               <div className="absolute bottom-6 right-6 glass-card p-6 rounded-2xl border border-white/60 max-w-xs shadow-lg">
@@ -102,7 +102,7 @@ export default function Home() {
       {/* Stats / Trust Bar. The checker strip caps the band so the row reads as a
           deliberate unit instead of four numbers floating in a gap. */}
       <WaveDivider className="text-surface-muted" />
-      <section className="bg-surface-muted py-10 px-margin-mobile relative overflow-hidden">
+      <section id="impact" className="scroll-mt-28 bg-surface-muted py-10 px-margin-mobile relative overflow-hidden">
         <DotField className="opacity-[0.11]" />
         <Rook className="pointer-events-none hidden xl:block absolute left-8 -bottom-6 w-24 h-24 text-accent-blue/20" />
         <Rook className="pointer-events-none hidden xl:block absolute right-8 -bottom-6 w-24 h-24 text-accent-blue/20 -scale-x-100" />
@@ -119,7 +119,7 @@ export default function Home() {
       <WaveDivider className="text-surface-muted" flip />
 
       {/* What We Do */}
-      <section className="py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
+      <section id="what-we-do" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
         <MarginMotif side="left" className="top-16" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-16" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
         <div className="max-w-container-max mx-auto">
@@ -171,7 +171,7 @@ export default function Home() {
 
       {/* Program Previews */}
       <WaveDivider className="text-surface-muted" />
-      <section className="py-20 px-margin-mobile md:px-margin-desktop bg-surface-muted">
+      <section id="programs" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-surface-muted">
         <div className="max-w-container-max mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div className="max-w-xl">
@@ -194,7 +194,7 @@ export default function Home() {
               <div className="w-full md:w-2/5 h-64 md:h-auto">
                 <img
                   className="w-full h-full object-cover"
-                  alt="Two Rule the Board scholars seated at their boards at the 2026 Grand Prix Tournament."
+                  alt="Two students playing a focused over-the-board game during Checkmate Your Summer."
                   src={scholarshipPreview}
                 />
               </div>
@@ -218,7 +218,7 @@ export default function Home() {
               <div className="w-full md:w-2/5 h-64 md:h-auto">
                 <img
                   className="w-full h-full object-cover"
-                  alt="Two Checkmate Your Summer students at Odyssey playing a game of chess together."
+                  alt="A Checkmate Your Summer coach walking a group of students through a position."
                   src={cysPreview}
                 />
               </div>
@@ -245,7 +245,7 @@ export default function Home() {
       <WaveDivider className="text-surface-muted" flip />
 
       {/* CTA Section */}
-      <section className="py-20 px-margin-mobile">
+      <section id="get-involved" className="scroll-mt-28 py-20 px-margin-mobile">
         <div className="max-w-container-max mx-auto bg-primary rounded-[40px] p-8 md:p-16 text-center relative overflow-hidden">
           <DotField className="opacity-[0.10]" />
           {/* Pieces framing the CTA, tinted white because this band is navy. */}

@@ -4,12 +4,63 @@ import logoFull from '../assets/rtb-full.png';
 import logoIcon from '../assets/rtb-icon.png';
 import { Pawn, CheckerStrip } from './ChessMotifs';
 
+/**
+ * Each top-level page is one scrolling page; `sections` are the anchor targets
+ * on it (ids set on the matching `<section>` in the page component). The desktop
+ * bar shows them as a hover/focus dropdown; the mobile panel lists them indented
+ * under their page.
+ */
 const links = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About Us' },
-  { to: '/get-involved', label: 'Get Involved' },
-  { to: '/programs', label: 'Programs' },
-  { to: '/scholars', label: 'Scholars' },
+  {
+    to: '/',
+    label: 'Home',
+    sections: [
+      { id: 'impact', label: 'Our Impact' },
+      { id: 'what-we-do', label: 'What We Do' },
+      { id: 'programs', label: 'Programs' },
+      { id: 'get-involved', label: 'Get Involved' },
+    ],
+  },
+  {
+    to: '/about',
+    label: 'About Us',
+    sections: [
+      { id: 'our-story', label: 'Our Story' },
+      { id: 'our-team', label: 'Our Team' },
+      { id: 'what-we-do', label: 'What We Do' },
+      { id: 'impact', label: 'Our Impact' },
+      { id: 'impact-report', label: 'Impact Report' },
+    ],
+  },
+  {
+    to: '/get-involved',
+    label: 'Get Involved',
+    sections: [
+      { id: 'volunteer', label: 'Volunteer' },
+      { id: 'donate', label: 'Donate' },
+      { id: 'community', label: 'Community' },
+      { id: 'contact', label: 'Contact' },
+    ],
+  },
+  {
+    to: '/programs',
+    label: 'Programs',
+    sections: [
+      { id: 'programs', label: 'Our Programs' },
+      { id: 'strategy', label: 'Strategy Beyond the Board' },
+      { id: 'events', label: 'Events & Tournaments' },
+      { id: 'faq', label: 'Tournament FAQ' },
+    ],
+  },
+  {
+    to: '/scholars',
+    label: 'Scholars',
+    sections: [
+      { id: 'how-it-works', label: 'How It Works' },
+      { id: 'eligibility', label: 'Who Can Apply' },
+      { id: 'apply', label: 'Apply' },
+    ],
+  },
 ];
 
 /**
@@ -19,14 +70,15 @@ const links = [
  */
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   // Close on navigation, so following a link never leaves the panel hanging.
+  // `hash` is included so a same-page sub-tab jump closes the panel too.
   useEffect(() => {
     setOpen(false);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   // Lock background scroll while the panel covers the screen.
   useEffect(() => {
@@ -94,18 +146,37 @@ export default function Nav() {
 
         <nav aria-label="Main" className="hidden lg:flex items-center gap-8">
           {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-primary font-bold border-b-2 border-secondary pb-1 font-label-bold text-label-bold transition-all duration-200'
-                  : 'text-on-surface-variant font-medium font-label-bold text-label-bold hover:text-primary transition-colors duration-200'
-              }
-            >
-              {link.label}
-            </NavLink>
+            <div key={link.to} className="relative group">
+              <NavLink
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-primary font-bold border-b-2 border-secondary pb-1 font-label-bold text-label-bold transition-all duration-200'
+                    : 'text-on-surface-variant font-medium font-label-bold text-label-bold hover:text-primary transition-colors duration-200'
+                }
+              >
+                {link.label}
+              </NavLink>
+
+              {link.sections.length > 0 && (
+                // pt-3 bridges the gap between the link and the panel so the
+                // pointer never crosses dead space and dismisses the menu.
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200 z-50">
+                  <div className="min-w-[13rem] bg-background border border-outline-variant rounded-xl p-2 card-shadow">
+                    {link.sections.map((section) => (
+                      <Link
+                        key={section.id}
+                        to={`${link.to}#${section.id}`}
+                        className="block whitespace-nowrap px-3 py-2 rounded-lg font-label-bold text-label-sm text-on-surface-variant hover:text-primary hover:bg-primary-soft transition-colors"
+                      >
+                        {section.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 
@@ -160,28 +231,45 @@ export default function Nav() {
         {/* pt clears the sticky header, which paints above this at z-50. */}
         <nav aria-label="Mobile" className="flex flex-col px-margin-mobile md:px-margin-desktop pt-28 pb-10">
           {links.map((link, index) => (
-            <NavLink
+            <div
               key={link.to}
-              to={link.to}
-              end={link.to === '/'}
+              className="menu-item border-b border-outline-variant"
               style={{ transitionDelay: open ? `${60 + index * 40}ms` : '0ms' }}
-              className={({ isActive }) =>
-                `menu-item font-headline-lg text-headline-lg py-4 border-b border-outline-variant ${
-                  isActive ? 'text-primary' : 'text-on-surface-variant'
-                }`
-              }
             >
-              {({ isActive }) => (
-                <span className="flex items-center gap-4">
-                  <span
-                    className={`h-7 w-1.5 rounded-full shrink-0 ${
-                      isActive ? 'bg-secondary' : 'bg-transparent'
-                    }`}
-                  />
-                  {link.label}
-                </span>
+              <NavLink
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `font-headline-lg text-headline-lg pt-4 pb-3 flex items-center gap-4 ${
+                    isActive ? 'text-primary' : 'text-on-surface-variant'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <span
+                      className={`h-7 w-1.5 rounded-full shrink-0 ${
+                        isActive ? 'bg-secondary' : 'bg-transparent'
+                      }`}
+                    />
+                    {link.label}
+                  </>
+                )}
+              </NavLink>
+              {link.sections.length > 0 && (
+                <div className="flex flex-col pl-[1.625rem] pb-3">
+                  {link.sections.map((section) => (
+                    <Link
+                      key={section.id}
+                      to={`${link.to}#${section.id}`}
+                      className="py-2 font-label-bold text-label-bold text-on-surface-variant"
+                    >
+                      {section.label}
+                    </Link>
+                  ))}
+                </div>
               )}
-            </NavLink>
+            </div>
           ))}
 
           <div
