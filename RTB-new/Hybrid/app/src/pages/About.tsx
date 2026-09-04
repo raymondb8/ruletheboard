@@ -34,6 +34,7 @@ const team = [
   { name: 'Owen Daum', role: 'Development Director' },
   { name: 'David Katz', role: 'Lead Coach' },
   { name: 'Sammy Drucker', role: 'Lead Coach' },
+  { name: 'Armaan Dhawan', role: 'Director of Development' },
 ];
 
 export default function About() {
@@ -120,7 +121,7 @@ export default function About() {
             </div>
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
-              Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
+              Our ten-person team of directors and coaches runs every part of Rule the Board, from curriculum to
               tournaments to outreach.
             </p>
           </div>
