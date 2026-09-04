@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Pawn, Knight, Bishop, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
 import Placeholder from '../components/Placeholder';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
-import emoryGrandPrix from '../assets/images/programs-emory-grand-prix.jpg';
-import academyInterior from '../assets/images/programs-academy-interior.jpg';
-import scholarshipPhoto from '../assets/images/home-scholarship-preview.jpg';
-import cysPhoto from '../assets/images/home-cys-preview.jpg';
+import emoryGrandPrix from '../assets/images/programs-emory-grand-prix.webp';
+import academyInterior from '../assets/images/programs-academy-interior.webp';
+import scholarshipPhoto from '../assets/images/home-scholarship-preview.webp';
+import cysPhoto from '../assets/images/home-cys-preview.webp';
 
 // The only tournament we have real, confirmed details for. Everything else is
 // genuinely TBD — rendered as skeleton cards below rather than invented events.
@@ -65,6 +65,10 @@ export default function Programs() {
                 className="w-full h-full object-cover"
                 alt="A Rule the Board scholar studying the board mid-game."
                 src={scholarshipPhoto}
+                width={1600}
+                height={1067}
+                loading="lazy"
+                decoding="async"
               />
               {/* Same caption-chip treatment as the "Past Event" tag on the
                   Emory tournament photo further down this page. */}
@@ -104,7 +108,7 @@ export default function Programs() {
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link
                   to="/scholars"
-                  className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center"
+                  className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center whitespace-nowrap shrink-0"
                 >
                   Apply for Scholarship
                 </Link>
@@ -122,6 +126,10 @@ export default function Programs() {
                 className="w-full h-full object-cover"
                 alt="A Checkmate Your Summer coach walking a group of students through a position."
                 src={cysPhoto}
+                width={1600}
+                height={1067}
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-on-surface-variant rounded-full text-label-bold">
                 <span className="material-symbols-outlined text-sm">schedule</span>
@@ -157,7 +165,7 @@ export default function Programs() {
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <a
                   href="mailto:RuleTheBoardInc@gmail.com?subject=Checkmate%20Your%20Summer"
-                  className="tactile-button navy-lift bg-primary text-on-primary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center"
+                  className="tactile-button navy-lift bg-primary text-on-primary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center whitespace-nowrap shrink-0"
                 >
                   Ask About This Summer
                 </a>
@@ -205,6 +213,10 @@ export default function Programs() {
                   className="w-full h-full object-cover"
                   alt="Students playing over-the-board games during a Checkmate Your Summer session."
                   src={academyInterior}
+                  width={1600}
+                  height={1066}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-secondary p-6 rounded-3xl shadow-xl animate-bounce">
@@ -241,6 +253,10 @@ export default function Programs() {
                   className="w-full h-full object-cover"
                   alt="Scholars competing at the Emory Castle Chess Grand Prix, a tournament hall filled with chess boards."
                   src={pastTournament.image}
+                  width={1600}
+                  height={1200}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-4 left-4 bg-secondary-strong text-on-secondary px-3 py-1 rounded font-label-bold text-label-sm">
                   Past Event
