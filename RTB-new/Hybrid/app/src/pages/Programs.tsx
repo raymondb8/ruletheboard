@@ -4,6 +4,8 @@ import Placeholder from '../components/Placeholder';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import emoryGrandPrix from '../assets/images/programs-emory-grand-prix.jpg';
 import academyInterior from '../assets/images/programs-academy-interior.jpg';
+import scholarshipPhoto from '../assets/images/home-scholarship-preview.jpg';
+import cysPhoto from '../assets/images/home-cys-preview.jpg';
 
 // The only tournament we have real, confirmed details for. Everything else is
 // genuinely TBD — rendered as skeleton cards below rather than invented events.
@@ -57,102 +59,110 @@ export default function Programs() {
       <section id="programs" className="scroll-mt-28 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Full Scholarship Program Card */}
-          <div className="bg-white border border-outline-variant rounded-[32px] p-8 md:p-12 soft-card flex flex-col relative overflow-hidden group">
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary-soft rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="mb-8">
-              <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined text-on-primary text-4xl">workspace_premium</span>
-              </div>
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
-              <p className="font-body-md text-on-surface-variant mb-6">
-                A one-year scholarship for Odyssey scholars ready to continue their passion for chess with
-                coaching, tournaments, and gear of their own.
-              </p>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary-soft text-secondary rounded-full text-label-bold mb-8">
+          <div className="bg-white border border-outline-variant rounded-[32px] soft-card flex flex-col overflow-hidden">
+            <div className="relative h-48 md:h-56">
+              <img
+                className="w-full h-full object-cover"
+                alt="A Rule the Board scholar studying the board mid-game."
+                src={scholarshipPhoto}
+              />
+              {/* Same caption-chip treatment as the "Past Event" tag on the
+                  Emory tournament photo further down this page. */}
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-secondary rounded-full text-label-bold">
                 <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
                   stars
                 </span>
                 FULL SCHOLARSHIP
               </div>
             </div>
-            <div className="space-y-4 mb-10 flex-grow">
-              {[
-                'Biweekly/Weekly Lessons + Optional Office Hours',
-                'Up to 3 Paid Tournament Entries',
-                '1-Year USCF Membership',
-                'Professional Chess Set & Chess.com Diamond',
-              ].map((item) => (
-                <div className="flex items-start gap-4" key={item}>
-                  <div className="w-6 h-6 rounded-full bg-secondary-soft flex items-center justify-center flex-shrink-0 mt-1">
-                    <span
-                      className="material-symbols-outlined text-secondary text-sm"
-                      style={{ fontVariationSettings: "'wght' 700" }}
-                    >
-                      check
-                    </span>
-                  </div>
-                  <span className="font-body-md text-on-surface">{item}</span>
-                </div>
-              ))}
-            </div>
-            <Link
-              to="/scholars"
-              className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary w-full py-5 rounded-2xl font-label-bold text-lg uppercase text-center"
-            >
-              Apply for Scholarship
-            </Link>
-            <div className="mt-6 text-center">
-              <p className="font-label-sm text-on-surface-variant">
-                <Placeholder>Application deadline — confirm with team</Placeholder>
+            <div className="p-8 md:p-12 flex flex-col flex-grow">
+              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
+              <p className="font-body-md text-on-surface-variant mb-8">
+                A one-year scholarship for Odyssey scholars ready to continue their passion for chess with
+                coaching, tournaments, and gear of their own.
               </p>
+              <div className="space-y-4 mb-10 flex-grow">
+                {[
+                  'Biweekly/Weekly Lessons + Optional Office Hours',
+                  'Up to 3 Paid Tournament Entries',
+                  '1-Year USCF Membership',
+                  'Professional Chess Set & Chess.com Diamond',
+                ].map((item) => (
+                  <div className="flex items-start gap-4" key={item}>
+                    <div className="w-6 h-6 rounded-full bg-secondary-soft flex items-center justify-center flex-shrink-0 mt-1">
+                      <span
+                        className="material-symbols-outlined text-secondary text-sm"
+                        style={{ fontVariationSettings: "'wght' 700" }}
+                      >
+                        check
+                      </span>
+                    </div>
+                    <span className="font-body-md text-on-surface">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <Link
+                  to="/scholars"
+                  className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center"
+                >
+                  Apply for Scholarship
+                </Link>
+                <p className="font-label-sm text-on-surface-variant">
+                  <Placeholder>Application deadline — confirm with team</Placeholder>
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Intro Class Card */}
-          <div className="bg-white border border-outline-variant rounded-[32px] p-8 md:p-12 soft-card flex flex-col relative overflow-hidden group">
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary-soft rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="mb-8">
-              <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined text-white text-4xl">rocket_launch</span>
-              </div>
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
-              <p className="font-body-md text-on-surface-variant mb-6">
-                An immersive summer program at Odyssey Atlanta that introduces students to the fundamentals of
-                chess through lessons, puzzles, and play.
-              </p>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-muted border border-outline-variant text-on-surface-variant rounded-full text-label-bold mb-8">
+          <div className="bg-white border border-outline-variant rounded-[32px] soft-card flex flex-col overflow-hidden">
+            <div className="relative h-48 md:h-56">
+              <img
+                className="w-full h-full object-cover"
+                alt="A Checkmate Your Summer coach walking a group of students through a position."
+                src={cysPhoto}
+              />
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-on-surface-variant rounded-full text-label-bold">
                 <span className="material-symbols-outlined text-sm">schedule</span>
                 SUMMER WORKSHOP
               </div>
             </div>
-            <div className="space-y-4 mb-10 flex-grow">
-              {[
-                'Group Lessons: Openings, Tactics & Checkmates',
-                'Guided Puzzle Solving',
-                'Over-the-Board Play Against Peers',
-                'Small-Group Stations & Teamwork',
-              ].map((item) => (
-                <div className="flex items-start gap-4" key={item}>
-                  <div className="w-6 h-6 rounded-full bg-primary-soft flex items-center justify-center flex-shrink-0 mt-1">
-                    <span
-                      className="material-symbols-outlined text-primary text-sm"
-                      style={{ fontVariationSettings: "'wght' 700" }}
-                    >
-                      check
-                    </span>
+            <div className="p-8 md:p-12 flex flex-col flex-grow">
+              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
+              <p className="font-body-md text-on-surface-variant mb-8">
+                An immersive summer program at Odyssey Atlanta that introduces students to the fundamentals of
+                chess through lessons, puzzles, and play.
+              </p>
+              <div className="space-y-4 mb-10 flex-grow">
+                {[
+                  'Group Lessons: Openings, Tactics & Checkmates',
+                  'Guided Puzzle Solving',
+                  'Over-the-Board Play Against Peers',
+                  'Small-Group Stations & Teamwork',
+                ].map((item) => (
+                  <div className="flex items-start gap-4" key={item}>
+                    <div className="w-6 h-6 rounded-full bg-primary-soft flex items-center justify-center flex-shrink-0 mt-1">
+                      <span
+                        className="material-symbols-outlined text-primary text-sm"
+                        style={{ fontVariationSettings: "'wght' 700" }}
+                      >
+                        check
+                      </span>
+                    </div>
+                    <span className="font-body-md text-on-surface">{item}</span>
                   </div>
-                  <span className="font-body-md text-on-surface">{item}</span>
-                </div>
-              ))}
-            </div>
-            <a
-              href="mailto:RuleTheBoardInc@gmail.com?subject=Checkmate%20Your%20Summer"
-              className="tactile-button navy-lift bg-primary text-on-primary w-full py-5 rounded-2xl font-label-bold text-lg uppercase text-center"
-            >
-              Ask About This Summer
-            </a>
-            <div className="mt-6 text-center">
-              <p className="font-label-sm text-on-surface-variant">No prior experience required</p>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <a
+                  href="mailto:RuleTheBoardInc@gmail.com?subject=Checkmate%20Your%20Summer"
+                  className="tactile-button navy-lift bg-primary text-on-primary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center"
+                >
+                  Ask About This Summer
+                </a>
+                <p className="font-label-sm text-on-surface-variant">No prior experience required</p>
+              </div>
             </div>
           </div>
         </div>
