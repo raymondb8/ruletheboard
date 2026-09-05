@@ -23,6 +23,22 @@ unfurl with the homepage's title. It also emits `dist/sitemap.xml` and a
 Adding a route means adding it to `App.tsx` **and** `pages.json`; the build
 fails with an explicit message if you only do the first.
 
+### vercel.json
+
+Two things there are deliberate and easy to "fix" back into breakage:
+
+- **There is no SPA catch-all rewrite.** The prerender step emits a real
+  `dist/<route>/index.html` for every route, so Vercel serves each one from the
+  filesystem. Anything genuinely unmatched falls through to `dist/404.html` with
+  a true 404 status. Adding a `/(.*) -> /index.html` rewrite back would return
+  200 for every URL, which Search Console reports as a soft 404.
+- **`trailingSlash: false`** redirects `/about/` to `/about`, so a page has one
+  URL instead of two that Google has to reconcile as duplicates.
+
+Do not add `//` keys as comments to that file. Vercel validates it against a
+strict schema and rejects unknown properties, so the deploy fails before the
+build starts.
+
 `public/og-image.jpg` (the social share card) and the WebP photos in
 `src/assets/images/` are generated — see `scripts/og-image.mjs` and
 `scripts/resize-images.mjs`. Neither runs during `npm run build`; re-run them by
