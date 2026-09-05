@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col items-center gap-base bg-surface-sunken border-t border-outline-variant">
       <div className="max-w-container-max w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-10">
         <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
-          <img src={logoWords} alt="Rule the Board" className="h-12 w-auto" />
+          <img src={logoWords} alt="Rule the Board" className="h-12 w-auto" width={720} height={328} loading="lazy" decoding="async" />
           <p className="font-body-md text-body-md text-on-surface-variant max-w-xs">
             Building grandmasters of life through the timeless game of chess.
           </p>

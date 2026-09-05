@@ -53,11 +53,11 @@ export default function GetInvolved() {
       {/* Hero Header */}
       <header className="text-center mb-12">
         <h1 className="font-headline-xl text-headline-xl mb-4 text-primary max-w-3xl mx-auto">
-          Make Your Move: Shape the Future of Chess
+          Get Involved
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-          Join our community of grandmasters, beginners, and dreamers. Whether you share your time or your
-          resources, you're building a smarter world.
+          We run entirely on volunteers and donations. An hour of your time or a set of pieces covered goes
+          straight to a scholar.
         </p>
       </header>
 
@@ -75,8 +75,7 @@ export default function GetInvolved() {
               <h2 className="font-headline-lg text-headline-lg text-primary">Volunteer</h2>
             </div>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md">
-              Share your love for chess with the next generation of strategic thinkers. We need coaches, mentors,
-              and event helpers.
+              You do not need a rating to help. We need coaches, mentors, and helpers at events.
             </p>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
               <div className="flex flex-col gap-2">
@@ -117,8 +116,8 @@ export default function GetInvolved() {
             </div>
             <h2 className="font-headline-lg text-headline-lg text-white mb-4">Donate</h2>
             <p className="text-white/75 font-body-md mb-6">
-              Your contributions provide high-quality boards, clocks, and professional coaching to underserved
-              students.
+              Donations pay for boards, clocks, coaching, and the entry fees that get our scholars into rated
+              tournaments.
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">
@@ -144,8 +143,7 @@ export default function GetInvolved() {
                 Ask About Giving
               </a>
               <p className="text-white/60 font-label-sm text-center mt-3">
-                Online giving via Givebutter is coming soon — donations will happen right here, without leaving
-                the site.
+                Online giving through Givebutter is coming soon. For now, email us and we will sort it out.
               </p>
             </>
           )}
@@ -155,7 +153,7 @@ export default function GetInvolved() {
         <section id="community" className="scroll-mt-28 col-span-12 md:col-span-4 bg-white rounded-xl p-8 border border-outline-variant card-shadow flex flex-col items-center text-center">
           <h3 className="font-headline-md text-headline-md text-primary mb-4">Community</h3>
           <p className="text-on-surface-variant mb-8">
-            Stay updated and connect with other chess lovers in our digital square.
+            We post tournament results and scholar news on Instagram.
           </p>
           <a
             href="https://www.instagram.com/ruletheboardinc"
@@ -185,7 +183,8 @@ export default function GetInvolved() {
             <div className="md:w-1/3">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Contact</h2>
               <p className="text-on-surface-variant font-body-md">
-                Have questions about our programs or partnership opportunities? Reach out!
+                Questions about the programs, or want to partner with us? Send us a note and we will get back to
+                you.
               </p>
               <div className="mt-8 space-y-4">
                 <div className="flex items-center gap-3 min-w-0">
@@ -233,7 +232,7 @@ export default function GetInvolved() {
           <div className="md:col-span-2">
             <h3 className="font-headline-md text-headline-md text-primary mb-3">Current Fundraising Goal</h3>
             <p className="text-on-surface-variant font-body-md">
-              Help us reach our next goal to launch upcoming programs.
+              What we raise goes toward the next class of scholars.
             </p>
           </div>
           <div className="md:col-span-3 bg-surface-muted border border-outline-variant rounded-xl p-6">
@@ -241,10 +240,10 @@ export default function GetInvolved() {
             <div className="w-full h-8 bg-white border border-outline-variant rounded-full overflow-hidden mb-3 relative">
               <div className="h-full bg-secondary rounded-full" style={{ width: '0%' }} />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-label-bold text-on-surface-variant"><Placeholder>Progress — confirm with team</Placeholder></span>
+                <span className="text-label-bold text-on-surface-variant"><Placeholder>Progress: confirm with team</Placeholder></span>
               </div>
             </div>
-            <p className="text-label-sm text-on-surface-variant"><Placeholder>Goal amount — confirm with team</Placeholder></p>
+            <p className="text-label-sm text-on-surface-variant"><Placeholder>Goal amount: confirm with team</Placeholder></p>
           </div>
         </div>
       </section>

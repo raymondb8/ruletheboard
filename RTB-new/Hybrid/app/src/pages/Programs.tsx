@@ -16,7 +16,7 @@ const pastTournament = {
   entry: 'Covered by scholarship',
   image: emoryGrandPrix,
   recap:
-    'Rule the Board scholars competed in an elite tournament environment — one scholar defeated a 1000 USCF-rated player, and another played an unofficial game against the highest-rated player in the state.',
+    'Our scholars played a serious field here. One beat a 1000-rated USCF player, and another got an unofficial game against the highest-rated player in the state.',
 };
 
 const UPCOMING_SKELETON_COUNT = 3;
@@ -47,11 +47,10 @@ export default function Programs() {
       <section className="pt-12 pb-10 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto relative">
         <MarginMotif side="left" className="top-4 -translate-x-full -ml-10" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-4 translate-x-full -mr-10" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
-        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Find Your Winning Move</h1>
+        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Programs</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant">
-          Whether you're just learning the names of the pieces or you're ready to master the Sicilian Defense, we
-          have a chair waiting for you. Our programs are designed for grades 3-8 to inspire confidence and
-          strategic thinking.
+          We run two programs for grades 3-8. One is a summer class for students who have never touched a chess
+          piece. The other is a year-long scholarship for students who are ready to compete.
         </p>
       </section>
 
@@ -82,8 +81,8 @@ export default function Programs() {
             <div className="p-8 md:p-12 flex flex-col flex-grow">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
               <p className="font-body-md text-on-surface-variant mb-8">
-                A one-year scholarship for Odyssey scholars ready to continue their passion for chess with
-                coaching, tournaments, and gear of their own.
+                A one-year scholarship for Odyssey scholars who want to keep going with chess. Coaching,
+                tournaments, and a set of their own.
               </p>
               <div className="space-y-4 mb-10 flex-grow">
                 {[
@@ -113,7 +112,7 @@ export default function Programs() {
                   Apply for Scholarship
                 </Link>
                 <p className="font-label-sm text-on-surface-variant">
-                  <Placeholder>Application deadline — confirm with team</Placeholder>
+                  <Placeholder>Application deadline: confirm with team</Placeholder>
                 </p>
               </div>
             </div>
@@ -139,8 +138,7 @@ export default function Programs() {
             <div className="p-8 md:p-12 flex flex-col flex-grow">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
               <p className="font-body-md text-on-surface-variant mb-8">
-                An immersive summer program at Odyssey Atlanta that introduces students to the fundamentals of
-                chess through lessons, puzzles, and play.
+                Our summer class at Odyssey Atlanta, where most scholars play their first real game of chess.
               </p>
               <div className="space-y-4 mb-10 flex-grow">
                 {[
@@ -183,11 +181,11 @@ export default function Programs() {
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <h3 className="font-headline-lg text-headline-lg text-primary mb-3">Strategy Beyond the Board</h3>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-3">What the game teaches</h3>
               <DashedRule className="mb-5 text-accent-teal" />
               <p className="font-body-md text-body-md text-on-surface-variant mb-8">
-                Chess isn't just about moving wood—it's about learning patience, critical thinking, and the courage
-                to make a plan. Our coaches focus on building the person, not just the player.
+                Chess makes you sit with a hard position and actually think instead of guessing. Our coaches spend
+                as much time on how a scholar approaches a problem as on the moves themselves.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 {/* The checker patch (green, the progress motif) marks the measured
@@ -239,8 +237,8 @@ export default function Programs() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Events & Tournaments</h2>
             <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Rule the Board scholars compete in real tournaments throughout the year — here's a look at where
-              we've been, and what's ahead.
+              Our scholars compete in rated tournaments through the year. Here is where we have been, and what is
+              coming up.
             </p>
           </div>
 
@@ -327,8 +325,8 @@ export default function Programs() {
           <CheckerStrip className="w-[47px] h-[23px] mb-6" />
           <h2 className="font-headline-xl text-headline-xl text-white mb-6">Ready to compete?</h2>
           <p className="font-body-lg text-body-lg text-white/75 max-w-2xl mb-12">
-            The Rule the Board Scholarship covers your tournament entries, coaching, and gear — apply to join the
-            next class of scholars.
+            The scholarship covers your tournament entries, your coaching, and your equipment. Applications are
+            open for the next class of scholars.
           </p>
           <div className="flex flex-col sm:flex-row gap-6">
             <Link
@@ -355,7 +353,7 @@ export default function Programs() {
           <div className="text-center mb-12">
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">First Tournament?</h2>
             <DashedRule className="mx-auto mb-4 text-accent-green" />
-            <p className="text-on-surface-variant">Everything parents and kids need to know before the clock starts ticking.</p>
+            <p className="text-on-surface-variant">The questions parents ask us most before a first tournament.</p>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, i) => (

@@ -16,11 +16,11 @@ export default function Scholars() {
           <span className="text-label-sm font-label-bold uppercase">Scholars</span>
         </div>
         <h1 className="font-headline-xl text-headline-xl mb-6 text-primary max-w-3xl mx-auto">
-          Your Move. Your Scholarship.
+          Apply for a Scholarship
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-          The Rule the Board Scholarship covers coaching, tournament entries, and equipment for students in grades
-          3-8 who are ready to take their game — and their future — seriously.
+          One year of coaching, paid tournament entries, and your own equipment. Open to students in grades 3-8
+          who want to take chess seriously.
         </p>
       </section>
 
@@ -33,7 +33,7 @@ export default function Scholars() {
               icon: 'edit_document',
               title: 'Apply',
               well: 'bg-primary-soft',
-              description: 'Fill out the application below — a parent or guardian can help.',
+              description: 'Fill out the application below. A parent or guardian can help.',
             },
             {
               step: '02',
@@ -76,7 +76,7 @@ export default function Scholars() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Who Can Apply</h2>
             <DashedRule className="mb-4 text-accent-green" />
             <p className="text-on-surface-variant">
-              We keep the bar for entry simple — no rating, club, or prior tournament experience required.
+              You do not need a rating, a club, or any tournament experience.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
@@ -105,8 +105,8 @@ export default function Scholars() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Scholarship Application</h2>
             <p className="text-on-surface-variant">
               <Placeholder>
-                Applications are currently in beta — submissions are reviewed manually. A confirmation email is
-                not yet automated.
+                Applications are in beta. We read every submission by hand, and confirmation emails are not
+                automated yet.
               </Placeholder>
             </p>
           </div>
@@ -179,7 +179,7 @@ export default function Scholars() {
               Submit Application
             </button>
             <p className="md:col-span-2 text-center font-label-sm text-on-surface-variant">
-              <Placeholder>Application deadline — confirm with team</Placeholder>
+              <Placeholder>Application deadline: confirm with team</Placeholder>
             </p>
           </form>
         </div>

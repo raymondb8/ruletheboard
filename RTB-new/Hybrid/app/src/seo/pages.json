@@ -1,0 +1,60 @@
+{
+  "site": {
+    "name": "Rule the Board",
+    "url": "https://ruletheboard.org",
+    "defaultImage": "/og-image.jpg",
+    "locale": "en_US"
+  },
+  "pages": [
+    {
+      "path": "/",
+      "title": "Chess Scholarships for Kids in Atlanta",
+      "description": "Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades 3-8 from underserved communities in Atlanta.",
+      "breadcrumb": "Home"
+    },
+    {
+      "path": "/about",
+      "title": "About Us",
+      "description": "Rule the Board began after a summer of teaching chess at Odyssey. Meet the team behind the scholarship and read our 2025-26 impact report.",
+      "breadcrumb": "About Us"
+    },
+    {
+      "path": "/programs",
+      "title": "Chess Programs for Grades 3-8",
+      "description": "Two chess programs for grades 3-8: a summer class for students who have never touched a piece, and a year-long scholarship for those ready to compete.",
+      "breadcrumb": "Programs"
+    },
+    {
+      "path": "/scholars",
+      "title": "Apply for a Chess Scholarship",
+      "description": "One year of chess coaching, paid tournament entries, and your own equipment. Open to students in grades 3-8 who want to take chess seriously.",
+      "breadcrumb": "Scholars"
+    },
+    {
+      "path": "/get-involved",
+      "title": "Volunteer or Donate",
+      "description": "Rule the Board runs entirely on volunteers and donations. Coach, mentor, or give. An hour of your time goes straight to a scholar in Atlanta.",
+      "breadcrumb": "Get Involved"
+    },
+    {
+      "path": "/tournament-guide",
+      "title": "Your First Chess Tournament: A Guide",
+      "description": "Everything Rule the Board scholars need to know before their first rated tournament: pairings, the Swiss system, clock rules, and etiquette.",
+      "breadcrumb": "Tournament Guide"
+    },
+    {
+      "path": "/privacy",
+      "title": "Privacy Policy",
+      "description": "Rule the Board's privacy policy.",
+      "breadcrumb": "Privacy Policy",
+      "noindex": true
+    },
+    {
+      "path": "/404",
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist.",
+      "breadcrumb": "Not Found",
+      "noindex": true
+    }
+  ]
+}

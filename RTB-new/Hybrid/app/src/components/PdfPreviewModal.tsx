@@ -90,6 +90,9 @@ export default function PdfPreviewModal({
             src={pages[page]}
             alt={`${title} — page ${page + 1} of ${pages.length}`}
             className="max-h-full max-w-full object-contain shadow-lg"
+            width={1236}
+            height={1600}
+            decoding="async"
           />
 
           <button

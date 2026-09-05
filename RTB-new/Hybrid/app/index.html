@@ -5,19 +5,88 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0E387D" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rule the Board | Empowering Youth Through Chess</title>
+
+    <!-- Google Search Console ownership verification (Settings > Ownership verification > HTML tag) -->
+    <meta name="google-site-verification" content="Ks26UTEoyu8TOei1BkhLMBYJbpfAuXs1XB6Dyin0g1M" />
+
+    <!--
+      Everything between the SEO markers is REPLACED PER ROUTE by
+      scripts/prerender.mjs after `vite build`. Don't hand-edit the tags below
+      to change page copy — edit src/seo/pages.json, which both the prerender
+      script and src/components/Seo.tsx read. What's here is the homepage
+      version, which is what `vite dev` and any un-prerendered build serve.
+    -->
+    <!-- SEO:START -->
+    <title>Rule the Board | Chess Scholarships for Kids in Atlanta</title>
+    <meta
+      name="description"
+      content="Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades 3-8 from underserved communities in Atlanta."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ruletheboard.org/" />
+    <meta property="og:site_name" content="Rule the Board" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Rule the Board | Chess Scholarships for Kids in Atlanta" />
+    <meta
+      property="og:description"
+      content="Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades 3-8 from underserved communities in Atlanta."
+    />
+    <meta property="og:url" content="https://ruletheboard.org/" />
+    <meta property="og:image" content="https://ruletheboard.org/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rule the Board | Chess Scholarships for Kids in Atlanta" />
+    <meta
+      name="twitter:description"
+      content="Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades 3-8 from underserved communities in Atlanta."
+    />
+    <meta name="twitter:image" content="https://ruletheboard.org/og-image.jpg" />
+    <!-- SEO:END -->
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <!--
+      All three families in one request. The weight ranges here are the ranges
+      the fonts actually publish — Bricolage Grotesque is opsz 12..96 / wght
+      200..800 and Plus Jakarta Sans is wght 200..800. Asking for 100..900, as
+      this used to, makes the whole stylesheet return "400: Font family not
+      found", which silently drops BOTH text faces to the fallback stack. If a
+      weight ever needs to go outside 200..800, change the face, not this range.
+    -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
+
+    <!--
+      Site-wide organization identity. Same on every page, so it lives outside
+      the per-route SEO block. Per-page BreadcrumbList schema is injected by
+      the prerender script and kept current by Seo.tsx.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["NGO", "EducationalOrganization"],
+        "name": "Rule the Board",
+        "alternateName": "Rule the Board Inc",
+        "url": "https://ruletheboard.org",
+        "logo": "https://ruletheboard.org/favicon-512.png",
+        "image": "https://ruletheboard.org/og-image.jpg",
+        "description": "Rule the Board is a nonprofit providing chess coaching, tournament entries, and equipment to students in grades 3-8 from underserved communities.",
+        "email": "RuleTheBoardInc@gmail.com",
+        "foundingDate": "2025",
+        "areaServed": {
+          "@type": "City",
+          "name": "Atlanta",
+          "containedInPlace": { "@type": "State", "name": "Georgia" }
+        },
+        "knowsAbout": ["Chess", "Chess education", "Youth mentorship", "Scholarships"],
+        "sameAs": ["https://www.instagram.com/ruletheboardinc"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,6 +1,36 @@
-# React + TypeScript + Vite
+# Rule the Board — web app
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + TypeScript + Vite, Tailwind for styling, deployed on Vercel.
+
+## SEO
+
+**To change any page's title or meta description, edit
+[`src/seo/pages.json`](src/seo/pages.json) — nothing else.** That one file is
+read by both consumers, which is what keeps them from drifting:
+
+- [`src/components/Seo.tsx`](src/components/Seo.tsx) updates the document head
+  on client-side navigation. Rendered once in `Layout`, so pages never include
+  it themselves.
+- [`scripts/prerender.mjs`](scripts/prerender.mjs) runs after `vite build` and
+  writes a real `dist/<route>/index.html` per route with the tags baked in.
+
+The prerender step is the one that matters for search and social. Crawlers and
+link unfurlers (Facebook, LinkedIn, Slack, iMessage, and most AI crawlers) read
+the raw HTML and never run the bundle — without it, every URL on the site would
+unfurl with the homepage's title. It also emits `dist/sitemap.xml` and a
+`dist/404.html` that the host serves with a genuine 404 status.
+
+Adding a route means adding it to `App.tsx` **and** `pages.json`; the build
+fails with an explicit message if you only do the first.
+
+`public/og-image.jpg` (the social share card) and the WebP photos in
+`src/assets/images/` are generated — see `scripts/og-image.mjs` and
+`scripts/resize-images.mjs`. Neither runs during `npm run build`; re-run them by
+hand when the source photos or the card copy change.
+
+## Vite template notes
+
+This project started from the Vite React template, whose notes follow.
 
 Currently, two official plugins are available:
 

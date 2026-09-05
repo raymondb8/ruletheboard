@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Pawn, Rook, Knight, Queen, MarginMotif } from '../components/ChessMotifs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import PdfPreviewModal from '../components/PdfPreviewModal';
-import communityPhoto from '../assets/images/about-community.jpg';
-import foundersPhoto from '../assets/images/about-founders.jpg';
-import impactReportCover from '../assets/images/impact-report-cover.jpg';
-import impactReportPage1 from '../assets/images/impact-report-page-1.jpg';
-import impactReportPage2 from '../assets/images/impact-report-page-2.jpg';
-import impactReportPage3 from '../assets/images/impact-report-page-3.jpg';
-import impactReportPage4 from '../assets/images/impact-report-page-4.jpg';
-import impactReportPage5 from '../assets/images/impact-report-page-5.jpg';
-import impactReportPage6 from '../assets/images/impact-report-page-6.jpg';
-import impactReportPage7 from '../assets/images/impact-report-page-7.jpg';
+import communityPhoto from '../assets/images/about-community.webp';
+import foundersPhoto from '../assets/images/about-founders.webp';
+import impactReportCover from '../assets/images/impact-report-cover.webp';
+import impactReportPage1 from '../assets/images/impact-report-page-1.webp';
+import impactReportPage2 from '../assets/images/impact-report-page-2.webp';
+import impactReportPage3 from '../assets/images/impact-report-page-3.webp';
+import impactReportPage4 from '../assets/images/impact-report-page-4.webp';
+import impactReportPage5 from '../assets/images/impact-report-page-5.webp';
+import impactReportPage6 from '../assets/images/impact-report-page-6.webp';
+import impactReportPage7 from '../assets/images/impact-report-page-7.webp';
 
 const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';
 const IMPACT_REPORT_PAGES = [
@@ -61,13 +61,13 @@ export default function About() {
             <span className="text-label-sm font-label-bold uppercase">Our Journey</span>
           </div>
           <h1 className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
-            Empowering Young Minds, One Move at a Time.
+            About Rule the Board
           </h1>
           <p className="text-body-lg font-body-lg text-on-surface-variant mb-8 max-w-xl">
-            Founded with the belief that strategic thinking is a life skill, Rule the Board serves students in
-            grades 3-8 through the timeless game of chess. We bridge the gap between classroom learning and
-            competitive play, providing scholarships that open doors for students who might not otherwise have
-            access to chess resources and training.
+            We spent a summer teaching chess to Odyssey scholars and were blown away by how fast they picked it
+            up. Our only regret was that the class ended. Rule the Board is what we built so the students who
+            wanted to keep playing could actually keep playing, with real coaching and real tournaments behind
+            them.
           </p>
           <div className="space-y-4">
             <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
@@ -89,7 +89,7 @@ export default function About() {
               <div>
                 <h3 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h3>
                 <p className="text-on-surface-variant text-body-md">
-                  For students from underserved communities — Title I schools, free/reduced lunch, and families
+                  For students from underserved communities. Title I schools, free or reduced lunch, and families
                   receiving public assistance all qualify.
                 </p>
               </div>
@@ -102,6 +102,10 @@ export default function About() {
               className="w-full h-full object-cover"
               alt="Checkmate Your Summer students playing chess together in the Odyssey classroom."
               src={communityPhoto}
+              width={1600}
+              height={1067}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl soft-card flex flex-col items-center">
@@ -117,7 +121,7 @@ export default function About() {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
               <span className="material-symbols-outlined text-[18px]">groups</span>
-              <span className="text-label-sm font-label-bold uppercase">The Team — Our Board</span>
+              <span className="text-label-sm font-label-bold uppercase">The Team</span>
             </div>
             <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
@@ -146,6 +150,10 @@ export default function About() {
             className="w-full sm:w-56 h-40 object-cover rounded-2xl shrink-0"
             alt="Rule the Board's three founders, Nathan Ye, Leonardo Castro-Balbi, and Arjun Garg, sitting together outdoors."
             src={foundersPhoto}
+            width={1600}
+            height={1200}
+            loading="lazy"
+            decoding="async"
           />
           <p className="text-on-surface-variant text-body-md text-center sm:text-left">
             Rule the Board was founded by <strong className="text-primary">Nathan Ye</strong>,{' '}
@@ -169,8 +177,9 @@ export default function About() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Six Pieces, One Mission</h2>
             <DashedRule className="mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
-              We deliver coaching, tournaments, and equipment to underserved students. The Queen is Rule the Board
-              itself — and every other piece on the board stands for a value that carries out that mission.
+              We give underserved students coaching, tournaments, and equipment. The King stands for Rule the
+              Board itself. The other five pieces are our core values: excellence, resilience, integrity,
+              passion, and service.
             </p>
           </div>
           {/* Six cards in one view is exactly where the accent kit would turn into
@@ -183,7 +192,7 @@ export default function About() {
                 value: 'Rule the Board',
                 icon: 'flag',
                 description:
-                  'The name and the mission itself — the foundation every other piece on this board builds on.',
+                  'The name and the mission. Everything else on this board builds on it.',
               },
               {
                 piece: 'Queen',
@@ -197,7 +206,7 @@ export default function About() {
                 glyph: '♘',
                 value: 'Resilience',
                 icon: 'shield',
-                description: 'The strength to reset the board and try again — in chess, in school, and in life.',
+                description: 'Losing a game, setting the pieces back up, and sitting down for the next one.',
               },
               {
                 piece: 'Rook',
@@ -212,7 +221,7 @@ export default function About() {
                 value: 'Passion',
                 icon: 'favorite',
                 description:
-                  'The drive that shows up in scholars chasing their next rating, and in a team that shows up for them.',
+                  'Scholars chasing their next rating, and coaches who keep showing up for them.',
               },
               {
                 piece: 'Pawn',
@@ -251,10 +260,10 @@ export default function About() {
         <MarginMotif side="right" className="top-12" piece={<Rook className="w-28 h-28 text-accent-blue/30" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Our Growing Reach</h2>
+            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Our first year</h2>
             <DashedRule className="mx-auto mb-4 text-accent-teal" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Metrics from our 2025-26 Impact Report, reflecting our first year serving students in Atlanta.
+              These numbers come from our 2025-26 Impact Report, covering our first year in Atlanta.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
@@ -267,7 +276,7 @@ export default function About() {
               <div>
                 <div className="text-headline-xl font-headline-xl mb-2">4</div>
                 <p className="text-body-lg font-body-lg text-white/75">
-                  Inaugural scholars in our first year — growing to 8 scholars for 2026-27.
+                  Scholars in our first year. We are taking 8 for 2026-27.
                 </p>
               </div>
             </div>
@@ -312,6 +321,10 @@ export default function About() {
               src={impactReportCover}
               alt="Cover of the Rule the Board 2025-26 Impact Report"
               className="w-48 h-64 object-cover rounded-xl shadow-lg border-2 border-outline-variant transition-transform group-hover:-translate-y-1"
+              width={1236}
+              height={1600}
+              loading="lazy"
+              decoding="async"
             />
             {/* Picture-in-picture: a floating "view" badge overlapping the
                 cover's corner, rather than a plain static icon box. */}
@@ -324,10 +337,10 @@ export default function About() {
               <span className="material-symbols-outlined text-[18px]">summarize</span>
               <span className="text-label-sm font-label-bold uppercase">Impact Report(s)</span>
             </div>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Transparency Matters</h2>
+            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Where the money went</h2>
             <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
-              Our 2025-26 Impact Report shows how your donations and support are transforming the lives of students
-              across our community through the power of chess education.
+              Our 2025-26 Impact Report has the real numbers on what donations paid for. Lesson hours, tournament
+              entries, equipment, and how our scholars did.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button

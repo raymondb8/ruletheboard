@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Nav from './Nav';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import Seo from './Seo';
 import useMicroInteractions from '../hooks/useMicroInteractions';
 
 export default function Layout() {
@@ -9,6 +10,7 @@ export default function Layout() {
 
   return (
     <div className="relative bg-background text-on-background font-body-md min-h-screen flex flex-col">
+      <Seo />
       <ScrollToTop />
       <a
         href="#main"

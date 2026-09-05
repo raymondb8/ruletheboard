@@ -4,9 +4,9 @@ import { Pawn, Rook, Knight, CheckerStrip, MarginMotif } from '../components/Che
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import useCountUp from '../hooks/useCountUp';
 import useInView from '../hooks/useInView';
-import heroImage from '../assets/images/home-hero.jpg';
-import scholarshipPreview from '../assets/images/home-scholarship-preview.jpg';
-import cysPreview from '../assets/images/home-cys-preview.jpg';
+import heroImage from '../assets/images/home-hero.webp';
+import scholarshipPreview from '../assets/images/home-scholarship-preview.webp';
+import cysPreview from '../assets/images/home-cys-preview.webp';
 
 /*
  * Real figures from the 2025-26 Impact Report (not illustrative anymore).
@@ -57,14 +57,14 @@ export default function Home() {
           <div className="z-10 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-secondary-soft text-secondary px-4 py-2 rounded-full mb-6">
               <span className="material-symbols-outlined text-sm">stars</span>
-              <span className="font-label-bold text-label-bold uppercase">Empowering Strategy</span>
+              <span className="font-label-bold text-label-bold uppercase">Chess Scholarships</span>
             </div>
             <h1 className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
-              Empowering young minds through the strategy <span className="text-secondary">of chess.</span>
+              We teach kids to play <span className="text-secondary">real chess.</span>
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl mx-auto lg:mx-0">
-              We provide high-quality coaching, professional equipment, and tournament opportunities to students
-              from underserved communities.
+              Coaching, a set of their own, and paid entries to rated tournaments. We started Rule the Board after
+              a summer of teaching chess at Odyssey, and we couldn't walk away from it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
@@ -85,10 +85,20 @@ export default function Home() {
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-secondary-soft rounded-full blur-3xl opacity-70" />
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-primary-soft rounded-full blur-3xl opacity-70" />
             <div className="relative rounded-3xl overflow-hidden border-4 border-white soft-card h-full transform hover:rotate-1 transition-transform duration-500">
+              {/* The hero is the page's Largest Contentful Paint element, so it
+                  loads eagerly at high priority while every image below the fold
+                  is deferred. scripts/prerender.mjs also emits a <link rel=
+                  "preload"> for it, so the request starts before the bundle
+                  parses. */}
               <img
                 className="w-full h-full object-cover"
                 alt="A Checkmate Your Summer student in an Odyssey shirt studying the board mid-game."
                 src={heroImage}
+                width={1600}
+                height={1066}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute bottom-6 right-6 glass-card p-6 rounded-2xl border border-white/60 max-w-xs shadow-lg">
                 <p className="font-headline-md text-headline-md text-secondary mb-1">7,492</p>
@@ -127,29 +137,28 @@ export default function Home() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">What We Do</h2>
             <DashedRule className="mx-auto mb-4 text-accent-teal" />
             <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
-              Beyond the pieces on the board, we build character, discipline, and critical thinking skills for the
-              next generation of leaders.
+              What a scholar gets for their year with us.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {[
               {
-                title: 'Pro Coaching',
+                title: 'Coaching',
                 icon: 'school',
                 well: 'bg-primary-soft',
-                body: 'Weekly or biweekly lessons from our coaches, structured into a lesson plan built around each scholar.',
+                body: 'Weekly or biweekly lessons with our coaches, on a lesson plan built around where each scholar actually is.',
               },
               {
                 title: 'Equipment',
                 icon: 'inventory_2',
                 well: 'bg-primary-soft',
-                body: 'Every scholar receives a professional chess set — board, pieces, and clock — plus a Chess.com Diamond membership.',
+                body: 'A full chess set to keep (board, pieces, and a clock), plus a Chess.com Diamond membership.',
               },
               {
                 title: 'Office Hours',
                 icon: 'groups',
                 well: 'bg-primary-soft',
-                body: 'Optional weekly office hours give scholars a standing place to ask questions and get extra practice.',
+                body: 'Optional weekly office hours, so there is always a set time to ask a question or get a game in.',
               },
             ].map((card) => (
               <div
@@ -175,11 +184,11 @@ export default function Home() {
         <div className="max-w-container-max mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div className="max-w-xl">
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Level Up Your Game</h2>
+              <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Our Programs</h2>
               <DashedRule className="mb-4 text-accent-orange" />
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Choose the path that fits your journey. Whether you're a beginner or a budding Grandmaster, we have a
-                place for you.
+                Two ways in. A summer class if you have never played, or the full scholarship if you are ready to
+                compete.
               </p>
             </div>
             <Link to="/programs" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
@@ -196,6 +205,10 @@ export default function Home() {
                   className="w-full h-full object-cover"
                   alt="Two students playing a focused over-the-board game during Checkmate Your Summer."
                   src={scholarshipPreview}
+                  width={1600}
+                  height={1067}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="p-8 md:w-3/5 flex flex-col justify-center">
@@ -204,7 +217,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary mb-3">Rule the Board Scholarship</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-                  A one-year scholarship covering coaching, tournament entries, and a professional chess set.
+                  One year of coaching, paid tournament entries, and a chess set the scholar keeps.
                 </p>
                 <Link to="/scholars" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
                   Learn More
@@ -220,6 +233,10 @@ export default function Home() {
                   className="w-full h-full object-cover"
                   alt="A Checkmate Your Summer coach walking a group of students through a position."
                   src={cysPreview}
+                  width={1600}
+                  height={1067}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="p-8 md:w-3/5 flex flex-col justify-center">
@@ -228,7 +245,8 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary mb-3">Checkmate Your Summer</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-                  A summer program at Odyssey Atlanta teaching chess fundamentals through lessons, puzzles, and play.
+                  Our summer class at Odyssey Atlanta. Openings, tactics, puzzles, and a lot of games against each
+                  other. No experience needed.
                 </p>
                 <Link to="/programs" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
                   Explore Classes
@@ -255,10 +273,10 @@ export default function Home() {
             {/* Same checker strip that caps the stats band, repeated here so the
                 two most important moments on the page are marked the same way. */}
             <CheckerStrip className="w-[47px] h-[23px] mx-auto mb-6" />
-            <h2 className="font-headline-xl text-headline-xl text-white mb-6">Your next move changes everything.</h2>
+            <h2 className="font-headline-xl text-headline-xl text-white mb-6">Put a scholar on the board.</h2>
             <p className="font-body-lg text-body-lg text-white/75 max-w-2xl mx-auto mb-10">
-              Help us bring the royal game to every classroom. Whether you want to volunteer or donate, you're
-              building a smarter future.
+              We run on volunteers and donations. An hour of coaching or a covered entry fee goes straight to a
+              scholar.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link

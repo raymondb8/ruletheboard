@@ -17,8 +17,7 @@ export default function ErrorPage({ onRetry }: { onRetry?: () => void }) {
       showLogo
       body={
         <>
-          That wasn't your fault — our board got knocked over. Try that again, and if it keeps
-          happening, let us know at{' '}
+          That one was on us, not you. Try again, and if it keeps happening, let us know at{' '}
           <a className="text-secondary underline underline-offset-4" href="mailto:RuleTheBoardInc@gmail.com">
             RuleTheBoardInc@gmail.com
           </a>

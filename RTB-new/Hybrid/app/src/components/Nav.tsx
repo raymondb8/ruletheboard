@@ -150,8 +150,8 @@ export default function Nav() {
         {/* Icon-only mark on the narrowest screens, where the full lockup would
             be squeezed against the Donate button; full lockup from 400px up. */}
         <NavLink to="/" aria-label="Rule the Board — home" className="flex items-center shrink-0">
-          <img src={logoIcon} alt="" className="h-11 w-auto min-[400px]:hidden" />
-          <img src={logoFull} alt="" className="hidden min-[400px]:block h-10 md:h-12 w-auto" />
+          <img src={logoIcon} alt="" className="h-11 w-auto min-[400px]:hidden" width={320} height={539} decoding="async" />
+          <img src={logoFull} alt="" className="hidden min-[400px]:block h-10 md:h-12 w-auto" width={720} height={307} decoding="async" />
         </NavLink>
 
         <nav aria-label="Main" className="hidden lg:flex items-center gap-8">

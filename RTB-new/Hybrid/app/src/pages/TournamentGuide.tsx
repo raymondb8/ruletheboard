@@ -21,7 +21,7 @@ const format = [
   },
   {
     title: 'Reporting the Result',
-    body: 'Report your game score to the director right after the match ends — "1-0" if White won, "0-1" if Black won, or "0.5-0.5" for a draw. Both players should report together to prevent mistakes.',
+    body: 'Report your game score to the director right after the match ends. Write "1-0" if White won, "0-1" if Black won, or "0.5-0.5" for a draw. Both players should report together to prevent mistakes.',
   },
   {
     title: 'Waiting for the Next Round',
@@ -42,7 +42,7 @@ const etiquette = [
     rules: [
       'Keep completely quiet inside the playing hall. If you must communicate to offer a draw, do it in a quiet whisper.',
       "Follow the touch-move rule exactly. If you touch one of your pieces on purpose, you must move it if a legal move is possible. Your choice is final the moment your hand leaves the piece on a new square.",
-      'Say "Adjust" clearly before touching a piece if you only want to center it on its square — only on your turn.',
+      'Say "Adjust" clearly before touching a piece if you only want to center it on its square, and only on your turn.',
       "Press the clock button with the same hand you used to move your piece. Never slam the clock.",
       'Avoid distracting behaviors at the table, like humming, tapping your feet, or making unnecessary noise.',
     ],
@@ -60,10 +60,10 @@ const etiquette = [
 ];
 
 const packingList = [
-  'Your chess set — the roll-up board and pieces you received through the scholarship',
+  'Your chess set: the roll-up board and pieces you received through the scholarship',
   'Your chess clock, set with the correct time delay or increment required by the organizers',
-  'A pen or pencil — you must write down your moves during standard time controls',
-  'A sweater or light jacket — playing halls are often cold',
+  'A pen or pencil, since you have to write down your moves during standard time controls',
+  'A sweater or light jacket, because playing halls are usually cold',
   'A water bottle and quiet snacks',
   'A book or homework for downtime between games',
 ];
@@ -74,7 +74,7 @@ const pieceLetters = [
   { piece: 'Rook', letter: 'R' },
   { piece: 'Bishop', letter: 'B' },
   { piece: 'Knight', letter: 'N' },
-  { piece: 'Pawn', letter: '(none — just write the square)' },
+  { piece: 'Pawn', letter: '(none, just write the square)' },
 ];
 
 const notationExamples = [
@@ -133,7 +133,7 @@ export default function TournamentGuide() {
             <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Chess Tournament Etiquette</h2>
             <DashedRule className="mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
-              When competing, scholars represent Odyssey and Rule the Board — excellent sportsmanship, respect, and
+              When competing, scholars represent Odyssey and Rule the Board. Sportsmanship, respect, and
               focus are expected at all times.
             </p>
           </div>
@@ -163,7 +163,7 @@ export default function TournamentGuide() {
           <h2 className="font-headline-lg text-headline-lg text-primary mb-3">What to Bring</h2>
           <DashedRule className="mb-4 text-accent-green" />
           <p className="text-on-surface-variant">
-            The scholarship provides your primary chess gear — it's your responsibility to pack it on tournament day.
+            The scholarship provides your chess gear. Packing it on tournament day is on you.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">

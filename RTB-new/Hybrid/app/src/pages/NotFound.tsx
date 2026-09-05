@@ -13,8 +13,8 @@ export default function NotFound() {
       piece="knight"
       body={
         <>
-          This square doesn't exist — even the knight can't reach it. The page may have moved, or the
-          link that brought you here might have a typo in it.
+          This square doesn't exist. Not even the knight can reach it. The page may have moved, or the link that
+          brought you here has a typo in it.
         </>
       }
     >
