@@ -7,6 +7,15 @@ tournaments, and equipment to underserved students.
 
 React + Vite + TypeScript, `react-router-dom` for routing, CSS Modules for styling.
 
+## Copy Voice
+
+All user-facing copy on this site must sound like the three student founders wrote it, not
+like marketing filler. Before writing or editing any headline, paragraph, button label, or
+card body, load the `humanize-writing` skill and follow its rules. They are mandatory here,
+not advisory. Reference voice: the founders' own scholarship proposals and program docs
+(plain first-person "we", concrete specifics, feelings stated directly, no wordplay
+headlines, no em dashes).
+
 ## Brand System
 
 All brand values live as CSS custom properties in [src/styles/tokens.css](src/styles/tokens.css),
