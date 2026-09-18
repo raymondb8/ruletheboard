@@ -35,8 +35,7 @@ const links: NavLinkItem[] = [
     sections: [
       { id: 'our-story', label: 'Our Story' },
       { id: 'our-team', label: 'Our Team' },
-      { id: 'what-we-do', label: 'What We Do' },
-      { id: 'impact', label: 'Our Impact' },
+      { id: 'our-values', label: 'Our Values' },
       { id: 'impact-report', label: 'Impact Report' },
     ],
   },

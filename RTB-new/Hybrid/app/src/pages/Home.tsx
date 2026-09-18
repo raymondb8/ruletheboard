@@ -120,9 +120,10 @@ export default function Home() {
         </div>
       </section>
 
-      <WaveDivider className="text-surface-muted" flip />
-
+      {/* The partner bar shares the stats band so the two read as one tinted
+          section with a single wave in and out. */}
       <PartnerMarquee />
+      <WaveDivider className="text-surface-muted" flip />
 
       {/* What We Do */}
       <section id="what-we-do" aria-labelledby="what-we-do-heading" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">

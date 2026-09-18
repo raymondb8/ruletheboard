@@ -16,12 +16,15 @@ export const team: TeamMember[] = [
   { name: 'Leonardo Castro-Balbi', founder: true, role: 'Executive Director' },
   { name: 'Nathan Ye', founder: true, role: 'Operations Director' },
   { name: 'Arjun Garg', founder: true, role: 'Education Director & Head Coach' },
-  { name: 'Abbie Yuan', role: 'Communications Director' },
   { name: 'Raymond Boamah', role: 'Technology Director' },
+  { name: 'Abbie Yuan', role: 'Communications Director' },
   { name: 'Evelyn Wood', role: 'Creative Director' },
-  { name: 'David Katz', role: 'Lead Coach' },
-  { name: 'Sammy Drucker', role: 'Lead Coach' },
   { name: 'Armaan Dhawan', role: 'Director of Development' },
+  { name: 'Sammy Drucker', role: 'Lead Coach' },
+  { name: 'David Katz', role: 'Lead Coach' },
 ];
+
+/** How the About page groups the grid: founders, then directors, then coaches. */
+export const teamRows: TeamMember[][] = [team.slice(0, 3), team.slice(3, 7), team.slice(7)];
 
 export const founders = team.filter((m) => m.founder);

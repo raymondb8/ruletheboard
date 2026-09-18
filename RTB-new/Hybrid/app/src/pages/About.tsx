@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { team } from '../data/team';
-import { Pawn, Rook, Knight, Queen, MarginMotif } from '../components/ChessMotifs';
-import { WaveDivider, DotField, DashedRule } from '../components/Decor';
+import { teamRows } from '../data/team';
+import { Queen, MarginMotif } from '../components/ChessMotifs';
+import { WaveDivider, DashedRule } from '../components/Decor';
 import PdfPreviewModal from '../components/PdfPreviewModal';
 import { Icon } from '../components/icons';
 import Img from '../components/Img';
@@ -31,10 +31,6 @@ export default function About() {
       {/* Our Story Section */}
       <section id="our-story" aria-labelledby="our-story-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-14 md:py-20 grid md:grid-cols-2 gap-14 items-center">
         <div className="order-2 md:order-1">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-            <Icon name="history_edu" className="text-[18px]" />
-            <span className="text-label-sm font-label-bold uppercase">Our story</span>
-          </div>
           <h1 id="our-story-heading" className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
             About Rule the Board, an Atlanta chess scholarship
           </h1>
@@ -96,12 +92,8 @@ export default function About() {
 
       {/* The Team — Our Board */}
       <section id="our-team" aria-labelledby="our-team-heading" className="scroll-mt-28 py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <Icon name="groups" className="text-[18px]" />
-              <span className="text-label-sm font-label-bold uppercase">The Team</span>
-            </div>
+        <div className="text-center mb-12">
+          <div className="max-w-xl mx-auto">
             <h2 id="our-team-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
               Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
@@ -125,15 +117,21 @@ export default function About() {
             generic person glyph — navy only, because nine accent-colored pieces in
             one row is exactly the rainbow we're avoiding. The team photo above
             gives the section a real face in the meantime. */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-12">
-          {team.map((member) => (
-            <div className="group text-center" key={member.name}>
-              <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
-                <Icon name="person" className="text-outline text-5xl" />
-              </div>
-              <h3 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h3>
-              <p className="text-label-sm font-label-sm text-secondary">{member.role}</p>
-            </div>
+        {/* Rows are grouped on purpose (founders / directors / coaches) rather
+            than a uniform grid, so each row centers under the heading. */}
+        <div className="flex flex-col gap-y-10 mb-12">
+          {teamRows.map((row, i) => (
+            <ul key={i} className="flex flex-wrap justify-center gap-gutter">
+              {row.map((member) => (
+                <li className="group text-center w-[calc(50%-12px)] sm:w-44 md:w-52" key={member.name}>
+                  <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
+                    <Icon name="person" className="text-outline text-5xl" />
+                  </div>
+                  <h3 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h3>
+                  <p className="text-label-sm font-label-sm text-secondary">{member.role}</p>
+                </li>
+              ))}
+            </ul>
           ))}
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-3xl soft-card border border-outline-variant p-6">
@@ -152,149 +150,24 @@ export default function About() {
         </div>
       </section>
 
-      {/* What We Do */}
+      {/* Our Values: the King in the middle, the five values on a ring around
+          it, joined by lines so it reads as one web rather than six cards. */}
       <WaveDivider className="text-surface-muted" />
-      <section id="what-we-do" aria-labelledby="what-we-do-heading" className="scroll-mt-28 py-20 bg-surface-muted relative overflow-hidden">
+      <section id="our-values" aria-labelledby="our-values-heading" className="scroll-mt-28 py-20 bg-surface-muted relative overflow-hidden">
         <MarginMotif side="right" className="top-14" piece={<Queen className="w-32 h-32 text-primary/25" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="max-w-2xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <Icon name="handshake" className="text-[18px]" />
-              <span className="text-label-sm font-label-bold uppercase">What We Do</span>
-            </div>
-            <h2 id="what-we-do-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Six Pieces, One Mission</h2>
-            <DashedRule className="mb-4 text-accent-orange" />
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <h2 id="our-values-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Our Values</h2>
+            <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
-              We give underserved students coaching, tournaments, and equipment. The King stands for Rule the
-              Board itself. The other five pieces are our core values: excellence, resilience, integrity,
-              passion, and service.
+              The King is Rule the Board itself. The five pieces around it are what we hold ourselves to:
+              excellence, resilience, integrity, passion, and service.
             </p>
           </div>
-          {/* Six cards in one view is exactly where the accent kit would turn into
-              a rainbow, so this block is deliberately navy-only with coral labels. */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            {[
-              {
-                piece: 'King',
-                glyph: '♔',
-                value: 'Rule the Board',
-                icon: 'flag',
-                description:
-                  'The name and the mission. Everything else on this board builds on it.',
-              },
-              {
-                piece: 'Queen',
-                glyph: '♕',
-                value: 'Excellence',
-                icon: 'workspace_premium',
-                description: 'The standard we hold ourselves to in every classroom, tournament, and decision.',
-              },
-              {
-                piece: 'Knight',
-                glyph: '♘',
-                value: 'Resilience',
-                icon: 'shield',
-                description: 'Losing a game, setting the pieces back up, and sitting down for the next one.',
-              },
-              {
-                piece: 'Rook',
-                glyph: '♖',
-                value: 'Integrity',
-                icon: 'verified',
-                description: 'Our scholars learn to compete honestly, on the board and off it.',
-              },
-              {
-                piece: 'Bishop',
-                glyph: '♗',
-                value: 'Passion',
-                icon: 'favorite',
-                description:
-                  'Scholars chasing their next rating, and coaches who keep showing up for them.',
-              },
-              {
-                piece: 'Pawn',
-                glyph: '♙',
-                value: 'Service',
-                icon: 'volunteer_activism',
-                description:
-                  'Coaches, board members, and volunteers who give their time so a scholar never has to sit out.',
-              },
-            ].map((item) => (
-              <div
-                key={item.piece}
-                className="bg-white rounded-[32px] p-8 soft-card border border-outline-variant flex flex-col"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-5xl text-primary leading-none" aria-hidden="true">
-                    {item.glyph}
-                  </span>
-                  <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                    <Icon name={item.icon} className="text-primary" />
-                  </div>
-                </div>
-                <span className="text-label-sm font-label-bold uppercase text-secondary mb-1">{item.piece}</span>
-                <h3 className="font-headline-md text-headline-md text-primary mb-3">{item.value}</h3>
-                <p className="text-on-surface-variant text-body-md">{item.description}</p>
-              </div>
-            ))}
-          </div>
+          <ValuesWeb />
         </div>
       </section>
-
-      {/* Impact Stats (Bento Grid Style) */}
       <WaveDivider className="text-surface-muted" flip />
-      <section id="impact" aria-labelledby="impact-heading" className="scroll-mt-28 bg-background py-20 relative overflow-hidden">
-        <MarginMotif side="left" className="top-12" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
-        <MarginMotif side="right" className="top-12" piece={<Rook className="w-28 h-28 text-accent-blue/30" />} />
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="text-center mb-16">
-            <h2 id="impact-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Our first year</h2>
-            <DashedRule className="mx-auto mb-4 text-accent-teal" />
-            <p className="text-on-surface-variant max-w-2xl mx-auto">
-              These numbers come from our 2025-26 Impact Report, covering our first year in Atlanta.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-            <div className="md:col-span-2 bg-primary text-on-primary p-10 rounded-[32px] flex flex-col justify-between relative overflow-hidden">
-              <DotField className="opacity-[0.10]" />
-              <Knight className="pointer-events-none absolute -right-4 -bottom-4 w-32 h-32 text-white/[0.08]" />
-              <div className="mb-8">
-                <Icon name="groups" className="text-[48px]" />
-              </div>
-              <div>
-                <div className="text-headline-xl font-headline-xl mb-2">4</div>
-                <p className="text-body-lg font-body-lg text-white/75">
-                  Scholars in our first year. We are taking 8 for 2026-27.
-                </p>
-              </div>
-            </div>
-            <div className="focus-ring-invert bg-secondary-strong text-on-secondary p-10 rounded-[32px] flex flex-col justify-between">
-              <div className="mb-8">
-                <Icon name="workspace_premium" className="text-[40px]" />
-              </div>
-              <div>
-                <div className="text-headline-lg font-headline-lg mb-2">1,961</div>
-                <p className="text-label-bold font-label-bold opacity-80 uppercase tracking-tight">
-                  Highest Scholar Rating
-                </p>
-              </div>
-            </div>
-            <div className="bg-white p-10 rounded-[32px] border border-outline-variant flex flex-col justify-between">
-              {/* Checker patch / green — the progress motif, marking the one tile
-                  in this row that reports an outcome. */}
-              <div className="mb-8">
-                <Icon name="volunteer_activism" className="text-primary text-[40px]" />
-              </div>
-              <div>
-                <div className="text-headline-lg font-headline-lg text-primary mb-2">261</div>
-                <p className="text-label-bold font-label-bold text-on-surface-variant uppercase tracking-tight">
-                  Volunteer Hours (CYS)
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Impact Report(s) */}
       <section id="impact-report" aria-labelledby="impact-report-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
@@ -318,10 +191,6 @@ export default function About() {
             </span>
           </button>
           <div className="flex-1 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <Icon name="summarize" className="text-[18px]" />
-              <span className="text-label-sm font-label-bold uppercase">Impact Report(s)</span>
-            </div>
             <h2 id="impact-report-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Where the money went</h2>
             <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
               Our 2025-26 Impact Report has the real numbers on what donations paid for. Lesson hours, tournament
@@ -341,5 +210,137 @@ export default function About() {
         </div>
       </section>
     </div>
+  );
+}
+
+const KING = {
+  piece: 'King',
+  glyph: '♔',
+  value: 'Rule the Board',
+  description: 'The name and the mission. Everything else on this board builds on it.',
+};
+
+const VALUES = [
+  {
+    piece: 'Queen',
+    glyph: '♕',
+    value: 'Excellence',
+    description: 'The standard we hold ourselves to in every classroom, tournament, and decision.',
+  },
+  {
+    piece: 'Knight',
+    glyph: '♘',
+    value: 'Resilience',
+    description: 'Losing a game, setting the pieces back up, and sitting down for the next one.',
+  },
+  {
+    piece: 'Rook',
+    glyph: '♖',
+    value: 'Integrity',
+    description: 'Our scholars learn to compete honestly, on the board and off it.',
+  },
+  {
+    piece: 'Bishop',
+    glyph: '♗',
+    value: 'Passion',
+    description: 'Scholars chasing their next rating, and coaches who keep showing up for them.',
+  },
+  {
+    piece: 'Pawn',
+    glyph: '♙',
+    value: 'Service',
+    description: 'Coaches, board members, and volunteers who give their time so a scholar never has to sit out.',
+  },
+];
+
+// Ring geometry for the desktop layout, in px inside a square stage.
+const STAGE = 680;
+const CENTER = STAGE / 2;
+const RADIUS = 236;
+const RING = VALUES.map((_, i) => {
+  const angle = -Math.PI / 2 + (i * 2 * Math.PI) / VALUES.length; // start at 12 o'clock
+  return { x: CENTER + RADIUS * Math.cos(angle), y: CENTER + RADIUS * Math.sin(angle) };
+});
+
+function ValueCircle({
+  item,
+  king = false,
+  className = '',
+  style,
+}: {
+  item: { piece: string; glyph: string; value: string; description: string };
+  king?: boolean;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <li style={style} className={className}>
+      <div
+        className={`rounded-full bg-white soft-card border border-outline-variant flex flex-col items-center justify-center text-center ${
+          king ? 'w-60 h-60 p-7 border-2 border-primary' : 'w-48 h-48 p-5'
+        }`}
+      >
+      <span className={`${king ? 'text-5xl' : 'text-4xl'} text-primary leading-none mb-1`} aria-hidden="true">
+        {item.glyph}
+      </span>
+      <span className="text-label-sm font-label-bold uppercase text-secondary">{item.piece}</span>
+      <h3 className={`${king ? 'font-headline-md text-headline-md' : 'font-label-bold text-label-bold'} text-primary mb-1`}>
+        {item.value}
+      </h3>
+      <p className="text-on-surface-variant text-[12px] leading-snug">{item.description}</p>
+      </div>
+    </li>
+  );
+}
+
+/**
+ * Desktop: an absolutely positioned ring on a fixed square stage, with an SVG
+ * underneath drawing spokes from the King and a pentagon between neighbours.
+ * Below lg the ring cannot fit, so it falls back to the King on top and the
+ * five values wrapping beneath it. Both branches share one list for
+ * assistive tech: the DOM order is King first, then the five values.
+ */
+function ValuesWeb() {
+  return (
+    <>
+      {/* Phone / tablet */}
+      <ul className="lg:hidden flex flex-wrap justify-center gap-6">
+        <ValueCircle item={KING} king className="basis-full flex justify-center" />
+        {VALUES.map((v) => (
+          <ValueCircle key={v.piece} item={v} />
+        ))}
+      </ul>
+
+      {/* Desktop web */}
+      <div className="hidden lg:block relative mx-auto" style={{ width: STAGE, height: STAGE }}>
+        <svg
+          className="absolute inset-0 w-full h-full text-primary/25"
+          viewBox={`0 0 ${STAGE} ${STAGE}`}
+          aria-hidden="true"
+        >
+          {RING.map((p, i) => (
+            <line key={`spoke-${i}`} x1={CENTER} y1={CENTER} x2={p.x} y2={p.y} stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+          ))}
+          <polygon points={RING.map((p) => `${p.x},${p.y}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+        <ul className="absolute inset-0">
+          <ValueCircle
+            item={KING}
+            king
+            className="absolute"
+            // Centered by offsetting half the circle's own size (w-60 = 240px).
+            style={{ left: CENTER - 120, top: CENTER - 120 }}
+          />
+          {VALUES.map((v, i) => (
+            <ValueCircle
+              key={v.piece}
+              item={v}
+              className="absolute"
+              style={{ left: RING[i].x - 96, top: RING[i].y - 96 }}
+            />
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
