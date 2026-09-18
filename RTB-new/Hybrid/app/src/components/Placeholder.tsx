@@ -11,7 +11,8 @@ import type { ReactNode } from 'react';
  * around it changes.
  *
  * `tone`:
- *   - 'text' (default) — italic, muted, dashed underline. For placeholder
+ *   - 'text' (default) — italic, dashed underline (no opacity: dimming the
+ *     small label text dropped it below the 4.5:1 contrast floor). For placeholder
  *     copy inside prose, labels, and captions (dates, locations, fees, names,
  *     deadlines) — text that has room below it before the next element.
  *   - 'stat' — no italic, full opacity, NO underline. For large standalone
@@ -33,7 +34,7 @@ export default function Placeholder({
 }) {
   return (
     <span
-      className={`${tone === 'text' ? 'italic opacity-70 border-b-2 border-dashed border-current/35' : ''} ${className}`}
+      className={`${tone === 'text' ? 'italic border-b-2 border-dashed border-current/35' : ''} ${className}`}
     >
       {children}
     </span>

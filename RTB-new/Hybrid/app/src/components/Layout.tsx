@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from './Nav';
 import Footer from './Footer';
@@ -20,7 +21,13 @@ export default function Layout() {
       </a>
       <Nav />
       <main id="main" tabIndex={-1} className="flex-grow">
-        <Outlet />
+        {/* Pages other than Home are lazy chunks (see App.tsx). The fallback is
+            null on purpose: React Router wraps navigation in a transition, so
+            the current page stays on screen until the next chunk is ready, and
+            on first load the server-rendered HTML is already in place. */}
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

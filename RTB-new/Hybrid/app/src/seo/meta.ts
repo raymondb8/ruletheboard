@@ -7,6 +7,9 @@ export interface PageMeta {
   breadcrumb: string;
   noindex?: boolean;
   image?: string;
+  /** ISO dates (YYYY-MM-DD). Feed Article/WebPage schema and the sitemap's lastmod. */
+  datePublished?: string;
+  dateModified?: string;
 }
 
 export const site = config.site;
@@ -16,6 +19,7 @@ export const pages = config.pages as PageMeta[];
 export const indexablePages = pages.filter((p) => !p.noindex);
 
 const NOT_FOUND = pages.find((p) => p.path === '/404') as PageMeta;
+export const home = pages.find((p) => p.path === '/') as PageMeta;
 
 /**
  * Resolves a pathname to its metadata. Unknown paths fall through to the 404
@@ -35,24 +39,4 @@ export function absoluteUrl(pathOrUrl: string): string {
 
 export function fullTitle(meta: PageMeta): string {
   return meta.path === '/' ? `${site.name} | ${meta.title}` : `${meta.title} | ${site.name}`;
-}
-
-/**
- * Breadcrumb trail for a page: Home > Page. Google uses this to render the
- * site-section path in place of a raw URL in search results.
- */
-export function breadcrumbSchema(meta: PageMeta) {
-  const home = pages.find((p) => p.path === '/') as PageMeta;
-  const trail = meta.path === '/' ? [home] : [home, meta];
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: trail.map((entry, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: entry.breadcrumb,
-      item: absoluteUrl(entry.path),
-    })),
-  };
 }

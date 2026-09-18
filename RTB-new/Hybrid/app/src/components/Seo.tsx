@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { site, metaForPath, absoluteUrl, fullTitle, breadcrumbSchema } from '../seo/meta';
+import { site, home, metaForPath, absoluteUrl, fullTitle } from '../seo/meta';
+import { pageGraph } from '../seo/schema';
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -42,6 +43,7 @@ export default function Seo() {
     const title = fullTitle(meta);
     const canonical = absoluteUrl(meta.path === '/404' ? pathname : meta.path);
     const image = absoluteUrl(meta.image ?? site.defaultImage);
+    const imageAlt = `${site.name} share card: ${meta.title}`;
 
     document.title = title;
     upsertMeta('name', 'description', meta.description);
@@ -52,6 +54,9 @@ export default function Seo() {
     upsertMeta('property', 'og:description', meta.description);
     upsertMeta('property', 'og:url', canonical);
     upsertMeta('property', 'og:image', image);
+    upsertMeta('property', 'og:image:width', '1200');
+    upsertMeta('property', 'og:image:height', '630');
+    upsertMeta('property', 'og:image:alt', imageAlt);
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:site_name', site.name);
     upsertMeta('property', 'og:locale', site.locale);
@@ -60,15 +65,19 @@ export default function Seo() {
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', meta.description);
     upsertMeta('name', 'twitter:image', image);
+    upsertMeta('name', 'twitter:image:alt', imageAlt);
 
-    let crumbs = document.head.querySelector('script[data-seo="breadcrumb"]');
-    if (!crumbs) {
-      crumbs = document.createElement('script');
-      crumbs.setAttribute('type', 'application/ld+json');
-      crumbs.setAttribute('data-seo', 'breadcrumb');
-      document.head.appendChild(crumbs);
+    // One JSON-LD graph per page (Organization, WebSite, WebPage, breadcrumbs,
+    // and anything page-specific), built by the same function the prerender
+    // step uses, so the two can't disagree.
+    let graph = document.head.querySelector('script[data-seo="graph"]');
+    if (!graph) {
+      graph = document.createElement('script');
+      graph.setAttribute('type', 'application/ld+json');
+      graph.setAttribute('data-seo', 'graph');
+      document.head.appendChild(graph);
     }
-    crumbs.textContent = JSON.stringify(breadcrumbSchema(meta));
+    graph.textContent = JSON.stringify(pageGraph(meta, home));
   }, [pathname]);
 
   return null;

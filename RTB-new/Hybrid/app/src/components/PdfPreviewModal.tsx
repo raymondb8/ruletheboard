@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Icon } from './icons';
+import Img, { type ResponsiveImage } from './Img';
 
 /**
  * In-page report preview — pages are pre-rendered to images (see
@@ -11,7 +13,7 @@ export default function PdfPreviewModal({
   title,
   onClose,
 }: {
-  pages: string[];
+  pages: ResponsiveImage[];
   downloadHref: string;
   title: string;
   onClose: () => void;
@@ -61,7 +63,7 @@ export default function PdfPreviewModal({
               rel="noopener noreferrer"
               className="tactile-button bg-secondary-strong text-on-secondary px-4 py-2 rounded-xl font-label-bold text-label-sm uppercase flex items-center gap-2"
             >
-              <span className="material-symbols-outlined text-[18px]">download</span>
+              <Icon name="download" className="text-[18px]" />
               <span className="hidden sm:inline">Download</span>
             </a>
             <button
@@ -70,7 +72,7 @@ export default function PdfPreviewModal({
               aria-label="Close"
               className="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-primary-soft transition-colors"
             >
-              <span className="material-symbols-outlined">close</span>
+              <Icon name="close" />
             </button>
           </div>
         </div>
@@ -83,16 +85,15 @@ export default function PdfPreviewModal({
             aria-label="Previous page"
             className="absolute left-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary-soft transition-colors z-10"
           >
-            <span className="material-symbols-outlined">chevron_left</span>
+            <Icon name="chevron_left" />
           </button>
 
-          <img
-            src={pages[page]}
+          <Img
+            image={pages[page]}
+            sizes="(min-width: 1280px) 1236px, 100vw"
             alt={`${title}, page ${page + 1} of ${pages.length}`}
             className="max-h-full max-w-full object-contain shadow-lg"
-            width={1236}
-            height={1600}
-            decoding="async"
+            loading="eager"
           />
 
           <button
@@ -102,7 +103,7 @@ export default function PdfPreviewModal({
             aria-label="Next page"
             className="absolute right-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary-soft transition-colors z-10"
           >
-            <span className="material-symbols-outlined">chevron_right</span>
+            <Icon name="chevron_right" />
           </button>
         </div>
 

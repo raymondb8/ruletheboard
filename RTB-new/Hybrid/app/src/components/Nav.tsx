@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import logoFull from '../assets/rtb-full.png';
-import logoIcon from '../assets/rtb-icon.png';
+import logoFull from '../assets/rtb-full.webp';
+import logoIcon from '../assets/rtb-icon.webp';
 import { Pawn, CheckerStrip } from './ChessMotifs';
 
 /**
@@ -44,8 +44,13 @@ const links: NavLinkItem[] = [
     to: '/get-involved',
     label: 'Get Involved',
     sections: [
-      { id: 'volunteer', label: 'Volunteer' },
       { id: 'donate', label: 'Donate' },
+      { id: 'sponsor', label: 'Become a Sponsor' },
+      { id: 'apply', label: 'Apply' },
+      // A standalone page rather than an anchor on /get-involved. The student
+      // application has its own top-level link ("Scholars"); the trainer one
+      // hangs here, where people already come looking for a way to help.
+      { to: '/trainers', label: 'Apply as a Trainer' },
       { id: 'community', label: 'Community' },
       { id: 'contact', label: 'Contact' },
     ],
@@ -148,10 +153,21 @@ export default function Nav() {
           would paint over the logo and the close button. */}
       <div className="relative z-50 bg-background flex justify-between items-center gap-4 px-margin-mobile md:px-margin-desktop py-3 w-full max-w-container-max mx-auto">
         {/* Icon-only mark on the narrowest screens, where the full lockup would
-            be squeezed against the Donate button; full lockup from 400px up. */}
+            be squeezed against the Donate button; full lockup from 400px up.
+            A <picture> rather than two <img>s toggled with CSS, so a phone
+            downloads one logo instead of both. */}
         <NavLink to="/" aria-label="Rule the Board, home" className="flex items-center shrink-0">
-          <img src={logoIcon} alt="" className="h-11 w-auto min-[400px]:hidden" width={320} height={539} decoding="async" />
-          <img src={logoFull} alt="" className="hidden min-[400px]:block h-10 md:h-12 w-auto" width={720} height={307} decoding="async" />
+          <picture>
+            <source media="(min-width: 400px)" srcSet={logoFull} width={720} height={307} />
+            <img
+              src={logoIcon}
+              alt=""
+              className="h-11 min-[400px]:h-10 md:h-12 w-auto"
+              width={320}
+              height={539}
+              loading="eager" decoding="async"
+            />
+          </picture>
         </NavLink>
 
         <nav aria-label="Main" className="hidden lg:flex items-center gap-8">
@@ -192,7 +208,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-2 shrink-0">
           <Link
-            to="/get-involved"
+            to="/get-involved#donate"
             className="focus-ring-invert tactile-button bg-secondary-strong text-on-secondary px-5 sm:px-6 py-2.5 rounded-xl font-label-bold text-label-bold tracking-wider"
           >
             DONATE
@@ -288,7 +304,7 @@ export default function Nav() {
           >
             <CheckerStrip className="w-[47px] h-[23px] mb-6" />
             <Link
-              to="/get-involved"
+              to="/get-involved#donate"
               className="focus-ring-invert tactile-button bg-secondary-strong text-on-secondary block w-full text-center py-4 rounded-2xl font-label-bold text-label-bold tracking-widest uppercase"
             >
               Donate

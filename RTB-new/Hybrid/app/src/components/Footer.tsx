@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import logoWords from '../assets/rtb-words.png';
-import { InstagramIcon } from './icons';
+import logoWords from '../assets/rtb-words.webp';
+import { InstagramIcon, Icon } from './icons';
 
 const legalLinks = [{ label: 'Privacy Policy', to: '/privacy' }];
 
@@ -37,7 +37,7 @@ export default function Footer() {
               aria-label="Email Rule the Board"
             >
               <span className="w-9 h-9 rounded-full bg-surface flex items-center justify-center border border-outline-variant text-primary group-hover:border-primary transition-colors">
-                <span className="material-symbols-outlined text-[18px]">mail</span>
+                <Icon name="mail" className="text-[18px]" />
               </span>
               <span className="font-label-sm text-label-sm">RuleTheBoardInc@gmail.com</span>
             </a>
@@ -57,7 +57,7 @@ export default function Footer() {
       </div>
 
       <div className="w-full max-w-container-max border-t border-outline-variant pt-8 flex justify-center">
-        <p className="font-label-sm text-label-sm text-on-surface-variant text-center">
+        <p className="font-label-sm text-label-sm text-on-surface-variant text-center" suppressHydrationWarning>
           © {new Date().getFullYear()} Rule the Board Scholarship Program. All rights reserved.
         </p>
       </div>

@@ -6,11 +6,17 @@
 // Contentful Paint, which Google uses as a ranking signal. Every browser has
 // supported WebP since 2020 (Safari 14), so there's no JPEG fallback to carry.
 //
-// Alongside each image it writes src/assets/images/dimensions.json, so the JSX
-// can set explicit width/height on every <img> without hardcoding numbers that
-// silently go stale when a photo is swapped. Those attributes let the browser
-// reserve the right box before the bytes arrive, which is what keeps Cumulative
-// Layout Shift at zero — the other Core Web Vital that affects ranking.
+// Each photo is written at several widths (WIDTHS below) so the browser can
+// pick the smallest one that fills its slot: a phone showing the hero at 390px
+// wide has no use for a 1600px file. The <Img> component (src/components/Img.tsx)
+// turns the set into srcset/sizes.
+//
+// Alongside the files it writes src/assets/images/index.ts — a generated module
+// that imports every variant and exports one entry per photo with its real
+// width/height. Pages import from that instead of individual files, so the
+// dimensions on every <img> (what keeps Cumulative Layout Shift at zero) can
+// never silently go stale when a photo is swapped, and Vite still fingerprints
+// and tree-shakes each file as usual.
 import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -21,44 +27,85 @@ const root = path.resolve(__dirname, "..");
 const rawDir = path.join(root, "raw-media");
 const outDir = path.join(root, "src", "assets", "images");
 
+// Largest first: it's also the fallback `src` for anything that ignores srcset.
+const WIDTHS = [1600, 1280, 960, 640];
+
 // The large feature/hero photos all pull from "CYS 2026/" — the only
 // professionally shot set in the Drive export. Tournament- and people-specific
 // shots (Emory Grand Prix, founders) keep their original phone photos.
 const jobs = [
-  { src: "CYS 2026/OMS Branded Students Chess Candid1 2026.jpg", out: "home-hero.webp" },
-  { src: "CYS 2026/OMS Students Chess Candid1 2026.jpg", out: "home-scholarship-preview.webp" },
-  { src: "CYS 2026/OMS Students Chess Candid10 2026.jpg", out: "home-cys-preview.webp" },
-  { src: "CYS 2026/OMS Branded Students Chess Candid3 2026.jpg", out: "about-community.webp" },
-  { src: "IMG_5340.JPG", out: "about-founders.webp" },
-  { src: "IMG_2341.JPG", out: "programs-emory-grand-prix.webp" },
-  { src: "IMG_2350.JPG", out: "programs-tournament-2.webp" },
-  { src: "IMG_9592.JPG", out: "programs-tournament-3.webp" },
-  { src: "IMG_2358.JPG", out: "programs-tournament-4.webp" },
-  { src: "CYS 2026/OMS Students Chess Candid9 2026.jpg", out: "programs-academy-interior.webp" },
-  { src: "impact-report-cover.png", out: "impact-report-cover.webp" },
+  { src: "CYS 2026/OMS Branded Students Chess Candid1 2026.jpg", out: "home-hero" },
+  { src: "CYS 2026/OMS Students Chess Candid1 2026.jpg", out: "home-scholarship-preview" },
+  { src: "CYS 2026/OMS Students Chess Candid10 2026.jpg", out: "home-cys-preview" },
+  { src: "CYS 2026/OMS Branded Students Chess Candid3 2026.jpg", out: "about-community" },
+  { src: "IMG_5340.JPG", out: "about-founders" },
+  { src: "team-photo.jpeg", out: "about-team" },
+  { src: "IMG_2341.JPG", out: "programs-emory-grand-prix" },
+  { src: "CYS 2026/OMS Students Chess Candid9 2026.jpg", out: "programs-academy-interior" },
+  { src: "impact-report-cover.png", out: "impact-report-cover" },
   ...Array.from({ length: 7 }, (_, i) => ({
     src: `impact-report-page-${i + 1}.png`,
-    out: `impact-report-page-${i + 1}.webp`,
+    out: `impact-report-page-${i + 1}`,
     quality: 88, // text-heavy scans show compression artifacts sooner than photos
   })),
 ];
 
-const results = await Promise.all(
+// Start clean so a photo removed from the list above doesn't linger on disk.
+await fs.mkdir(outDir, { recursive: true });
+for (const f of await fs.readdir(outDir)) {
+  if (f.endsWith(".webp") || f === "dimensions.json") await fs.unlink(path.join(outDir, f));
+}
+
+const entries = await Promise.all(
   jobs.map(async ({ src, out, quality = 80 }) => {
     const input = path.join(rawDir, src);
-    const output = path.join(outDir, out);
-    const { width, height, size } = await sharp(input)
-      .rotate() // respect EXIF orientation
-      .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
-      .webp({ quality })
-      .toFile(output);
-    console.log(`${src} -> ${path.relative(root, output)} (${width}x${height}, ${Math.round(size / 1024)}kB)`);
-    return [out, { width, height }];
-  })
+    const base = sharp(input).rotate(); // respect EXIF orientation
+    const meta = await base.metadata();
+    const variants = [];
+    for (const w of WIDTHS) {
+      // Fit inside a w×w box without enlarging, and name the file by the width
+      // that actually comes out (a portrait scan capped by its height lands
+      // narrower than w). Skip a width if it would repeat the previous one.
+      const scale = Math.min(w / meta.width, w / meta.height, 1);
+      const outW = Math.round(meta.width * scale);
+      if (variants.some((v) => v.width === outW)) continue;
+      const file = `${out}-${outW}.webp`;
+      const { width, height, size } = await base
+        .clone()
+        .resize({ width: w, height: w, fit: "inside", withoutEnlargement: true })
+        .webp({ quality })
+        .toFile(path.join(outDir, file));
+      variants.push({ file, width, height, kb: Math.round(size / 1024) });
+    }
+    console.log(`${src} -> ${variants.map((v) => `${v.width}w (${v.kb}kB)`).join(", ")}`);
+    return { out, variants };
+  }),
 );
 
-await fs.writeFile(
-  path.join(outDir, "dimensions.json"),
-  JSON.stringify(Object.fromEntries(results.sort(([a], [b]) => a.localeCompare(b))), null, 2) + "\n"
-);
-console.log(`\nwrote dimensions.json for ${results.length} images`);
+const ident = (name) => name.replace(/-(\w)/g, (_, c) => c.toUpperCase()).replace(/-/g, "");
+const lines = [
+  "// GENERATED by scripts/resize-images.mjs — do not edit by hand.",
+  "// One entry per photo: the largest file as `src`, every width as `srcSet`,",
+  "// and the largest file's real dimensions for the <img> width/height attributes.",
+  "import type { ResponsiveImage } from '../../components/Img';",
+  "",
+];
+for (const { out, variants } of entries) {
+  for (const v of variants) lines.push(`import ${ident(out)}${v.width} from './${v.file}';`);
+}
+lines.push("", "export const images = {");
+for (const { out, variants } of entries) {
+  const largest = variants[0];
+  const srcSet = variants.map((v) => `\${${ident(out)}${v.width}} ${v.width}w`).join(", ");
+  lines.push(
+    `  '${out}': {`,
+    `    src: ${ident(out)}${largest.width},`,
+    `    srcSet: \`${srcSet}\`,`,
+    `    width: ${largest.width},`,
+    `    height: ${largest.height},`,
+    `  },`,
+  );
+}
+lines.push("} satisfies Record<string, ResponsiveImage>;", "", "export type ImageName = keyof typeof images;", "");
+await fs.writeFile(path.join(outDir, "index.ts"), lines.join("\n"));
+console.log(`\nwrote index.ts for ${entries.length} images`);

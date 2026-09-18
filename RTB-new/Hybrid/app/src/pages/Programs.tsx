@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Pawn, Knight, Bishop, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
 import Placeholder from '../components/Placeholder';
+import { faqs } from '../data/faqs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
-import emoryGrandPrix from '../assets/images/programs-emory-grand-prix.webp';
-import academyInterior from '../assets/images/programs-academy-interior.webp';
-import scholarshipPhoto from '../assets/images/home-scholarship-preview.webp';
-import cysPhoto from '../assets/images/home-cys-preview.webp';
+import { Icon } from '../components/icons';
+import Img from '../components/Img';
+import { images } from '../assets/images';
 
 // The only tournament we have real, confirmed details for. Everything else is
 // genuinely TBD — rendered as skeleton cards below rather than invented events.
@@ -14,31 +14,12 @@ const pastTournament = {
   date: '2026 Season',
   location: 'Emory University, Atlanta',
   entry: 'Covered by scholarship',
-  image: emoryGrandPrix,
   recap:
     'Our scholars played a serious field here. One beat a 1000-rated USCF player, and another got an unofficial game against the highest-rated player in the state.',
 };
 
 const UPCOMING_SKELETON_COUNT = 3;
 
-const faqs = [
-  {
-    q: 'What should my child bring?',
-    a: 'Students should bring a tournament-regulation chess set and clock if they own one, though many events provide them. A healthy snack, water bottle, and a pencil for notation (if required for their section) are also highly recommended.',
-  },
-  {
-    q: 'How long do tournaments last?',
-    a: 'Scholastic tournaments typically run about half a day, depending on the number of rounds and time control. We provide a detailed schedule on each event’s registration page.',
-  },
-  {
-    q: 'Do I need a US Chess membership?',
-    a: 'For "Rated" sections, a USCF membership is generally required. For "Beginner" or "Unrated" sections, no membership is needed. Membership requirements are noted on each event’s details page.',
-  },
-  {
-    q: 'Can parents stay in the playing room?',
-    a: 'To maintain focus and integrity, parents and coaches are usually asked to wait in a designated area once rounds begin. You’re always welcome to help your child set up their board before the round starts.',
-  },
-];
 
 export default function Programs() {
   return (
@@ -47,7 +28,7 @@ export default function Programs() {
       <section className="pt-12 pb-10 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto relative">
         <MarginMotif side="left" className="top-4 -translate-x-full -ml-10" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-4 translate-x-full -mr-10" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
-        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Programs</h1>
+        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Chess programs for grades 3-8</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant">
           We run two programs for grades 3-8. One is a summer class for students who have never touched a chess
           piece. The other is a year-long scholarship for students who are ready to compete.
@@ -55,31 +36,28 @@ export default function Programs() {
       </section>
 
       {/* Programs Grid */}
-      <section id="programs" className="scroll-mt-28 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <section id="programs" aria-labelledby="programs-heading" className="scroll-mt-28 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Full Scholarship Program Card */}
           <div className="bg-white border border-outline-variant rounded-[32px] soft-card flex flex-col overflow-hidden">
             <div className="relative h-48 md:h-56">
-              <img
+              <Img
+                image={images['home-scholarship-preview']}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-full object-cover"
                 alt="A Rule the Board scholar studying the board mid-game."
-                src={scholarshipPhoto}
-                width={1600}
-                height={1067}
-                loading="lazy"
-                decoding="async"
+                loading="eager"
+                fetchPriority="high"
               />
               {/* Same caption-chip treatment as the "Past Event" tag on the
                   Emory tournament photo further down this page. */}
               <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-secondary rounded-full text-label-bold">
-                <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  stars
-                </span>
+                <Icon name="stars" className="text-sm" filled />
                 FULL SCHOLARSHIP
               </div>
             </div>
             <div className="p-8 md:p-12 flex flex-col flex-grow">
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
+              <h2 id="programs-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
               <p className="font-body-md text-on-surface-variant mb-8">
                 A one-year scholarship for Odyssey scholars who want to keep going with chess. Coaching,
                 tournaments, and a set of their own.
@@ -93,12 +71,7 @@ export default function Programs() {
                 ].map((item) => (
                   <div className="flex items-start gap-4" key={item}>
                     <div className="w-6 h-6 rounded-full bg-secondary-soft flex items-center justify-center flex-shrink-0 mt-1">
-                      <span
-                        className="material-symbols-outlined text-secondary text-sm"
-                        style={{ fontVariationSettings: "'wght' 700" }}
-                      >
-                        check
-                      </span>
+                      <Icon name="check" className="text-secondary text-sm" />
                     </div>
                     <span className="font-body-md text-on-surface">{item}</span>
                   </div>
@@ -121,17 +94,14 @@ export default function Programs() {
           {/* Intro Class Card */}
           <div className="bg-white border border-outline-variant rounded-[32px] soft-card flex flex-col overflow-hidden">
             <div className="relative h-48 md:h-56">
-              <img
+              <Img
+                image={images['home-cys-preview']}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-full object-cover"
-                alt="A Checkmate Your Summer coach walking a group of students through a position."
-                src={cysPhoto}
-                width={1600}
-                height={1067}
-                loading="lazy"
-                decoding="async"
+                alt="A Checkmate Your Summer coach explaining a position to a small group of students at Odyssey."
               />
               <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-on-surface-variant rounded-full text-label-bold">
-                <span className="material-symbols-outlined text-sm">schedule</span>
+                <Icon name="schedule" className="text-sm" />
                 SUMMER WORKSHOP
               </div>
             </div>
@@ -149,12 +119,7 @@ export default function Programs() {
                 ].map((item) => (
                   <div className="flex items-start gap-4" key={item}>
                     <div className="w-6 h-6 rounded-full bg-primary-soft flex items-center justify-center flex-shrink-0 mt-1">
-                      <span
-                        className="material-symbols-outlined text-primary text-sm"
-                        style={{ fontVariationSettings: "'wght' 700" }}
-                      >
-                        check
-                      </span>
+                      <Icon name="check" className="text-primary text-sm" />
                     </div>
                     <span className="font-body-md text-on-surface">{item}</span>
                   </div>
@@ -176,12 +141,12 @@ export default function Programs() {
 
       {/* Illustration / Mood Section */}
       <WaveDivider className="text-surface-muted" />
-      <section id="strategy" className="scroll-mt-28 bg-surface-muted py-20 overflow-hidden relative">
+      <section id="strategy" aria-labelledby="strategy-heading" className="scroll-mt-28 bg-surface-muted py-20 overflow-hidden relative">
         <DotField className="opacity-[0.11]" />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <h3 className="font-headline-lg text-headline-lg text-primary mb-3">What the game teaches</h3>
+              <h2 id="strategy-heading" className="font-headline-lg text-headline-lg text-primary mb-3">What the game teaches</h2>
               <DashedRule className="mb-5 text-accent-teal" />
               <p className="font-body-md text-body-md text-on-surface-variant mb-8">
                 Chess makes you sit with a hard position and actually think instead of guessing. Our coaches spend
@@ -207,14 +172,11 @@ export default function Programs() {
             </div>
             <div className="md:w-1/2 relative">
               <div className="w-full h-80 rounded-[40px] overflow-hidden soft-card">
-                <img
+                <Img
+                  image={images['programs-academy-interior']}
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                   alt="Students playing over-the-board games during a Checkmate Your Summer session."
-                  src={academyInterior}
-                  width={1600}
-                  height={1066}
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-secondary p-6 rounded-3xl shadow-xl animate-bounce">
@@ -227,14 +189,14 @@ export default function Programs() {
 
       {/* Events & Tournaments */}
       <WaveDivider className="text-surface-muted" flip />
-      <section id="events" className="scroll-mt-28 bg-background py-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+      <section id="events" aria-labelledby="events-heading" className="scroll-mt-28 bg-background py-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
         <div className="max-w-container-max mx-auto relative">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-soft text-primary font-label-bold text-label-sm mb-6">
-              <span className="material-symbols-outlined text-[18px]">event</span>
+              <Icon name="event" className="text-[18px]" />
               UPCOMING TOURNAMENT SEASON
             </span>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Events & Tournaments</h2>
+            <h2 id="events-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Events & Tournaments</h2>
             <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
               Our scholars compete in rated tournaments through the year. Here is where we have been, and what is
@@ -247,14 +209,11 @@ export default function Programs() {
             <h3 className="font-headline-md text-headline-md text-primary mb-6">Past Event</h3>
             <div className="soft-card bg-white rounded-[24px] overflow-hidden flex flex-col md:flex-row border border-outline-variant">
               <div className="md:w-2/5 relative h-56 md:h-auto">
-                <img
+                <Img
+                  image={images['programs-emory-grand-prix']}
+                  sizes="(min-width: 768px) 40vw, 100vw"
                   className="w-full h-full object-cover"
                   alt="Scholars competing at the Emory Castle Chess Grand Prix, a tournament hall filled with chess boards."
-                  src={pastTournament.image}
-                  width={1600}
-                  height={1200}
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div className="absolute top-4 left-4 bg-secondary-strong text-on-secondary px-3 py-1 rounded font-label-bold text-label-sm">
                   Past Event
@@ -264,15 +223,15 @@ export default function Programs() {
                 <h4 className="font-headline-md text-headline-md text-primary mb-3">{pastTournament.name}</h4>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-on-surface-variant mb-4">
                   <span className="flex items-center gap-1.5 text-label-bold">
-                    <span className="material-symbols-outlined text-[18px]">event</span>
+                    <Icon name="event" className="text-[18px]" />
                     {pastTournament.date}
                   </span>
                   <span className="flex items-center gap-1.5 text-label-bold">
-                    <span className="material-symbols-outlined text-[18px]">location_on</span>
+                    <Icon name="location_on" className="text-[18px]" />
                     {pastTournament.location}
                   </span>
                   <span className="flex items-center gap-1.5 text-label-bold">
-                    <span className="material-symbols-outlined text-[18px]">payments</span>
+                    <Icon name="payments" className="text-[18px]" />
                     {pastTournament.entry}
                   </span>
                 </div>
@@ -347,11 +306,11 @@ export default function Programs() {
       </section>
 
       {/* Tournament FAQ */}
-      <section id="faq" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
+      <section id="faq" aria-labelledby="faq-heading" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
         <MarginMotif side="left" className="top-20" piece={<Bishop className="w-24 h-24 text-accent-green/35" />} />
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">First Tournament?</h2>
+            <h2 id="faq-heading" className="font-headline-lg text-headline-lg text-primary mb-3">First Tournament?</h2>
             <DashedRule className="mx-auto mb-4 text-accent-green" />
             <p className="text-on-surface-variant">The questions parents ask us most before a first tournament.</p>
           </div>
@@ -359,10 +318,8 @@ export default function Programs() {
             {faqs.map((faq, i) => (
               <details key={faq.q} className="soft-card bg-white rounded-xl group" open={i === 0}>
                 <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
-                  <h4 className="font-headline-md text-[18px] text-primary">{faq.q}</h4>
-                  <span className="material-symbols-outlined text-primary transition-transform group-open:rotate-180">
-                    expand_more
-                  </span>
+                  <h3 className="font-headline-md text-[18px] text-primary">{faq.q}</h3>
+                  <Icon name="expand_more" className="text-primary transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="px-6 pb-6 text-on-surface-variant">{faq.a}</div>
               </details>
@@ -370,11 +327,11 @@ export default function Programs() {
           </div>
           <div className="mt-10 p-8 bg-primary-soft rounded-2xl flex items-center gap-6">
             <div className="bg-primary p-3 rounded-full shrink-0">
-              <span className="material-symbols-outlined text-white">help_center</span>
+              <Icon name="help_center" className="text-white" />
             </div>
             <div>
               <p className="font-label-bold text-primary">Still have questions?</p>
-              <Link className="text-secondary font-medium underline underline-offset-4" to="/tournament-guide">
+              <Link className="text-primary font-medium underline underline-offset-4" to="/tournament-guide">
                 Read our full guide to getting ready for tournaments
               </Link>
             </div>

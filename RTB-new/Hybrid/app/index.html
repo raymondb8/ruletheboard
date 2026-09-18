@@ -18,6 +18,9 @@
       to change page copy — edit src/seo/pages.json, which both the prerender
       script and src/components/Seo.tsx read. What's here is the homepage
       version, which is what `vite dev` and any un-prerendered build serve.
+      Structured data (Organization, WebSite, WebPage, breadcrumbs, FAQs, and so
+      on) is generated per page by src/seo/schema.ts and lands in this block
+      too; in `vite dev` it's added by <Seo /> after the first render.
     -->
     <!-- SEO:START -->
     <title>Rule the Board | Chess Scholarships for Kids in Atlanta</title>
@@ -46,47 +49,16 @@
     <meta name="twitter:image" content="https://ruletheboard.org/og-image.jpg" />
     <!-- SEO:END -->
 
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <!--
-      All three families in one request. The weight ranges here are the ranges
-      the fonts actually publish — Bricolage Grotesque is opsz 12..96 / wght
-      200..800 and Plus Jakarta Sans is wght 200..800. Asking for 100..900, as
-      this used to, makes the whole stylesheet return "400: Font family not
-      found", which silently drops BOTH text faces to the fallback stack. If a
-      weight ever needs to go outside 200..800, change the face, not this range.
+      Text faces are self-hosted (see src/index.css). Preloading the two latin
+      files here, rather than waiting for the stylesheet to request them, gets
+      the brand fonts in before first paint. Vite rewrites these hrefs to the
+      hashed /assets/ paths at build time. `crossorigin` is required even for
+      same-origin fonts, or the browser fetches them twice.
     -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Material+Symbols+Outlined:FILL,wght@0..1,100..700&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/src/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/src/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!--
-      Site-wide organization identity. Same on every page, so it lives outside
-      the per-route SEO block. Per-page BreadcrumbList schema is injected by
-      the prerender script and kept current by Seo.tsx.
-    -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": ["NGO", "EducationalOrganization"],
-        "name": "Rule the Board",
-        "alternateName": "Rule the Board Inc",
-        "url": "https://ruletheboard.org",
-        "logo": "https://ruletheboard.org/favicon-512.png",
-        "image": "https://ruletheboard.org/og-image.jpg",
-        "description": "Rule the Board is a nonprofit providing chess coaching, tournament entries, and equipment to students in grades 3-8 from underserved communities.",
-        "email": "RuleTheBoardInc@gmail.com",
-        "foundingDate": "2025",
-        "areaServed": {
-          "@type": "City",
-          "name": "Atlanta",
-          "containedInPlace": { "@type": "State", "name": "Georgia" }
-        },
-        "knowsAbout": ["Chess", "Chess education", "Youth mentorship", "Scholarships"],
-        "sameAs": ["https://www.instagram.com/ruletheboardinc"]
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>

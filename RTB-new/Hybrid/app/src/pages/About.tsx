@@ -1,41 +1,16 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { team } from '../data/team';
 import { Pawn, Rook, Knight, Queen, MarginMotif } from '../components/ChessMotifs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import PdfPreviewModal from '../components/PdfPreviewModal';
-import communityPhoto from '../assets/images/about-community.webp';
-import foundersPhoto from '../assets/images/about-founders.webp';
-import impactReportCover from '../assets/images/impact-report-cover.webp';
-import impactReportPage1 from '../assets/images/impact-report-page-1.webp';
-import impactReportPage2 from '../assets/images/impact-report-page-2.webp';
-import impactReportPage3 from '../assets/images/impact-report-page-3.webp';
-import impactReportPage4 from '../assets/images/impact-report-page-4.webp';
-import impactReportPage5 from '../assets/images/impact-report-page-5.webp';
-import impactReportPage6 from '../assets/images/impact-report-page-6.webp';
-import impactReportPage7 from '../assets/images/impact-report-page-7.webp';
+import { Icon } from '../components/icons';
+import Img from '../components/Img';
+import { images, type ImageName } from '../assets/images';
 
 const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';
-const IMPACT_REPORT_PAGES = [
-  impactReportPage1,
-  impactReportPage2,
-  impactReportPage3,
-  impactReportPage4,
-  impactReportPage5,
-  impactReportPage6,
-  impactReportPage7,
-];
+const IMPACT_REPORT_PAGES = Array.from({ length: 7 }, (_, i) => images[`impact-report-page-${i + 1}` as ImageName]);
 
-const team = [
-  { name: 'Leonardo Castro-Balbi', role: 'Executive Director' },
-  { name: 'Nathan Ye', role: 'Operations Director' },
-  { name: 'Arjun Garg', role: 'Education Director & Head Coach' },
-  { name: 'Abbie Yuan', role: 'Communications Director' },
-  { name: 'Raymond Boamah', role: 'Technology Director' },
-  { name: 'Evelyn Wood', role: 'Creative Director' },
-  { name: 'Owen Daum', role: 'Development Director' },
-  { name: 'David Katz', role: 'Lead Coach' },
-  { name: 'Sammy Drucker', role: 'Lead Coach' },
-  { name: 'Armaan Dhawan', role: 'Director of Development' },
-];
 
 export default function About() {
   const [showReport, setShowReport] = useState(false);
@@ -54,14 +29,14 @@ export default function About() {
       <div className="absolute top-0 right-0 -z-10 w-1/3 h-1/2 chess-pattern" />
 
       {/* Our Story Section */}
-      <section id="our-story" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-14 md:py-20 grid md:grid-cols-2 gap-14 items-center">
+      <section id="our-story" aria-labelledby="our-story-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-14 md:py-20 grid md:grid-cols-2 gap-14 items-center">
         <div className="order-2 md:order-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-            <span className="material-symbols-outlined text-[18px]">history_edu</span>
-            <span className="text-label-sm font-label-bold uppercase">Our Journey</span>
+            <Icon name="history_edu" className="text-[18px]" />
+            <span className="text-label-sm font-label-bold uppercase">Our story</span>
           </div>
-          <h1 className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
-            About Rule the Board
+          <h1 id="our-story-heading" className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
+            About Rule the Board, an Atlanta chess scholarship
           </h1>
           <p className="text-body-lg font-body-lg text-on-surface-variant mb-8 max-w-xl">
             We spent a summer teaching chess to Odyssey scholars and were blown away by how fast they picked it
@@ -69,13 +44,18 @@ export default function About() {
             wanted to keep playing could actually keep playing, with real coaching and real tournaments behind
             them.
           </p>
+          <p className="mb-8">
+            <Link to="/programs" className="text-secondary-strong font-medium underline underline-offset-4">
+              Read about the scholarship and Checkmate Your Summer
+            </Link>
+          </p>
           <div className="space-y-4">
             <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
               <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-primary">school</span>
+                <Icon name="school" className="text-primary" />
               </div>
               <div>
-                <h3 className="font-label-bold text-label-bold text-primary mb-1">Grades 3-8 Eligible</h3>
+                <h2 className="font-label-bold text-label-bold text-primary mb-1">Grades 3-8 Eligible</h2>
                 <p className="text-on-surface-variant text-body-md">
                   Open to students currently enrolled in 3rd through 8th grade, with a pathway for returning
                   high schoolers.
@@ -84,10 +64,10 @@ export default function About() {
             </div>
             <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
               <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-primary">volunteer_activism</span>
+                <Icon name="volunteer_activism" className="text-primary" />
               </div>
               <div>
-                <h3 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h3>
+                <h2 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h2>
                 <p className="text-on-surface-variant text-body-md">
                   For students from underserved communities. Title I schools, free or reduced lunch, and families
                   receiving public assistance all qualify.
@@ -98,14 +78,13 @@ export default function About() {
         </div>
         <div className="order-1 md:order-2 relative">
           <div className="aspect-square rounded-[40px] overflow-hidden bg-surface-muted soft-card relative">
-            <img
+            <Img
+              image={images['about-community']}
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="w-full h-full object-cover"
               alt="Checkmate Your Summer students playing chess together in the Odyssey classroom."
-              src={communityPhoto}
-              width={1600}
-              height={1067}
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
           <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl soft-card flex flex-col items-center">
@@ -116,44 +95,53 @@ export default function About() {
       </section>
 
       {/* The Team — Our Board */}
-      <section id="our-team" className="scroll-mt-28 py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <section id="our-team" aria-labelledby="our-team-heading" className="scroll-mt-28 py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <span className="material-symbols-outlined text-[18px]">groups</span>
+              <Icon name="groups" className="text-[18px]" />
               <span className="text-label-sm font-label-bold uppercase">The Team</span>
             </div>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
+            <h2 id="our-team-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
-              Our ten-person team of directors and coaches runs every part of Rule the Board, from curriculum to
+              Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
               tournaments to outreach.
             </p>
           </div>
         </div>
+        {/* Wide banner on desktop so the photo doesn't swallow a full screen:
+            the source is 4:3 with a lot of ceiling and floor, so object-position
+            pulls the crop up to keep every head in frame and trims at the knees.
+            Phones get the uncropped 4:3 so nobody is cut off at 390px wide. */}
+        <div className="aspect-[4/3] md:aspect-[21/9] rounded-[40px] overflow-hidden bg-surface-muted soft-card mb-12">
+          <Img
+            image={images['about-team']}
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            className="w-full h-full object-cover md:object-[center_25%]"
+            alt="Seven members of the Rule the Board team standing together on a black and white checkered floor."
+          />
+        </div>
         {/* No individual headshots yet — each avatar holds a piece rather than a
             generic person glyph — navy only, because nine accent-colored pieces in
-            one row is exactly the rainbow we're avoiding. The founders photo below
+            one row is exactly the rainbow we're avoiding. The team photo above
             gives the section a real face in the meantime. */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-12">
           {team.map((member) => (
             <div className="group text-center" key={member.name}>
               <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
-                <span className="material-symbols-outlined text-outline text-5xl">person</span>
+                <Icon name="person" className="text-outline text-5xl" />
               </div>
-              <h4 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h4>
+              <h3 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h3>
               <p className="text-label-sm font-label-sm text-secondary">{member.role}</p>
             </div>
           ))}
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-3xl soft-card border border-outline-variant p-6">
-          <img
+          <Img
+            image={images['about-founders']}
+            sizes="(min-width: 640px) 224px, 100vw"
             className="w-full sm:w-56 h-40 object-cover rounded-2xl shrink-0"
             alt="Rule the Board's three founders, Nathan Ye, Leonardo Castro-Balbi, and Arjun Garg, sitting together outdoors."
-            src={foundersPhoto}
-            width={1600}
-            height={1200}
-            loading="lazy"
-            decoding="async"
           />
           <p className="text-on-surface-variant text-body-md text-center sm:text-left">
             Rule the Board was founded by <strong className="text-primary">Nathan Ye</strong>,{' '}
@@ -166,15 +154,15 @@ export default function About() {
 
       {/* What We Do */}
       <WaveDivider className="text-surface-muted" />
-      <section id="what-we-do" className="scroll-mt-28 py-20 bg-surface-muted relative overflow-hidden">
+      <section id="what-we-do" aria-labelledby="what-we-do-heading" className="scroll-mt-28 py-20 bg-surface-muted relative overflow-hidden">
         <MarginMotif side="right" className="top-14" piece={<Queen className="w-32 h-32 text-primary/25" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <span className="material-symbols-outlined text-[18px]">handshake</span>
+              <Icon name="handshake" className="text-[18px]" />
               <span className="text-label-sm font-label-bold uppercase">What We Do</span>
             </div>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Six Pieces, One Mission</h2>
+            <h2 id="what-we-do-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Six Pieces, One Mission</h2>
             <DashedRule className="mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
               We give underserved students coaching, tournaments, and equipment. The King stands for Rule the
@@ -241,7 +229,7 @@ export default function About() {
                     {item.glyph}
                   </span>
                   <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-primary">{item.icon}</span>
+                    <Icon name={item.icon} className="text-primary" />
                   </div>
                 </div>
                 <span className="text-label-sm font-label-bold uppercase text-secondary mb-1">{item.piece}</span>
@@ -255,12 +243,12 @@ export default function About() {
 
       {/* Impact Stats (Bento Grid Style) */}
       <WaveDivider className="text-surface-muted" flip />
-      <section id="impact" className="scroll-mt-28 bg-background py-20 relative overflow-hidden">
+      <section id="impact" aria-labelledby="impact-heading" className="scroll-mt-28 bg-background py-20 relative overflow-hidden">
         <MarginMotif side="left" className="top-12" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-12" piece={<Rook className="w-28 h-28 text-accent-blue/30" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Our first year</h2>
+            <h2 id="impact-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Our first year</h2>
             <DashedRule className="mx-auto mb-4 text-accent-teal" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
               These numbers come from our 2025-26 Impact Report, covering our first year in Atlanta.
@@ -271,7 +259,7 @@ export default function About() {
               <DotField className="opacity-[0.10]" />
               <Knight className="pointer-events-none absolute -right-4 -bottom-4 w-32 h-32 text-white/[0.08]" />
               <div className="mb-8">
-                <span className="material-symbols-outlined text-[48px]">groups</span>
+                <Icon name="groups" className="text-[48px]" />
               </div>
               <div>
                 <div className="text-headline-xl font-headline-xl mb-2">4</div>
@@ -282,7 +270,7 @@ export default function About() {
             </div>
             <div className="focus-ring-invert bg-secondary-strong text-on-secondary p-10 rounded-[32px] flex flex-col justify-between">
               <div className="mb-8">
-                <span className="material-symbols-outlined text-[40px]">workspace_premium</span>
+                <Icon name="workspace_premium" className="text-[40px]" />
               </div>
               <div>
                 <div className="text-headline-lg font-headline-lg mb-2">1,961</div>
@@ -295,7 +283,7 @@ export default function About() {
               {/* Checker patch / green — the progress motif, marking the one tile
                   in this row that reports an outcome. */}
               <div className="mb-8">
-                <span className="material-symbols-outlined text-primary text-[40px]">volunteer_activism</span>
+                <Icon name="volunteer_activism" className="text-primary text-[40px]" />
               </div>
               <div>
                 <div className="text-headline-lg font-headline-lg text-primary mb-2">261</div>
@@ -309,7 +297,7 @@ export default function About() {
       </section>
 
       {/* Impact Report(s) */}
-      <section id="impact-report" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
+      <section id="impact-report" aria-labelledby="impact-report-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card relative flex flex-col md:flex-row items-center gap-12 overflow-hidden">
           <button
             type="button"
@@ -317,27 +305,24 @@ export default function About() {
             className="group relative w-48 shrink-0"
             aria-label="View the 2025-26 Impact Report"
           >
-            <img
-              src={impactReportCover}
-              alt="Cover of the Rule the Board 2025-26 Impact Report"
+            <Img
+              image={images['impact-report-cover']}
+              sizes="192px"
               className="w-48 h-64 object-cover rounded-xl shadow-lg border-2 border-outline-variant transition-transform group-hover:-translate-y-1"
-              width={1236}
-              height={1600}
-              loading="lazy"
-              decoding="async"
+              alt="Cover of the Rule the Board 2025-26 Impact Report"
             />
             {/* Picture-in-picture: a floating "view" badge overlapping the
                 cover's corner, rather than a plain static icon box. */}
             <span className="absolute -bottom-4 -right-4 w-14 h-14 rounded-full bg-secondary-strong text-on-secondary flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined">visibility</span>
+              <Icon name="visibility" />
             </span>
           </button>
           <div className="flex-1 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-              <span className="material-symbols-outlined text-[18px]">summarize</span>
+              <Icon name="summarize" className="text-[18px]" />
               <span className="text-label-sm font-label-bold uppercase">Impact Report(s)</span>
             </div>
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Where the money went</h2>
+            <h2 id="impact-report-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Where the money went</h2>
             <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
               Our 2025-26 Impact Report has the real numbers on what donations paid for. Lesson hours, tournament
               entries, equipment, and how our scholars did.
@@ -348,7 +333,7 @@ export default function About() {
                 onClick={() => setShowReport(true)}
                 className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-8 py-4 rounded-2xl font-label-bold text-label-bold uppercase flex items-center justify-center gap-2"
               >
-                <span className="material-symbols-outlined">picture_as_pdf</span>
+                <Icon name="picture_as_pdf" />
                 View Report
               </button>
             </div>

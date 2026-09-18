@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import logoFull from '../assets/rtb-full.png';
+import logoFull from '../assets/rtb-full.webp';
 import { CheckerStrip, MarginMotif, Knight, Queen } from './ChessMotifs';
 
 /**
@@ -44,7 +44,7 @@ export default function MessagePage({
       />
 
       <div className="max-w-2xl mx-auto text-center">
-        {showLogo && <img src={logoFull} alt="Rule the Board" className="h-12 w-auto mx-auto mb-10" width={720} height={307} decoding="async" />}
+        {showLogo && <img src={logoFull} alt="Rule the Board" className="h-12 w-auto mx-auto mb-10" width={720} height={307} loading="eager" decoding="async" />}
 
         <CheckerStrip className="w-[47px] h-[23px] mx-auto mb-8" />
 

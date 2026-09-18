@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Pawn, Knight, MarginMotif } from '../components/ChessMotifs';
 import { WaveDivider, DashedRule } from '../components/Decor';
+import { Icon } from '../components/icons';
 
 const format = [
   {
@@ -95,21 +96,37 @@ export default function TournamentGuide() {
         <MarginMotif side="left" className="top-16" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-16" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-soft text-primary rounded-full mb-6">
-          <span className="material-symbols-outlined text-[18px]">menu_book</span>
+          <Icon name="menu_book" className="text-[18px]" />
           <span className="text-label-sm font-label-bold uppercase">Parents' & Scholars' Guide</span>
         </div>
         <h1 className="font-headline-xl text-headline-xl mb-6 text-primary max-w-3xl mx-auto">
-          Getting Ready for Tournaments
+          A guide to your first chess tournament
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
           Tournaments are exciting, but they can be overwhelming the first time. Here's everything Rule the Board
           scholars need to know before the clock starts ticking.
         </p>
+        <nav aria-label="On this page" className="mt-8 flex flex-wrap justify-center gap-3">
+          {[
+            ['#format', 'Format'],
+            ['#etiquette', 'Etiquette'],
+            ['#what-to-bring', 'What to bring'],
+            ['#notation', 'Notation'],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="px-4 py-2 rounded-full bg-primary-soft text-primary font-label-bold text-label-bold"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
       </section>
 
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+      <section id="format" aria-labelledby="format-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
         <div className="max-w-2xl mb-10">
-          <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Format of a Tournament</h2>
+          <h2 id="format-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Format of a Tournament</h2>
           <DashedRule className="mb-4 text-accent-teal" />
           <p className="text-on-surface-variant">Tournaments can feel chaotic, but they always follow this structure.</p>
         </div>
@@ -127,10 +144,10 @@ export default function TournamentGuide() {
       </section>
 
       <WaveDivider className="text-surface-muted" />
-      <section className="bg-surface-muted py-16">
+      <section id="etiquette" aria-labelledby="etiquette-heading" className="scroll-mt-28 bg-surface-muted py-16">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mb-10">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Chess Tournament Etiquette</h2>
+            <h2 id="etiquette-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Chess Tournament Etiquette</h2>
             <DashedRule className="mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
               When competing, scholars represent Odyssey and Rule the Board. Sportsmanship, respect, and
@@ -144,9 +161,7 @@ export default function TournamentGuide() {
                 <ul className="space-y-3">
                   {section.rules.map((rule) => (
                     <li key={rule} className="flex gap-3 text-body-md text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
-                        check
-                      </span>
+                      <Icon name="check" className="text-primary text-[18px] shrink-0 mt-0.5" />
                       {rule}
                     </li>
                   ))}
@@ -158,9 +173,9 @@ export default function TournamentGuide() {
       </section>
 
       <WaveDivider className="text-surface-muted" flip />
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+      <section id="what-to-bring" aria-labelledby="what-to-bring-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
         <div className="max-w-2xl mb-10">
-          <h2 className="font-headline-lg text-headline-lg text-primary mb-3">What to Bring</h2>
+          <h2 id="what-to-bring-heading" className="font-headline-lg text-headline-lg text-primary mb-3">What to Bring</h2>
           <DashedRule className="mb-4 text-accent-green" />
           <p className="text-on-surface-variant">
             The scholarship provides your chess gear. Packing it on tournament day is on you.
@@ -169,9 +184,7 @@ export default function TournamentGuide() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
           {packingList.map((item) => (
             <div key={item} className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-outline-variant">
-              <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'wght' 700" }}>
-                check_circle
-              </span>
+              <Icon name="check_circle" className="text-primary" />
               <span className="font-body-md text-on-surface">{item}</span>
             </div>
           ))}
@@ -179,10 +192,10 @@ export default function TournamentGuide() {
       </section>
 
       <WaveDivider className="text-surface-muted" />
-      <section className="bg-surface-muted py-16">
+      <section id="notation" aria-labelledby="notation-heading" className="scroll-mt-28 bg-surface-muted py-16">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mb-10">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-3">Notation Basics</h2>
+            <h2 id="notation-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Notation Basics</h2>
             <DashedRule className="mb-4 text-accent-blue" />
             <p className="text-on-surface-variant">
               Every scholar is required to notate their own games. Here's the quick version.
@@ -218,11 +231,18 @@ export default function TournamentGuide() {
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 text-center">
         <p className="text-on-surface-variant mb-6">Have a question this guide didn't cover?</p>
         <Link
-          to="/get-involved"
+          to="/get-involved#contact"
           className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary px-8 py-4 rounded-2xl font-label-bold text-label-bold uppercase inline-block"
         >
           Contact Us
         </Link>
+        <p className="mt-8 text-on-surface-variant">
+          Not a scholar yet?{' '}
+          <Link to="/scholars" className="text-secondary-strong font-medium underline underline-offset-4">
+            Apply for the chess scholarship
+          </Link>
+          .
+        </p>
       </section>
     </div>
   );
