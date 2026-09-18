@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { IoSchoolOutline, IoRibbonOutline, IoPeopleOutline, IoHeartOutline } from 'react-icons/io5';
 import { Pawn, Rook, Knight, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
+import PartnerMarquee from '../components/PartnerMarquee';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import useCountUp, { formatCount } from '../hooks/useCountUp';
 import useInView from '../hooks/useInView';
@@ -120,6 +121,8 @@ export default function Home() {
       </section>
 
       <WaveDivider className="text-surface-muted" flip />
+
+      <PartnerMarquee />
 
       {/* What We Do */}
       <section id="what-we-do" aria-labelledby="what-we-do-heading" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
