@@ -16,56 +16,12 @@ export default function Scholars() {
           <span className="text-label-sm font-label-bold uppercase">Scholars</span>
         </div>
         <h1 className="font-headline-xl text-headline-xl mb-6 text-primary max-w-3xl mx-auto">
-          Apply for a chess scholarship
+          Apply to be a chess scholar
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-          One year of coaching, paid tournament entries, and your own equipment. Open to students in grades 3-8
+          One year of coaching, paid tournament entries, and your own equipment. Open to students in grades K-12
           who want to take chess seriously.
         </p>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" aria-labelledby="how-it-works-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
-        <h2 id="how-it-works-heading" className="sr-only">How it works</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {[
-            {
-              step: '01',
-              icon: 'edit_document',
-              title: 'Apply',
-              well: 'bg-primary-soft',
-              description: 'Fill out the application below. A parent or guardian can help.',
-            },
-            {
-              step: '02',
-              icon: 'forum',
-              title: 'Review & Assessment',
-              well: 'bg-primary-soft',
-              description: 'Our team reviews every application. Admitted applicants take a short assessment of their chess skill level.',
-            },
-            {
-              step: '03',
-              icon: 'chess',
-              title: 'Take Your Seat',
-              well: 'bg-primary-soft',
-              description: 'Accepted scholars get their lesson plan and gear, and start biweekly or weekly lessons.',
-            },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="bg-white rounded-[32px] p-8 soft-card border border-outline-variant flex flex-col"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-headline-lg text-headline-lg text-secondary">{item.step}</span>
-                <div className={`w-12 h-12 rounded-full ${item.well} flex items-center justify-center shrink-0`}>
-                  <Icon name={item.icon} className="text-primary" />
-                </div>
-              </div>
-              <h3 className="font-headline-md text-headline-md text-primary mb-3">{item.title}</h3>
-              <p className="text-on-surface-variant text-body-md">{item.description}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Eligibility */}
@@ -87,9 +43,9 @@ export default function Scholars() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
             {[
-              'Currently enrolled in grades 3-8',
+              'Currently enrolled in grades K-12',
               'Demonstrated financial need',
-              'Willingness to commit to biweekly or weekly lessons',
+              'Willingness to commit to weekly lessons',
               'No prior chess experience required',
             ].map((item) => (
               <div key={item} className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-outline-variant">
@@ -126,12 +82,19 @@ export default function Scholars() {
             <div className="flex flex-col gap-2">
               <label className="font-label-bold text-on-surface-variant" htmlFor="scholar-grade-level">GRADE LEVEL</label>
               <select id="scholar-grade-level" className="bg-white border-2 border-outline-variant rounded-xl p-3 input-focus font-body-md appearance-none">
+                <option>Kindergarten</option>
+                <option>1st Grade</option>
+                <option>2nd Grade</option>
                 <option>3rd Grade</option>
                 <option>4th Grade</option>
                 <option>5th Grade</option>
                 <option>6th Grade</option>
                 <option>7th Grade</option>
                 <option>8th Grade</option>
+                <option>9th Grade</option>
+                <option>10th Grade</option>
+                <option>11th Grade</option>
+                <option>12th Grade</option>
               </select>
             </div>
             <div className="flex flex-col gap-2">

@@ -30,12 +30,20 @@ const outDir = path.join(root, "src", "assets", "images");
 // Largest first: it's also the fallback `src` for anything that ignores srcset.
 const WIDTHS = [1600, 1280, 960, 640];
 
+// Headshots render inside a 224px circle, so the full ladder above would ship
+// files nobody can see the detail in. 448 covers a 2x screen.
+const AVATAR_WIDTHS = [448, 224];
+
 // The large feature/hero photos all pull from "CYS 2026/" — the only
 // professionally shot set in the Drive export. Tournament- and people-specific
 // shots (Emory Grand Prix, founders) keep their original phone photos.
 const jobs = [
   { src: "CYS 2026/OMS Branded Students Chess Candid1 2026.jpg", out: "home-hero" },
-  { src: "CYS 2026/OMS Students Chess Candid1 2026.jpg", out: "home-scholarship-preview" },
+  // A Grand Prix photo rather than another CYS classroom shot: the two
+  // program cards on the homepage sit side by side, and both were showing the
+  // same wooden board. This one is also what the scholarship actually buys,
+  // which is a rated tournament seat.
+  { src: "IMG_2356.JPG", out: "home-scholarship-preview" },
   { src: "CYS 2026/OMS Students Chess Candid10 2026.jpg", out: "home-cys-preview" },
   { src: "CYS 2026/OMS Branded Students Chess Candid3 2026.jpg", out: "about-community" },
   { src: "IMG_5340.JPG", out: "about-founders" },
@@ -43,6 +51,21 @@ const jobs = [
   { src: "IMG_2341.JPG", out: "programs-emory-grand-prix" },
   { src: "CYS 2026/OMS Students Chess Candid9 2026.jpg", out: "programs-academy-interior" },
   { src: "impact-report-cover.png", out: "impact-report-cover" },
+  // Team headshots. Both originals are full-length portraits, so each carries a
+  // `crop` box (fractions of the source, after EXIF rotation) that pulls out
+  // head and shoulders — a plain centre crop would land on the torso.
+  {
+    src: "arjun.jpeg",
+    out: "team-arjun-garg",
+    crop: { left: 0.226, top: 0.051, width: 0.57, height: 0.38 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "leo.jpeg",
+    out: "team-leonardo-castro-balbi",
+    crop: { left: 0.314, top: 0.076, width: 0.37, height: 0.37 },
+    widths: AVATAR_WIDTHS,
+  },
   ...Array.from({ length: 7 }, (_, i) => ({
     src: `impact-report-page-${i + 1}.png`,
     out: `impact-report-page-${i + 1}`,
@@ -57,12 +80,27 @@ for (const f of await fs.readdir(outDir)) {
 }
 
 const entries = await Promise.all(
-  jobs.map(async ({ src, out, quality = 80 }) => {
+  jobs.map(async ({ src, out, quality = 80, crop, widths = WIDTHS }) => {
     const input = path.join(rawDir, src);
-    const base = sharp(input).rotate(); // respect EXIF orientation
+    let base = sharp(input).rotate(); // respect EXIF orientation
+    if (crop) {
+      // Crop first, then treat the cropped result as the source for every
+      // width below, so `meta` describes what actually gets written.
+      const full = await base.metadata();
+      base = sharp(
+        await base
+          .extract({
+            left: Math.round(crop.left * full.width),
+            top: Math.round(crop.top * full.height),
+            width: Math.round(crop.width * full.width),
+            height: Math.round(crop.height * full.height),
+          })
+          .toBuffer(),
+      );
+    }
     const meta = await base.metadata();
     const variants = [];
-    for (const w of WIDTHS) {
+    for (const w of widths) {
       // Fit inside a w×w box without enlarging, and name the file by the width
       // that actually comes out (a portrait scan capped by its height lands
       // narrower than w). Skip a width if it would repeat the previous one.

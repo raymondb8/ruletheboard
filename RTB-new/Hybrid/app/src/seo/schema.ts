@@ -1,6 +1,7 @@
 import { site, absoluteUrl, fullTitle, type PageMeta } from './meta';
 import { team, founders } from '../data/team';
 import { faqs } from '../data/faqs';
+import { EIN, SOCIAL_PROFILES } from '../data/org';
 
 /**
  * Structured data (schema.org JSON-LD) for every page, built as one connected
@@ -15,9 +16,10 @@ import { faqs } from '../data/faqs';
  * facts come from the same modules the pages render from (src/data/*), so the
  * schema cannot describe something the page doesn't say.
  *
- * Deliberately absent: nonprofitStatus/taxID (unconfirmed; a wrong claim is
- * worse than none), postal address (not published anywhere on the site), and
- * DonateAction (online giving isn't live yet). Add each when it becomes true.
+ * nonprofitStatus and taxID are the EIN the board supplied, which is also
+ * printed in the footer. Still deliberately absent: postal address (not
+ * published anywhere on the site) and DonateAction (online giving isn't live
+ * yet). Add each when it becomes true.
  */
 
 const ORG_ID = `${site.url}/#organization`;
@@ -40,7 +42,7 @@ const organization = {
   },
   image: absoluteUrl(site.defaultImage),
   description:
-    'Rule the Board is a nonprofit chess scholarship in Atlanta. We give students in grades 3-8 from underserved communities coaching, a chess set of their own, and paid entries to rated tournaments.',
+    'Rule the Board is a nonprofit chess scholarship in Atlanta. We give students in grades K-12 from underserved communities coaching, a chess set of their own, and paid entries to rated tournaments.',
   slogan: 'Building grandmasters of life through the timeless game of chess.',
   email: 'RuleTheBoardInc@gmail.com',
   foundingDate: '2025',
@@ -50,7 +52,9 @@ const organization = {
     containedInPlace: { '@type': 'State', name: 'Georgia' },
   },
   knowsAbout: ['Chess', 'Chess education', 'Scholastic chess tournaments', 'Youth mentorship', 'Scholarships'],
-  sameAs: ['https://www.instagram.com/ruletheboardinc'],
+  nonprofitStatus: 'Nonprofit501c3',
+  taxID: EIN,
+  sameAs: SOCIAL_PROFILES,
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'RuleTheBoardInc@gmail.com',
@@ -102,13 +106,13 @@ function programSchemas() {
       '@id': `${programsUrl}#scholarship`,
       name: 'Rule the Board Scholarship',
       description:
-        'A one-year chess scholarship for Odyssey scholars in grades 3-8 who want to keep going with chess: biweekly or weekly lessons with optional office hours, up to three paid tournament entries, a one-year USCF membership, and a professional chess set of their own.',
+        'A one-year chess scholarship for Odyssey scholars in grades K-12 who want to keep going with chess: weekly lessons with optional office hours, up to three paid tournament entries, a one-year USCF membership, and a professional chess set of their own.',
       url: absoluteUrl('/scholars'),
       provider: { '@id': ORG_ID },
       programType: 'Chess scholarship',
       timeToComplete: 'P1Y',
       programPrerequisites:
-        'Currently enrolled in grades 3-8 with demonstrated financial need. No prior chess experience or rating required.',
+        'Currently enrolled in grades K-12 with demonstrated financial need. No prior chess experience or rating required.',
       offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD' },
     },
     {

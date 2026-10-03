@@ -65,8 +65,16 @@ import { FaChessKnight } from 'react-icons/fa6';
 
 /**
  * Brand glyphs that aren't chess motifs. Kept here (not in ChessMotifs) so the
- * Instagram mark is a real silhouette rather than a stand-in Material icon.
+ * social marks are real silhouettes rather than stand-in Material icons.
  */
+export function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3.1 10.3h3.75V21H3.1V10.3zm6.12 0h3.6v1.47h.05c.5-.9 1.72-1.85 3.54-1.85 3.79 0 4.49 2.4 4.49 5.51V21h-3.74v-4.82c0-1.15-.02-2.63-1.67-2.63-1.67 0-1.93 1.25-1.93 2.55V21H9.22V10.3z" />
+    </svg>
+  );
+}
+
 export function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>

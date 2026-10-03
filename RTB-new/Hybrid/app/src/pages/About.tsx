@@ -45,30 +45,21 @@ export default function About() {
               Read about the scholarship and Checkmate Your Summer
             </Link>
           </p>
+          {/* No icon wells on these two: the board asked for the little
+              circular badges to come off every section. */}
           <div className="space-y-4">
-            <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
-              <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                <Icon name="school" className="text-primary" />
-              </div>
-              <div>
-                <h2 className="font-label-bold text-label-bold text-primary mb-1">Grades 3-8 Eligible</h2>
-                <p className="text-on-surface-variant text-body-md">
-                  Open to students currently enrolled in 3rd through 8th grade, with a pathway for returning
-                  high schoolers.
-                </p>
-              </div>
+            <div className="p-5 bg-white rounded-2xl soft-card">
+              <h2 className="font-label-bold text-label-bold text-primary mb-1">Grades K-12 Eligible</h2>
+              <p className="text-on-surface-variant text-body-md">
+                Open to students in kindergarten through 12th grade.
+              </p>
             </div>
-            <div className="flex gap-4 p-4 bg-white rounded-2xl soft-card">
-              <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                <Icon name="volunteer_activism" className="text-primary" />
-              </div>
-              <div>
-                <h2 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h2>
-                <p className="text-on-surface-variant text-body-md">
-                  For students from underserved communities. Title I schools, free or reduced lunch, and families
-                  receiving public assistance all qualify.
-                </p>
-              </div>
+            <div className="p-5 bg-white rounded-2xl soft-card">
+              <h2 className="font-label-bold text-label-bold text-primary mb-1">Need-Based Eligibility</h2>
+              <p className="text-on-surface-variant text-body-md">
+                For students from underserved communities. Title I schools, free or reduced lunch, and families
+                receiving public assistance all qualify.
+              </p>
             </div>
           </div>
         </div>
@@ -113,10 +104,10 @@ export default function About() {
             alt="Seven members of the Rule the Board team standing together on a black and white checkered floor."
           />
         </div>
-        {/* No individual headshots yet — each avatar holds a piece rather than a
-            generic person glyph — navy only, because nine accent-colored pieces in
-            one row is exactly the rainbow we're avoiding. The team photo above
-            gives the section a real face in the meantime. */}
+        {/* Headshots are coming in one at a time. Anyone who hasn't sent one
+            keeps the navy glyph, which sits in the same circle at the same size,
+            so a half-filled row still reads as one set rather than as missing
+            images. The team photo above gives the section a real face meanwhile. */}
         {/* Rows are grouped on purpose (founders / directors / coaches) rather
             than a uniform grid, so each row centers under the heading. */}
         <div className="flex flex-col gap-y-10 mb-12">
@@ -125,7 +116,18 @@ export default function About() {
               {row.map((member) => (
                 <li className="group text-center w-[calc(50%-12px)] sm:w-44 md:w-52" key={member.name}>
                   <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
-                    <Icon name="person" className="text-outline text-5xl" />
+                    {member.photo ? (
+                      // The name is in the heading right below, so the portrait
+                      // adds nothing for a screen reader and takes an empty alt.
+                      <Img
+                        image={images[member.photo]}
+                        sizes="(min-width: 768px) 208px, (min-width: 640px) 176px, 45vw"
+                        className="w-full h-full object-cover"
+                        alt=""
+                      />
+                    ) : (
+                      <Icon name="person" className="text-outline text-5xl" />
+                    )}
                   </div>
                   <h3 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h3>
                   <p className="text-label-sm font-label-sm text-secondary">{member.role}</p>
@@ -191,11 +193,7 @@ export default function About() {
             </span>
           </button>
           <div className="flex-1 text-center md:text-left">
-            <h2 id="impact-report-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Where the money went</h2>
-            <p className="text-body-lg font-body-lg text-on-surface-variant mb-8">
-              Our 2025-26 Impact Report has the real numbers on what donations paid for. Lesson hours, tournament
-              entries, equipment, and how our scholars did.
-            </p>
+            <h2 id="impact-report-heading" className="font-headline-lg text-headline-lg text-primary mb-8">2025-2026 Impact Report</h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button
                 type="button"
@@ -254,9 +252,9 @@ const VALUES = [
 ];
 
 // Ring geometry for the desktop layout, in px inside a square stage.
-const STAGE = 680;
+const STAGE = 820;
 const CENTER = STAGE / 2;
-const RADIUS = 236;
+const RADIUS = 290;
 const RING = VALUES.map((_, i) => {
   const angle = -Math.PI / 2 + (i * 2 * Math.PI) / VALUES.length; // start at 12 o'clock
   return { x: CENTER + RADIUS * Math.cos(angle), y: CENTER + RADIUS * Math.sin(angle) };
@@ -277,17 +275,17 @@ function ValueCircle({
     <li style={style} className={className}>
       <div
         className={`rounded-full bg-white soft-card border border-outline-variant flex flex-col items-center justify-center text-center ${
-          king ? 'w-60 h-60 p-7 border-2 border-primary' : 'w-48 h-48 p-5'
+          king ? 'w-72 h-72 p-9 border-2 border-primary' : 'w-56 h-56 p-6'
         }`}
       >
-      <span className={`${king ? 'text-5xl' : 'text-4xl'} text-primary leading-none mb-1`} aria-hidden="true">
+      <span className={`${king ? 'text-6xl' : 'text-5xl'} text-primary leading-none mb-1`} aria-hidden="true">
         {item.glyph}
       </span>
       <span className="text-label-sm font-label-bold uppercase text-secondary">{item.piece}</span>
       <h3 className={`${king ? 'font-headline-md text-headline-md' : 'font-label-bold text-label-bold'} text-primary mb-1`}>
         {item.value}
       </h3>
-      <p className="text-on-surface-variant text-[12px] leading-snug">{item.description}</p>
+      <p className="text-on-surface-variant text-[13px] leading-snug">{item.description}</p>
       </div>
     </li>
   );
@@ -328,15 +326,15 @@ function ValuesWeb() {
             item={KING}
             king
             className="absolute"
-            // Centered by offsetting half the circle's own size (w-60 = 240px).
-            style={{ left: CENTER - 120, top: CENTER - 120 }}
+            // Centered by offsetting half the circle's own size (w-72 = 288px).
+            style={{ left: CENTER - 144, top: CENTER - 144 }}
           />
           {VALUES.map((v, i) => (
             <ValueCircle
               key={v.piece}
               item={v}
               className="absolute"
-              style={{ left: RING[i].x - 96, top: RING[i].y - 96 }}
+              style={{ left: RING[i].x - 112, top: RING[i].y - 112 }}
             />
           ))}
         </ul>

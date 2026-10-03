@@ -1,4 +1,5 @@
 import { partners, type Partner } from '../data/partners';
+import { DotField } from './Decor';
 
 function PartnerMark({ partner, decorative }: { partner: Partner; decorative?: boolean }) {
   if (!partner.logo) {
@@ -53,14 +54,21 @@ function PartnerItem({ partner, decorative }: { partner: Partner; decorative?: b
 export default function PartnerMarquee() {
   const fade = 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)';
   return (
-    <section aria-labelledby="partners-heading" className="py-10 bg-surface-muted border-t border-outline-variant">
+    <section
+      aria-labelledby="partners-heading"
+      className="relative overflow-hidden py-10 bg-surface-muted border-t border-outline-variant"
+    >
+      {/* Same dot field as the stats band directly above, so the two halves of
+          this tinted section are textured the same way instead of one dotted
+          and one plain. */}
+      <DotField className="opacity-[0.11]" />
       <h2
         id="partners-heading"
-        className="text-center text-label-sm font-label-bold uppercase tracking-wider text-on-surface-variant mb-6"
+        className="relative text-center text-label-sm font-label-bold uppercase tracking-wider text-on-surface-variant mb-6"
       >
         Our partners and sponsors
       </h2>
-      <div className="marquee overflow-hidden" style={{ maskImage: fade, WebkitMaskImage: fade }}>
+      <div className="marquee relative overflow-hidden" style={{ maskImage: fade, WebkitMaskImage: fade }}>
         <div className="marquee-track flex w-max">
           <ul className="flex items-center">
             {partners.map((p) => (

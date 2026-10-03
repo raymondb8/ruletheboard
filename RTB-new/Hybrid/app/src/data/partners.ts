@@ -13,7 +13,10 @@ import odysseyAtlanta from '../assets/partners/odyssey-atlanta.png';
  * - Glenn Institute: the Glenn Cats badge the team supplied.
  * - Kid Chess: their site header logo.
  * - US Chess: the SVG from uschess.org.
- * - Chess.com: the flat outline wordmark from Wikimedia Commons.
+ * - Chess.com: the flat pawn-and-wordmark lockup from Wikimedia Commons, with
+ *   the silhouette filled in Chess.com's own brand green (#81B64C) rather than
+ *   the near-black the file ships with. The board asked specifically for the
+ *   green piece version.
  * - Odyssey: their white header logo, filled navy so it reads on white.
  *
  * width/height are the file's intrinsic pixels (or SVG viewBox) so the <img>

@@ -6,6 +6,7 @@ import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import { Icon } from '../components/icons';
 import Img from '../components/Img';
 import { images } from '../assets/images';
+import { ODYSSEY_URL } from '../data/org';
 
 // The only tournament we have real, confirmed details for. Everything else is
 // genuinely TBD — rendered as skeleton cards below rather than invented events.
@@ -18,9 +19,6 @@ const pastTournament = {
     'Our scholars played a serious field here. One beat a 1000-rated USCF player, and another got an unofficial game against the highest-rated player in the state.',
 };
 
-const UPCOMING_SKELETON_COUNT = 3;
-
-
 export default function Programs() {
   return (
     <>
@@ -28,9 +26,9 @@ export default function Programs() {
       <section className="pt-12 pb-10 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto relative">
         <MarginMotif side="left" className="top-4 -translate-x-full -ml-10" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-4 translate-x-full -mr-10" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
-        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Chess programs for grades 3-8</h1>
+        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Chess programs for grades K-12</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant">
-          We run two programs for grades 3-8. One is a summer class for students who have never touched a chess
+          We run two programs for grades K-12. One is a summer class for students who have never touched a chess
           piece. The other is a year-long scholarship for students who are ready to compete.
         </p>
       </section>
@@ -45,16 +43,10 @@ export default function Programs() {
                 image={images['home-scholarship-preview']}
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-full object-cover"
-                alt="A Rule the Board scholar studying the board mid-game."
+                alt="Two Rule the Board scholars at their boards at the Emory Castle Chess Grand Prix, clocks and scoresheets set up."
                 loading="eager"
                 fetchPriority="high"
               />
-              {/* Same caption-chip treatment as the "Past Event" tag on the
-                  Emory tournament photo further down this page. */}
-              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-secondary rounded-full text-label-bold">
-                <Icon name="stars" className="text-sm" filled />
-                FULL SCHOLARSHIP
-              </div>
             </div>
             <div className="p-8 md:p-12 flex flex-col flex-grow">
               <h2 id="programs-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Rule the Board</h2>
@@ -64,7 +56,7 @@ export default function Programs() {
               </p>
               <div className="space-y-4 mb-10 flex-grow">
                 {[
-                  'Biweekly/Weekly Lessons + Optional Office Hours',
+                  'Weekly lessons plus optional office hours',
                   'Up to 3 Paid Tournament Entries',
                   '1-Year USCF Membership',
                   'Professional Chess Set & Chess.com Diamond',
@@ -100,10 +92,6 @@ export default function Programs() {
                 className="w-full h-full object-cover"
                 alt="A Checkmate Your Summer coach explaining a position to a small group of students at Odyssey."
               />
-              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur text-on-surface-variant rounded-full text-label-bold">
-                <Icon name="schedule" className="text-sm" />
-                SUMMER WORKSHOP
-              </div>
             </div>
             <div className="p-8 md:p-12 flex flex-col flex-grow">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Checkmate Your Summer</h2>
@@ -116,6 +104,7 @@ export default function Programs() {
                   'Guided Puzzle Solving',
                   'Over-the-Board Play Against Peers',
                   'Small-Group Stations & Teamwork',
+                  "Scholars must be part of Odyssey's summer program",
                 ].map((item) => (
                   <div className="flex items-start gap-4" key={item}>
                     <div className="w-6 h-6 rounded-full bg-primary-soft flex items-center justify-center flex-shrink-0 mt-1">
@@ -126,11 +115,15 @@ export default function Programs() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                {/* Odyssey runs and enrols this class, so the next step is
+                    their site rather than our inbox. */}
                 <a
-                  href="mailto:RuleTheBoardInc@gmail.com?subject=Checkmate%20Your%20Summer"
+                  href={ODYSSEY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="tactile-button navy-lift bg-primary text-on-primary px-10 py-4 rounded-2xl font-label-bold text-body-md uppercase text-center whitespace-nowrap shrink-0"
                 >
-                  Ask About This Summer
+                  Learn more
                 </a>
                 <p className="font-label-sm text-on-surface-variant">No prior experience required</p>
               </div>
@@ -146,11 +139,16 @@ export default function Programs() {
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <h2 id="strategy-heading" className="font-headline-lg text-headline-lg text-primary mb-3">What the game teaches</h2>
+              <h2 id="strategy-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Why chess?</h2>
               <DashedRule className="mb-5 text-accent-teal" />
+              <p className="font-body-md text-body-md text-on-surface-variant mb-6">
+                Chess makes you sit with a hard position and actually think instead of guessing. You lose, you
+                work out why, and you set the pieces back up. Our coaches spend as much time on how a scholar
+                approaches a problem as on the moves themselves.
+              </p>
               <p className="font-body-md text-body-md text-on-surface-variant mb-8">
-                Chess makes you sit with a hard position and actually think instead of guessing. Our coaches spend
-                as much time on how a scholar approaches a problem as on the moves themselves.
+                It also travels. The patience it takes to calculate four moves ahead is the same patience a
+                student needs on a long homework problem, and the scholars notice that before we point it out.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 {/* The checker patch (green, the progress motif) marks the measured
@@ -192,21 +190,16 @@ export default function Programs() {
       <section id="events" aria-labelledby="events-heading" className="scroll-mt-28 bg-background py-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
         <div className="max-w-container-max mx-auto relative">
           <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-soft text-primary font-label-bold text-label-sm mb-6">
-              <Icon name="event" className="text-[18px]" />
-              UPCOMING TOURNAMENT SEASON
-            </span>
-            <h2 id="events-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Events & Tournaments</h2>
+            <h2 id="events-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Tournaments &amp; Events</h2>
             <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Our scholars compete in rated tournaments through the year. Here is where we have been, and what is
-              coming up.
+              Our scholars compete in rated tournaments through the year. Here is where we have been.
             </p>
           </div>
 
-          {/* Past event — the one tournament we have real, confirmed details for. */}
-          <div className="mb-12">
-            <h3 className="font-headline-md text-headline-md text-primary mb-6">Past Event</h3>
+          {/* The one tournament we have real, confirmed details for. */}
+          <div>
+            <h3 className="font-headline-md text-headline-md text-primary mb-6">Past Events</h3>
             <div className="soft-card bg-white rounded-[24px] overflow-hidden flex flex-col md:flex-row border border-outline-variant">
               <div className="md:w-2/5 relative h-56 md:h-auto">
                 <Img
@@ -240,37 +233,6 @@ export default function Programs() {
             </div>
           </div>
 
-          {/* Upcoming — no confirmed dates yet, so these are honest skeleton
-              cards rather than invented events. */}
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-headline-md text-headline-md text-primary">Upcoming Tournaments</h3>
-              <span className="text-label-sm font-label-bold text-on-surface-variant uppercase tracking-wide">
-                Details coming soon
-              </span>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-              {Array.from({ length: UPCOMING_SKELETON_COUNT }).map((_, i) => (
-                <div
-                  key={i}
-                  className="rounded-[24px] border-2 border-dashed border-outline-variant bg-surface-muted/60 p-6 flex flex-col gap-4"
-                  aria-hidden="true"
-                >
-                  <div className="h-32 rounded-2xl bg-outline-variant/40 animate-pulse" />
-                  <div className="h-4 w-3/4 rounded-full bg-outline-variant/40 animate-pulse" />
-                  <div className="h-3 w-1/2 rounded-full bg-outline-variant/40 animate-pulse" />
-                  <div className="h-3 w-2/3 rounded-full bg-outline-variant/40 animate-pulse" />
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-on-surface-variant text-body-md mt-6">
-              We're still finalizing next season's schedule.{' '}
-              <a href="mailto:RuleTheBoardInc@gmail.com" className="text-secondary underline underline-offset-4">
-                Ask us for an update
-              </a>
-              .
-            </p>
-          </div>
         </div>
       </section>
 

@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Rook, Pawn, MarginMotif } from '../components/ChessMotifs';
-import { InstagramIcon, Icon } from '../components/icons';
+import { InstagramIcon, LinkedInIcon, Icon } from '../components/icons';
 import Placeholder from '../components/Placeholder';
-
-const CONTACT_EMAIL = 'RuleTheBoardInc@gmail.com';
+import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '../data/org';
 
 /*
  * Rule the Board plans to process donations through Givebutter, but the
@@ -90,15 +89,13 @@ const sponsorSteps = [
  */
 const applyTracks = [
   {
-    icon: 'school',
     label: 'Students',
     title: 'Apply as a student',
-    body: 'Grades 3 through 8. One year of coaching, paid entries to rated tournaments, and a chess set you keep.',
+    body: 'Grades K-12. One year of coaching, paid entries to rated tournaments, and a chess set you keep.',
     to: '/scholars',
     eligibility: '/scholars#eligibility',
   },
   {
-    icon: 'sports',
     label: 'Trainers',
     title: 'Apply as a trainer',
     body: 'Coach a scholar through a season. You don’t need a master title, just the game and a free hour each week.',
@@ -131,9 +128,6 @@ export default function GetInvolved() {
       >
         <div className="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mb-6">
-              <Icon name="payments" className="text-white" />
-            </div>
             <h2 id="donate-heading" className="font-headline-lg text-headline-lg text-white mb-4">Donate</h2>
             <p className="text-white/75 font-body-md mb-6">
               Giving runs through Givebutter, so your card details never touch our site. The money comes
@@ -172,38 +166,12 @@ export default function GetInvolved() {
         </div>
       </section>
 
-      {/* Fundraising meter — sits directly under the ask, where the number means
-          something, instead of stranded at the bottom of the page. */}
-      <section className="mt-base bg-white rounded-xl border border-outline-variant card-shadow overflow-hidden">
-        <div className="grid md:grid-cols-5 gap-8 p-8 md:p-10 items-center">
-          <div className="md:col-span-2">
-            <h3 className="font-headline-md text-headline-md text-primary mb-3">Current Fundraising Goal</h3>
-            <p className="text-on-surface-variant font-body-md">
-              What we raise goes toward the next class of scholars.
-            </p>
-          </div>
-          <div className="md:col-span-3 bg-surface-muted border border-outline-variant rounded-xl p-6">
-            <span className="font-label-bold text-label-bold text-primary block mb-3">Raised so far</span>
-            <div className="w-full h-8 bg-white border border-outline-variant rounded-full overflow-hidden mb-3 relative">
-              <div className="h-full bg-secondary rounded-full" style={{ width: '0%' }} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-label-bold text-on-surface-variant"><Placeholder>Progress: confirm with team</Placeholder></span>
-              </div>
-            </div>
-            <p className="text-label-sm text-on-surface-variant"><Placeholder>Goal amount: confirm with team</Placeholder></p>
-          </div>
-        </div>
-      </section>
-
       {/* 2. Become a Sponsor */}
       <section
         id="sponsor" aria-labelledby="sponsor-heading"
-        className="scroll-mt-28 mt-16 bg-surface-muted rounded-xl border border-outline-variant p-8 md:p-10"
+        className="scroll-mt-28 mt-base bg-surface-muted rounded-xl border border-outline-variant p-8 md:p-10"
       >
         <div className="max-w-2xl mb-10">
-          <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center mb-6">
-            <Icon name="handshake" className="text-primary" />
-          </div>
           <h2 id="sponsor-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Become a Sponsor</h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant">
             Sponsorship is for companies, and for anyone giving enough that we should be saying your name out
@@ -278,14 +246,9 @@ export default function GetInvolved() {
               key={track.to}
               className="bg-white rounded-xl border border-outline-variant card-shadow p-8 flex flex-col"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center shrink-0">
-                  <Icon name={track.icon} className="text-primary" />
-                </div>
-                <span className="font-label-bold text-label-sm uppercase tracking-widest text-on-surface-variant">
-                  {track.label}
-                </span>
-              </div>
+              <span className="font-label-bold text-label-sm uppercase tracking-widest text-on-surface-variant mb-6">
+                {track.label}
+              </span>
               <h3 className="font-headline-md text-headline-md text-primary mb-3">{track.title}</h3>
               <p className="font-body-md text-on-surface-variant mb-8">{track.body}</p>
               <div className="mt-auto flex flex-col gap-4">
@@ -315,28 +278,41 @@ export default function GetInvolved() {
         >
           <h2 id="community-heading" className="font-headline-md text-headline-md text-primary mb-4">Community</h2>
           <p className="text-on-surface-variant mb-8">
-            We post tournament results and scholar news on Instagram.
+            We post tournament results and scholar news on Instagram, and the organizational side of things on
+            LinkedIn. Follow whichever one you'd rather hear from.
           </p>
-          <a
-            href="https://www.instagram.com/ruletheboardinc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-14 h-14 rounded-full bg-primary-soft text-primary flex items-center justify-center hover:scale-110 transition-transform mb-4"
-            aria-label="Rule the Board on Instagram"
-          >
-            <InstagramIcon className="w-6 h-6" />
-          </a>
-          <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="https://www.instagram.com/ruletheboardinc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-label-bold text-primary hover:text-secondary hover:underline transition-colors"
-            >
-              @ruletheboardinc
-            </a>
-            <p className="text-label-sm text-outline">Instagram</p>
-          </div>
+          <ul className="w-full flex flex-col gap-4">
+            <li>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-3 text-on-surface-variant hover:text-secondary transition-colors"
+              >
+                <span className="w-12 h-12 rounded-full bg-primary-soft text-primary flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                  <InstagramIcon className="w-5 h-5" />
+                </span>
+                <span className="text-label-bold text-primary group-hover:text-secondary transition-colors">
+                  {INSTAGRAM_HANDLE}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-3 text-on-surface-variant hover:text-secondary transition-colors"
+              >
+                <span className="w-12 h-12 rounded-full bg-primary-soft text-primary flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                  <LinkedInIcon className="w-5 h-5" />
+                </span>
+                <span className="text-label-bold text-primary group-hover:text-secondary transition-colors">
+                  Rule the Board
+                </span>
+              </a>
+            </li>
+          </ul>
         </section>
 
         <section

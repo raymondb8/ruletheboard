@@ -9,7 +9,7 @@
     {
       "path": "/",
       "title": "Chess Scholarships for Kids in Atlanta",
-      "description": "Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades 3-8 from underserved communities in Atlanta.",
+      "description": "Coaching, a chess set of their own, and paid entries to rated tournaments, for students in grades K-12 from underserved communities in Atlanta.",
       "breadcrumb": "Home"
     },
     {
@@ -21,15 +21,15 @@
     },
     {
       "path": "/programs",
-      "title": "Chess Programs for Grades 3-8",
-      "description": "Two chess programs for grades 3-8: a summer class for students who have never touched a piece, and a year-long scholarship for those ready to compete.",
+      "title": "Chess Programs for Grades K-12",
+      "description": "Two chess programs for grades K-12: a summer class for students who have never touched a piece, and a year-long scholarship for those ready to compete.",
       "breadcrumb": "Programs",
       "image": "/og-programs.jpg"
     },
     {
       "path": "/scholars",
-      "title": "Apply for a Chess Scholarship",
-      "description": "One year of chess coaching, paid tournament entries, and your own equipment. Open to students in grades 3-8 who want to take chess seriously.",
+      "title": "Apply to be a Chess Scholar",
+      "description": "One year of chess coaching, paid tournament entries, and your own equipment. Open to students in grades K-12 who want to take chess seriously.",
       "breadcrumb": "Scholars",
       "image": "/og-scholars.jpg"
     },

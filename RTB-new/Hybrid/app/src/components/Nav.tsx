@@ -59,8 +59,8 @@ const links: NavLinkItem[] = [
     label: 'Programs',
     sections: [
       { id: 'programs', label: 'Our Programs' },
-      { id: 'strategy', label: 'Strategy Beyond the Board' },
-      { id: 'events', label: 'Events & Tournaments' },
+      { id: 'strategy', label: 'Why Chess?' },
+      { id: 'events', label: 'Tournaments & Events' },
       { id: 'faq', label: 'Tournament FAQ' },
       // A standalone page rather than an anchor on /programs.
       { to: '/tournament-guide', label: 'Tournament Guide' },
@@ -70,7 +70,6 @@ const links: NavLinkItem[] = [
     to: '/scholars',
     label: 'Scholars',
     sections: [
-      { id: 'how-it-works', label: 'How It Works' },
       { id: 'eligibility', label: 'Who Can Apply' },
       { id: 'apply', label: 'Apply' },
     ],

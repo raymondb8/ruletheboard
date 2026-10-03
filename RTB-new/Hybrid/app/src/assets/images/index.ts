@@ -39,6 +39,10 @@ import impactReportCover1236 from './impact-report-cover-1236.webp';
 import impactReportCover989 from './impact-report-cover-989.webp';
 import impactReportCover742 from './impact-report-cover-742.webp';
 import impactReportCover495 from './impact-report-cover-495.webp';
+import teamArjunGarg389 from './team-arjun-garg-389.webp';
+import teamArjunGarg224 from './team-arjun-garg-224.webp';
+import teamLeonardoCastroBalbi379 from './team-leonardo-castro-balbi-379.webp';
+import teamLeonardoCastroBalbi224 from './team-leonardo-castro-balbi-224.webp';
 import impactReportPage11236 from './impact-report-page-1-1236.webp';
 import impactReportPage1989 from './impact-report-page-1-989.webp';
 import impactReportPage1742 from './impact-report-page-1-742.webp';
@@ -79,7 +83,7 @@ export const images = {
     src: homeScholarshipPreview1600,
     srcSet: `${homeScholarshipPreview1600} 1600w, ${homeScholarshipPreview1280} 1280w, ${homeScholarshipPreview960} 960w, ${homeScholarshipPreview640} 640w`,
     width: 1600,
-    height: 1067,
+    height: 1200,
   },
   'home-cys-preview': {
     src: homeCysPreview1600,
@@ -122,6 +126,18 @@ export const images = {
     srcSet: `${impactReportCover1236} 1236w, ${impactReportCover989} 989w, ${impactReportCover742} 742w, ${impactReportCover495} 495w`,
     width: 1236,
     height: 1600,
+  },
+  'team-arjun-garg': {
+    src: teamArjunGarg389,
+    srcSet: `${teamArjunGarg389} 389w, ${teamArjunGarg224} 224w`,
+    width: 389,
+    height: 389,
+  },
+  'team-leonardo-castro-balbi': {
+    src: teamLeonardoCastroBalbi379,
+    srcSet: `${teamLeonardoCastroBalbi379} 379w, ${teamLeonardoCastroBalbi224} 224w`,
+    width: 379,
+    height: 379,
   },
   'impact-report-page-1': {
     src: impactReportPage11236,
