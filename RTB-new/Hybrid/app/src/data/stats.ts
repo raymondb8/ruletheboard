@@ -19,14 +19,14 @@ export const AS_OF = '2026-10-02';
 
 /** True figures as of AS_OF, from the 2025-26 Impact Report. */
 const base = {
-  lessonHours: 212,
+  lessonHours: 258,
   games: 936,
   puzzles: 7492,
 };
 
 /** Fixed amount added per completed week, per the board's weekly program load. */
 const weekly = {
-  lessonHours: 4,
+  lessonHours: 8,
   games: 103,
   puzzles: 348,
 };

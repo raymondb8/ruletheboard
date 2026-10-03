@@ -63,7 +63,7 @@ const jobs = [
   {
     src: "leo.jpeg",
     out: "team-leonardo-castro-balbi",
-    crop: { left: 0.314, top: 0.076, width: 0.37, height: 0.37 },
+    crop: { left: 0.314, top: 0.109, width: 0.37, height: 0.37 },
     widths: AVATAR_WIDTHS,
   },
   ...Array.from({ length: 7 }, (_, i) => ({

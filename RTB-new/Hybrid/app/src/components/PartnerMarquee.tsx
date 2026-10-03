@@ -15,7 +15,7 @@ function PartnerMark({ partner, decorative }: { partner: Partner; decorative?: b
       width={partner.logo.width}
       height={partner.logo.height}
       alt={decorative ? '' : partner.name}
-      className="h-10 md:h-12 w-auto max-w-[180px] object-contain"
+      className="h-10 md:h-12 w-auto max-w-[220px] object-contain"
       loading="lazy"
       decoding="async"
     />
@@ -56,7 +56,7 @@ export default function PartnerMarquee() {
   return (
     <section
       aria-labelledby="partners-heading"
-      className="relative overflow-hidden py-10 bg-surface-muted border-t border-outline-variant"
+      className="relative overflow-hidden pb-10 bg-surface-muted"
     >
       {/* Same dot field as the stats band directly above, so the two halves of
           this tinted section are textured the same way instead of one dotted
@@ -69,13 +69,17 @@ export default function PartnerMarquee() {
         Our partners and sponsors
       </h2>
       <div className="marquee relative overflow-hidden" style={{ maskImage: fade, WebkitMaskImage: fade }}>
+        {/* Each copy is forced to at least the viewport width. Without that,
+            five logos can be narrower than a wide screen, and at the halfway
+            point of the animation the track runs out of content and the strip
+            goes visibly blank before it loops. */}
         <div className="marquee-track flex w-max">
-          <ul className="flex items-center">
+          <ul className="flex items-center justify-around shrink-0 min-w-[100vw]">
             {partners.map((p) => (
               <PartnerItem key={p.name} partner={p} />
             ))}
           </ul>
-          <ul className="flex items-center" aria-hidden="true">
+          <ul className="flex items-center justify-around shrink-0 min-w-[100vw]" aria-hidden="true">
             {partners.map((p) => (
               <PartnerItem key={`${p.name}-dup`} partner={p} decorative />
             ))}

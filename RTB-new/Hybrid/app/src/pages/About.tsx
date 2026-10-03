@@ -85,7 +85,7 @@ export default function About() {
       <section id="our-team" aria-labelledby="our-team-heading" className="scroll-mt-28 py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="text-center mb-12">
           <div className="max-w-xl mx-auto">
-            <h2 id="our-team-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Our Team</h2>
+            <h2 id="our-team-heading" className="font-headline-lg text-[40px] leading-[48px] font-extrabold tracking-tight text-primary mb-4">Our Team</h2>
             <p className="text-on-surface-variant">
               Our nine-person team of directors and coaches runs every part of Rule the Board, from curriculum to
               tournaments to outreach.
@@ -159,7 +159,7 @@ export default function About() {
         <MarginMotif side="right" className="top-14" piece={<Queen className="w-32 h-32 text-primary/25" />} />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="max-w-2xl mx-auto text-center mb-12">
-            <h2 id="our-values-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Our Values</h2>
+            <h2 id="our-values-heading" className="font-headline-lg text-[40px] leading-[48px] font-extrabold tracking-tight text-primary mb-3">Our Values</h2>
             <DashedRule className="mx-auto mb-4 text-accent-orange" />
             <p className="text-on-surface-variant">
               The King is Rule the Board itself. The five pieces around it are what we hold ourselves to:

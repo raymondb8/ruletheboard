@@ -10,7 +10,9 @@ import odysseyAtlanta from '../assets/partners/odyssey-atlanta.png';
  * name in type, so a new partner can go up before we have their artwork.
  *
  * Logo sources (originals for the raster ones live in raw-media/):
- * - Glenn Institute: the Glenn Cats badge the team supplied.
+ * - Glenn Institute: their current wordmark (raw-media/glenn-institute-wordmark.png),
+ *   trimmed and with the white background knocked out so it sits on the tinted
+ *   band. Replaces the Glenn Cats badge the team first supplied.
  * - Kid Chess: their site header logo.
  * - US Chess: the SVG from uschess.org.
  * - Chess.com: the flat pawn-and-wordmark lockup from Wikimedia Commons, with
@@ -38,7 +40,7 @@ export const partners: Partner[] = [
   {
     name: 'The Glenn Institute at Westminster',
     href: 'https://www.westminster.net/catalysts/the-glenn-institute',
-    logo: { src: glennInstitute, width: 336, height: 336 },
+    logo: { src: glennInstitute, width: 1232, height: 240 },
   },
   { name: 'Kid Chess', href: 'https://www.kidchess.com', logo: { src: kidChess, width: 204, height: 126 } },
   { name: 'US Chess Federation', href: 'https://new.uschess.org', logo: { src: usChess, width: 256, height: 182 } },

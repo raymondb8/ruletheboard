@@ -173,12 +173,6 @@ export default function Home() {
                 fetchPriority="high"
                 decoding="sync"
               />
-              <div className="absolute bottom-6 right-6 glass-card p-6 rounded-2xl border border-white/60 max-w-xs shadow-lg">
-                <p className="font-headline-md text-headline-md text-secondary mb-1" suppressHydrationWarning>
-                  {formatCount(live.puzzles)}
-                </p>
-                <p className="font-label-bold text-label-bold text-primary">Puzzles solved this year</p>
-              </div>
             </div>
           </div>
         </div>

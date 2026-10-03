@@ -233,7 +233,8 @@ body {
 .marquee-track {
   animation: marquee 40s linear infinite;
 }
-.marquee:hover .marquee-track,
+/* Keeps running under the pointer. It only stops for keyboard focus, so a
+   link someone has tabbed to doesn't slide out from under them. */
 .marquee:focus-within .marquee-track {
   animation-play-state: paused;
 }

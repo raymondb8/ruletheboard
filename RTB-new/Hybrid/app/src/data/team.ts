@@ -33,7 +33,7 @@ export const team: TeamMember[] = [
   { name: 'Abbie Yuan', role: 'Communications Director' },
   { name: 'Evelyn Wood', role: 'Creative Director' },
   { name: 'Armaan Dhawan', role: 'Director of Development' },
-  { name: 'Sammy Drucker', role: 'Lead Coach' },
+  { name: 'Sammy Drucker', role: 'Programs Director & Lead Coach' },
   { name: 'David Katz', role: 'Lead Coach' },
 ];
 
