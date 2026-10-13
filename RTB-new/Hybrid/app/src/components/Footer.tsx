@@ -1,9 +1,21 @@
 import { Link } from 'react-router-dom';
 import logoWords from '../assets/rtb-words.webp';
 import { InstagramIcon, LinkedInIcon, Icon } from './icons';
-import { CONTACT_EMAIL, EIN, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '../data/org';
+import { CONTACT_EMAIL, EIN, IMPACT_REPORT_PDF, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '../data/org';
 
-const legalLinks = [{ label: 'Privacy Policy', to: '/privacy' }];
+/*
+ * The guides and documents people come back for, in one row along the bottom
+ * of the contact column. `to` is a page on the site; `href` is a file, which
+ * opens in a new tab.
+ */
+const resourceLinks: { label: string; to?: string; href?: string }[] = [
+  { label: 'Tournament Guide', to: '/tournament-guide' },
+  { label: '2025-26 Impact Report', href: IMPACT_REPORT_PDF },
+  { label: 'Privacy Policy', to: '/privacy' },
+];
+
+const resourceLinkClass =
+  'font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors';
 
 export default function Footer() {
   return (
@@ -17,7 +29,7 @@ export default function Footer() {
         </div>
 
         {/* Contact column: the two social marks and the email, each in the same
-            36px bordered badge, stacked above the legal links. */}
+            36px bordered badge, stacked above the resource links. */}
         <div className="flex flex-col items-center md:items-end gap-4">
           <div className="flex flex-col items-center md:items-end gap-4">
             <a
@@ -55,17 +67,20 @@ export default function Footer() {
               <span className="font-label-sm text-label-sm break-all">{CONTACT_EMAIL}</span>
             </a>
           </div>
-          <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4">
-            {legalLinks.map((link) => (
-              <Link
-                key={link.label}
-                className="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors"
-                to={link.to}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Resources" className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4">
+            {resourceLinks.map((link) =>
+              link.href ? (
+                <a key={link.label} className={resourceLinkClass} href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                  <span className="sr-only"> (PDF, opens in a new tab)</span>
+                </a>
+              ) : (
+                <Link key={link.label} className={resourceLinkClass} to={link.to!}>
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </nav>
         </div>
       </div>
 

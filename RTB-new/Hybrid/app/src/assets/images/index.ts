@@ -39,10 +39,18 @@ import impactReportCover1236 from './impact-report-cover-1236.webp';
 import impactReportCover989 from './impact-report-cover-989.webp';
 import impactReportCover742 from './impact-report-cover-742.webp';
 import impactReportCover495 from './impact-report-cover-495.webp';
-import teamArjunGarg389 from './team-arjun-garg-389.webp';
-import teamArjunGarg224 from './team-arjun-garg-224.webp';
-import teamLeonardoCastroBalbi379 from './team-leonardo-castro-balbi-379.webp';
+import teamLeonardoCastroBalbi300 from './team-leonardo-castro-balbi-300.webp';
 import teamLeonardoCastroBalbi224 from './team-leonardo-castro-balbi-224.webp';
+import teamNathanYe277 from './team-nathan-ye-277.webp';
+import teamNathanYe224 from './team-nathan-ye-224.webp';
+import teamArjunGarg290 from './team-arjun-garg-290.webp';
+import teamArjunGarg224 from './team-arjun-garg-224.webp';
+import teamRaymondBoamah448 from './team-raymond-boamah-448.webp';
+import teamRaymondBoamah224 from './team-raymond-boamah-224.webp';
+import teamArmaanDhawan448 from './team-armaan-dhawan-448.webp';
+import teamArmaanDhawan224 from './team-armaan-dhawan-224.webp';
+import teamEvelynWood448 from './team-evelyn-wood-448.webp';
+import teamEvelynWood224 from './team-evelyn-wood-224.webp';
 import impactReportPage11236 from './impact-report-page-1-1236.webp';
 import impactReportPage1989 from './impact-report-page-1-989.webp';
 import impactReportPage1742 from './impact-report-page-1-742.webp';
@@ -127,17 +135,41 @@ export const images = {
     width: 1236,
     height: 1600,
   },
-  'team-arjun-garg': {
-    src: teamArjunGarg389,
-    srcSet: `${teamArjunGarg389} 389w, ${teamArjunGarg224} 224w`,
-    width: 389,
-    height: 389,
-  },
   'team-leonardo-castro-balbi': {
-    src: teamLeonardoCastroBalbi379,
-    srcSet: `${teamLeonardoCastroBalbi379} 379w, ${teamLeonardoCastroBalbi224} 224w`,
-    width: 379,
-    height: 379,
+    src: teamLeonardoCastroBalbi300,
+    srcSet: `${teamLeonardoCastroBalbi300} 300w, ${teamLeonardoCastroBalbi224} 224w`,
+    width: 300,
+    height: 300,
+  },
+  'team-nathan-ye': {
+    src: teamNathanYe277,
+    srcSet: `${teamNathanYe277} 277w, ${teamNathanYe224} 224w`,
+    width: 277,
+    height: 277,
+  },
+  'team-arjun-garg': {
+    src: teamArjunGarg290,
+    srcSet: `${teamArjunGarg290} 290w, ${teamArjunGarg224} 224w`,
+    width: 290,
+    height: 290,
+  },
+  'team-raymond-boamah': {
+    src: teamRaymondBoamah448,
+    srcSet: `${teamRaymondBoamah448} 448w, ${teamRaymondBoamah224} 224w`,
+    width: 448,
+    height: 448,
+  },
+  'team-armaan-dhawan': {
+    src: teamArmaanDhawan448,
+    srcSet: `${teamArmaanDhawan448} 448w, ${teamArmaanDhawan224} 224w`,
+    width: 448,
+    height: 448,
+  },
+  'team-evelyn-wood': {
+    src: teamEvelynWood448,
+    srcSet: `${teamEvelynWood448} 448w, ${teamEvelynWood224} 224w`,
+    width: 448,
+    height: 448,
   },
   'impact-report-page-1': {
     src: impactReportPage11236,

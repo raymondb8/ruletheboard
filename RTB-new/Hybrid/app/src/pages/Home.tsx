@@ -35,16 +35,21 @@ const stats = [
 /* The five values, rotated through the hero headline. Same five that sit on
    the ring on the About page. */
 const ROTATING_VALUES = ['excellence', 'resilience', 'integrity', 'passion', 'service'];
+/* The word shown first, and the only one shown under prefers-reduced-motion.
+   The board picked Resilience as the static word. Starting the rotation on it
+   (rather than switching to it after mount) keeps the prerendered HTML, a
+   no-JS visitor, and the reduced-motion visitor all on the same sentence. */
+const STATIC_INDEX = ROTATING_VALUES.indexOf('resilience');
 const ROTATION_MS = 2200;
 
 const FADE_MS = 260;
 const LONGEST_VALUE = ROTATING_VALUES.reduce((a, b) => (b.length > a.length ? b : a));
 
 /**
- * Swaps one word in the headline every couple of seconds. The first word is in
- * the markup from the start, so the prerendered HTML and a visitor without JS
- * both read a complete sentence. Under a reduced-motion preference the word
- * never changes.
+ * Swaps one word in the headline every couple of seconds. The first word
+ * (Resilience) is in the markup from the start, so the prerendered HTML and a
+ * visitor without JS both read a complete sentence. Under a reduced-motion
+ * preference the word never changes.
  *
  * One word is on screen at a time: it fades out, then the next one fades in.
  * Crossfading two stacked words instead left them legible on top of each other
@@ -55,7 +60,7 @@ const LONGEST_VALUE = ROTATING_VALUES.reduce((a, b) => (b.length > a.length ? b 
  * sentence once, not announce a new value every two seconds.
  */
 function RotatingValue() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(STATIC_INDEX);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -124,16 +129,12 @@ export default function Home() {
       <section className="relative overflow-hidden pt-10 pb-16 md:pt-16 md:pb-24 px-margin-mobile md:px-margin-desktop">
         <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="z-10 text-center lg:text-left">
-            <h1 className="font-headline-xl text-headline-xl mb-6 text-primary leading-tight">
+            <h1 className="font-headline-xl text-headline-xl mb-8 text-primary leading-tight">
               Discover yourself through a chess education inspiring <RotatingValue />
               {/* The visible word rotates and is hidden from assistive tech, so
                   the heading still has one stable accessible name. */}
               <span className="sr-only">excellence, resilience, integrity, passion, and service</span>
             </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl mx-auto lg:mx-0">
-              Coaching, a set of their own, and paid entries to rated tournaments. We started Rule the Board after
-              a summer of teaching chess at Odyssey, and we couldn't walk away from it.
-            </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
               <Link
                 to="/programs"
@@ -200,17 +201,18 @@ export default function Home() {
       <PartnerMarquee />
       <WaveDivider className="text-surface-muted" flip />
 
-      {/* Mission, vision, purpose */}
+      {/* Mission, vision, purpose. The three statements are quoted word for word
+          from the founders' 2025-26 Impact Report (page 2), so they stay as
+          written even where the site's copy rules would phrase them otherwise.
+          TODO(RTB): the board pointed at its "RTB Info" resource for these. If
+          that doc has newer wording than the Impact Report, swap it in here. */}
       <section id="what-we-do" aria-labelledby="what-we-do-heading" className="scroll-mt-28 py-20 px-margin-mobile md:px-margin-desktop bg-background relative overflow-hidden">
         <MarginMotif side="left" className="top-16" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-16" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
         <div className="max-w-container-max mx-auto">
           <div className="text-center mb-12">
-            <h2 id="what-we-do-heading" className="font-headline-lg text-headline-lg text-primary mb-3">What We Do</h2>
-            <DashedRule className="mx-auto mb-4 text-accent-teal" />
-            <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
-              Why we started this, and where we're taking it.
-            </p>
+            <h2 id="what-we-do-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Mission, Vision, and Purpose</h2>
+            <DashedRule className="mx-auto text-accent-teal" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {[
@@ -218,19 +220,19 @@ export default function Home() {
                 title: 'Mission',
                 icon: 'school',
                 well: 'bg-primary-soft',
-                body: 'Put serious chess coaching in reach of students whose families would never have paid for it. Lessons, a set of their own, and the entry fee covered.',
+                body: 'Empower students to pursue their passion for chess through high-quality instruction and opportunities.',
               },
               {
                 title: 'Vision',
                 icon: 'groups',
                 well: 'bg-primary-soft',
-                body: 'A scholar from an Atlanta Title I school sitting across the board from anyone, at any rated tournament, and belonging there.',
+                body: 'Build a nationwide, tight-knit chess community where every student has the opportunity to discover the joy of learning, playing, and growing through chess.',
               },
               {
                 title: 'Purpose',
                 icon: 'inventory_2',
                 well: 'bg-primary-soft',
-                body: "We taught a summer class at Odyssey and watched kids get good fast. Then the class ended. Rule the Board exists so it doesn't have to.",
+                body: 'Uplift learners from marginalized communities by encouraging discipline, critical thinking, resilience, and other principles that are highly valuable in all areas of life.',
               },
             ].map((card) => (
               <div
@@ -259,9 +261,10 @@ export default function Home() {
               <h2 id="programs-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Our Programs</h2>
               <DashedRule className="mb-4 text-accent-orange" />
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Rule the Board runs two programs. The year-long Rule the Board scholarship goes to committed,
-                aspiring chess scholars. Checkmate Your Summer is for students who want to get their feet wet
-                with workshops and group lessons, and it's hosted at Odyssey Atlanta.
+                Rule the Board currently offers two programs. Our year-long Rule the Board scholarship is awarded
+                to highly committed, aspiring chess scholars, and our Checkmate Your Summer class is intended for
+                students eager to get their feet wet, participate in workshops, group lessons, and more. Checkmate
+                Your Summer is hosted at Odyssey Atlanta.
               </p>
             </div>
           </div>
@@ -281,12 +284,14 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary mb-3">Rule the Board Scholarship</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-                  Resources provided throughout the year, such as private lessons, tournament entries, and more.
+                  Resources provided throughout the year, such as private lessons, tournament entries, and more!
                 </p>
-                <Link to="/scholars" className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group">
+                <Link
+                  to="/scholars"
+                  className="tactile-button coral-lift focus-ring-invert bg-secondary-strong text-on-secondary self-start px-8 py-3 rounded-xl font-label-bold text-label-bold tracking-widest uppercase text-center"
+                >
                   Learn More
                   <span className="sr-only"> about the Rule the Board Scholarship</span>
-                  <Icon name="chevron_right" className="text-sm group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
@@ -314,11 +319,10 @@ export default function Home() {
                   href={ODYSSEY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-secondary font-label-bold text-label-bold flex items-center gap-2 group"
+                  className="tactile-button navy-lift bg-primary text-on-primary self-start px-8 py-3 rounded-xl font-label-bold text-label-bold tracking-widest uppercase text-center"
                 >
                   Learn more
-                  <span className="sr-only"> about Checkmate Your Summer at Odyssey Atlanta</span>
-                  <Icon name="chevron_right" className="text-sm group-hover:translate-x-1 transition-transform" />
+                  <span className="sr-only"> about Checkmate Your Summer at Odyssey Atlanta (opens in a new tab)</span>
                 </a>
               </div>
             </div>

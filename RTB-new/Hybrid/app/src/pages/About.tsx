@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { teamRows } from '../data/team';
 import { Queen, MarginMotif } from '../components/ChessMotifs';
@@ -7,8 +7,8 @@ import PdfPreviewModal from '../components/PdfPreviewModal';
 import { Icon } from '../components/icons';
 import Img from '../components/Img';
 import { images, type ImageName } from '../assets/images';
+import { IMPACT_REPORT_PDF } from '../data/org';
 
-const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';
 const IMPACT_REPORT_PAGES = Array.from({ length: 7 }, (_, i) => images[`impact-report-page-${i + 1}` as ImageName]);
 
 
@@ -194,6 +194,8 @@ export default function About() {
           </button>
           <div className="flex-1 text-center md:text-left">
             <h2 id="impact-report-heading" className="font-headline-lg text-headline-lg text-primary mb-8">2025-2026 Impact Report</h2>
+            {/* TODO(RTB): the subtext that used to sit here was removed. Arjun
+                may supply a new line for under the heading. */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button
                 type="button"
@@ -265,15 +267,20 @@ function ValueCircle({
   king = false,
   className = '',
   style,
+  motion,
 }: {
   item: { piece: string; glyph: string; value: string; description: string };
   king?: boolean;
   className?: string;
   style?: CSSProperties;
+  /** Entrance transform/opacity, applied to the inner circle so it doesn't
+   *  fight the <li>'s own positioning. */
+  motion?: CSSProperties;
 }) {
   return (
     <li style={style} className={className}>
       <div
+        style={motion}
         className={`rounded-full bg-white soft-card border border-outline-variant flex flex-col items-center justify-center text-center ${
           king ? 'w-72 h-72 p-9 border-2 border-primary' : 'w-56 h-56 p-6'
         }`}
@@ -291,6 +298,62 @@ function ValueCircle({
   );
 }
 
+type RevealPhase = 'static' | 'hidden' | 'shown';
+
+/**
+ * Scroll-in for the values ring. The pieces are in their final places in the
+ * prerendered HTML ('static'), so a visitor without JS, or one who has asked
+ * for reduced motion, just sees the finished layout. After hydration, and only
+ * if the ring is still below the fold, the pieces are pulled to the centre and
+ * hidden ('hidden'); once it scrolls into view they travel out to the ring
+ * ('shown'). If it's already on screen at load nothing moves, for the same
+ * reason useMicroInteractions leaves above-the-fold sections alone.
+ */
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [phase, setPhase] = useState<RevealPhase>('static');
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+
+    setPhase('hidden');
+    let raf = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        // One frame in the hidden state is enough for the transition to have
+        // a starting point.
+        raf = requestAnimationFrame(() => setPhase('shown'));
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return { ref, phase };
+}
+
+const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
+/** `from` is where the piece starts relative to its final spot. */
+function entrance(phase: RevealPhase, delayMs: number, from = 'translate(0, 24px)'): CSSProperties | undefined {
+  if (phase === 'static') return undefined;
+  const hidden = phase === 'hidden';
+  return {
+    opacity: hidden ? 0 : 1,
+    transform: hidden ? `${from} scale(0.6)` : 'none',
+    transition: `opacity 500ms ease ${delayMs}ms, transform 900ms ${EASE} ${delayMs}ms`,
+  };
+}
+
 /**
  * Desktop: an absolutely positioned ring on a fixed square stage, with an SVG
  * underneath drawing spokes from the King and a pentagon between neighbours.
@@ -299,22 +362,31 @@ function ValueCircle({
  * assistive tech: the DOM order is King first, then the five values.
  */
 function ValuesWeb() {
+  const mobile = useReveal<HTMLUListElement>();
+  const desktop = useReveal<HTMLDivElement>();
+
   return (
     <>
-      {/* Phone / tablet */}
-      <ul className="lg:hidden flex flex-wrap justify-center gap-6">
-        <ValueCircle item={KING} king className="basis-full flex justify-center" />
-        {VALUES.map((v) => (
-          <ValueCircle key={v.piece} item={v} />
+      {/* Phone / tablet: the King, then each value fading up in turn. */}
+      <ul ref={mobile.ref} className="lg:hidden flex flex-wrap justify-center gap-6">
+        <ValueCircle item={KING} king className="basis-full flex justify-center" motion={entrance(mobile.phase, 0)} />
+        {VALUES.map((v, i) => (
+          <ValueCircle key={v.piece} item={v} motion={entrance(mobile.phase, 200 + i * 120)} />
         ))}
       </ul>
 
-      {/* Desktop web */}
-      <div className="hidden lg:block relative mx-auto" style={{ width: STAGE, height: STAGE }}>
+      {/* Desktop web: the King appears, then the five pieces travel out from
+          behind it to their places on the ring, and the lines draw in last. */}
+      <div ref={desktop.ref} className="hidden lg:block relative mx-auto" style={{ width: STAGE, height: STAGE }}>
         <svg
           className="absolute inset-0 w-full h-full text-primary/25"
           viewBox={`0 0 ${STAGE} ${STAGE}`}
           aria-hidden="true"
+          style={
+            desktop.phase === 'static'
+              ? undefined
+              : { opacity: desktop.phase === 'shown' ? 1 : 0, transition: 'opacity 700ms ease 900ms' }
+          }
         >
           {RING.map((p, i) => (
             <line key={`spoke-${i}`} x1={CENTER} y1={CENTER} x2={p.x} y2={p.y} stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
@@ -325,9 +397,11 @@ function ValuesWeb() {
           <ValueCircle
             item={KING}
             king
-            className="absolute"
+            // z-10 so the five pieces slide out from behind it on entrance.
+            className="absolute z-10"
             // Centered by offsetting half the circle's own size (w-72 = 288px).
             style={{ left: CENTER - 144, top: CENTER - 144 }}
+            motion={entrance(desktop.phase, 0, 'translate(0, 0)')}
           />
           {VALUES.map((v, i) => (
             <ValueCircle
@@ -335,6 +409,7 @@ function ValuesWeb() {
               item={v}
               className="absolute"
               style={{ left: RING[i].x - 112, top: RING[i].y - 112 }}
+              motion={entrance(desktop.phase, 250 + i * 110, `translate(${CENTER - RING[i].x}px, ${CENTER - RING[i].y}px)`)}
             />
           ))}
         </ul>

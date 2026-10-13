@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
 import { Pawn, Knight, Bishop, CheckerStrip, MarginMotif } from '../components/ChessMotifs';
-import Placeholder from '../components/Placeholder';
 import { faqs } from '../data/faqs';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import { Icon } from '../components/icons';
 import Img from '../components/Img';
 import { images } from '../assets/images';
 import { ODYSSEY_URL } from '../data/org';
+import { currentStats } from '../data/stats';
+import { formatCount } from '../hooks/useCountUp';
+
+// Same accruing figure as the homepage stat row (see src/data/stats.ts), so
+// the two pages can't disagree. Module scope, like Home, so the prerender and
+// the first client render compute it once.
+const live = currentStats();
 
 // The only tournament we have real, confirmed details for. Everything else is
 // genuinely TBD — rendered as skeleton cards below rather than invented events.
@@ -76,9 +82,7 @@ export default function Programs() {
                 >
                   Apply for Scholarship
                 </Link>
-                <p className="font-label-sm text-on-surface-variant">
-                  <Placeholder>Application deadline: confirm with team</Placeholder>
-                </p>
+                {/* TODO(RTB): application deadline, once the team sets it. */}
               </div>
             </div>
           </div>
@@ -116,7 +120,9 @@ export default function Programs() {
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 {/* Odyssey runs and enrols this class, so the next step is
-                    their site rather than our inbox. */}
+                    their site rather than our inbox.
+                    TODO(RTB): point this at our own Checkmate Your Summer page
+                    once it exists. */}
                 <a
                   href={ODYSSEY_URL}
                   target="_blank"
@@ -155,7 +161,11 @@ export default function Programs() {
                     improvement figure. The number itself is navy — accent color
                     lives on the motif, never on arbitrary text. */}
                 <div className="p-6 bg-white rounded-2xl border border-outline-variant">
-                  <div className="text-primary font-headline-md mb-2">212</div>
+                  {/* suppressHydrationWarning: the figure accrues weekly, so the
+                      prerendered HTML can be a week behind the visitor's clock. */}
+                  <div className="text-primary font-headline-md mb-2" suppressHydrationWarning>
+                    {formatCount(live.lessonHours)}
+                  </div>
                   <p className="text-label-sm text-on-surface-variant">
                     Lesson hours delivered to scholars this year.
                   </p>

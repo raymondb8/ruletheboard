@@ -233,11 +233,8 @@ body {
 .marquee-track {
   animation: marquee 40s linear infinite;
 }
-/* Keeps running under the pointer. It only stops for keyboard focus, so a
-   link someone has tabbed to doesn't slide out from under them. */
-.marquee:focus-within .marquee-track {
-  animation-play-state: paused;
-}
+/* Never pauses on hover. The logos aren't links, so there is nothing to focus
+   either. Only prefers-reduced-motion stops it (below). */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;

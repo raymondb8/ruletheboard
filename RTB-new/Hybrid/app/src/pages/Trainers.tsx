@@ -1,17 +1,15 @@
 import { Knight, Rook, MarginMotif } from '../components/ChessMotifs';
-import Placeholder from '../components/Placeholder';
-import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import { Icon } from '../components/icons';
 
 /*
  * The trainer application, built to mirror Scholars.tsx section for section
- * (hero / how-it-works / eligibility / form) so the two application pages read
- * as one system rather than two different designs. Section ids match the
- * anchors listed in Nav.tsx.
+ * (hero / how-it-works / form) so the two application pages read as one
+ * system rather than two different designs. Section ids match the anchors
+ * listed in Nav.tsx.
  *
- * Eligibility bullets are intentionally Placeholder text: the team has not
- * settled the real requirements yet, and inventing them on a page people will
- * apply against would be worse than saying so.
+ * There's no eligibility section yet: the team hasn't settled the real
+ * requirements, and inventing them on a page people will apply against would
+ * be worse than leaving it out. See the TODO above the application form.
  */
 export default function Trainers() {
   return (
@@ -80,48 +78,17 @@ export default function Trainers() {
         </div>
       </section>
 
-      {/* Eligibility */}
-      <WaveDivider className="text-surface-muted" />
-      <section id="eligibility" aria-labelledby="eligibility-heading" className="scroll-mt-28 bg-surface-muted py-20 relative overflow-hidden">
-        <DotField className="opacity-[0.11]" />
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="max-w-2xl mb-10">
-            <h2 id="eligibility-heading" className="font-headline-lg text-headline-lg text-primary mb-3">Who Can Apply</h2>
-            <DashedRule className="mb-4 text-accent-orange" />
-            <p className="text-on-surface-variant">
-              We’re still settling the exact requirements. Apply anyway and we’ll tell you where you stand.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
-            {[
-              'Trainer eligibility: confirm with team',
-              'Minimum age or rating, if any: confirm with team',
-              'Background check requirements: confirm with team',
-              'Weekly time commitment: confirm with team',
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-outline-variant">
-                <Icon name="check_circle" className="text-primary" />
-                <span className="font-body-md text-on-surface">
-                  <Placeholder>{item}</Placeholder>
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* TODO(RTB): a "Who Can Apply" section with the trainer eligibility
+          guidelines (minimum age or rating, background check, weekly time
+          commitment) goes here once the team decides them. Give it
+          id="eligibility" and restore the eligibility link on the Get Involved
+          trainer card (components/ApplySections.tsx). */}
 
       {/* Application Form */}
-      <WaveDivider className="text-surface-muted" flip />
       <section id="apply" aria-labelledby="apply-heading" className="scroll-mt-28 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card border border-outline-variant max-w-3xl mx-auto">
           <div className="mb-10 text-center">
             <h2 id="apply-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Trainer Application</h2>
-            <p className="text-on-surface-variant">
-              <Placeholder>
-                Applications are in beta. We read every submission by hand, and confirmation emails are not
-                automated yet.
-              </Placeholder>
-            </p>
           </div>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={(e) => e.preventDefault()}>
             <div className="flex flex-col gap-2">
@@ -203,15 +170,15 @@ export default function Trainers() {
                 rows={4}
               />
             </div>
+            {/* TODO(RTB): the final coach application questions are still to be
+                decided by the team. Add them as fields here. */}
             <button
               className="md:col-span-2 tactile-button focus-ring-invert bg-secondary-strong text-on-secondary py-5 rounded-2xl font-label-bold text-lg uppercase mt-2"
               type="submit"
             >
               Submit Application
             </button>
-            <p className="md:col-span-2 text-center font-label-sm text-on-surface-variant">
-              <Placeholder>Application deadline: confirm with team</Placeholder>
-            </p>
+            {/* TODO(RTB): application deadline, once the team sets it. */}
           </form>
         </div>
       </section>

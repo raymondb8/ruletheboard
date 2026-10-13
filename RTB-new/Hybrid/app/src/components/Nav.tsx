@@ -24,7 +24,7 @@ const links: NavLinkItem[] = [
     label: 'Home',
     sections: [
       { id: 'impact', label: 'Our Impact' },
-      { id: 'what-we-do', label: 'What We Do' },
+      { id: 'what-we-do', label: 'Mission & Vision' },
       { id: 'programs', label: 'Programs' },
       { id: 'get-involved', label: 'Get Involved' },
     ],

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Pawn, Queen, MarginMotif } from '../components/ChessMotifs';
-import Placeholder from '../components/Placeholder';
 import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import { Icon } from '../components/icons';
 
@@ -63,13 +62,10 @@ export default function Scholars() {
         <div className="bg-white rounded-[40px] p-8 md:p-16 soft-card border border-outline-variant max-w-3xl mx-auto">
           <div className="mb-10 text-center">
             <h2 id="apply-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Scholarship Application</h2>
-            <p className="text-on-surface-variant">
-              <Placeholder>
-                Applications are in beta. We read every submission by hand, and confirmation emails are not
-                automated yet.
-              </Placeholder>
-            </p>
           </div>
+          {/* TODO(RTB): application timeline goes here (date applications open,
+              the deadline, and the date results go out). Hidden until the team
+              has real dates. */}
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={(e) => e.preventDefault()}>
             <div className="flex flex-col gap-2">
               <label className="font-label-bold text-on-surface-variant" htmlFor="scholar-student-full-name">STUDENT FULL NAME</label>
@@ -137,15 +133,15 @@ export default function Scholars() {
                 rows={4}
               />
             </div>
+            {/* TODO(RTB): the final scholar application questions are still to be
+                decided by the team. Add them as fields here. */}
             <button
               className="md:col-span-2 tactile-button focus-ring-invert bg-secondary-strong text-on-secondary py-5 rounded-2xl font-label-bold text-lg uppercase mt-2"
               type="submit"
             >
               Submit Application
             </button>
-            <p className="md:col-span-2 text-center font-label-sm text-on-surface-variant">
-              <Placeholder>Application deadline: confirm with team</Placeholder>
-            </p>
+            {/* TODO(RTB): application deadline, once the team sets it. */}
           </form>
         </div>
       </section>

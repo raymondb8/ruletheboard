@@ -51,19 +51,50 @@ const jobs = [
   { src: "IMG_2341.JPG", out: "programs-emory-grand-prix" },
   { src: "CYS 2026/OMS Students Chess Candid9 2026.jpg", out: "programs-academy-interior" },
   { src: "impact-report-cover.png", out: "impact-report-cover" },
-  // Team headshots. Both originals are full-length portraits, so each carries a
-  // `crop` box (fractions of the source, after EXIF rotation) that pulls out
-  // head and shoulders — a plain centre crop would land on the torso.
-  {
-    src: "arjun.jpeg",
-    out: "team-arjun-garg",
-    crop: { left: 0.226, top: 0.051, width: 0.57, height: 0.38 },
-    widths: AVATAR_WIDTHS,
-  },
+  // Team headshots. The originals are all framed differently (full-length
+  // portraits, a selfie, a school photo), so every one carries a `crop` box
+  // (fractions of the source, after EXIF rotation) computed the same way: a
+  // square whose height is 1/0.28 of the measured face height, placed so the
+  // eyes sit 40% down from the top and centred on the face. That puts every
+  // scholar's eyes on one line and every face at the same size inside the
+  // circle. To add someone, measure their eye position and face height in the
+  // source (in source pixels; face height is eye line to chin), then
+  // square = faceHeight / 0.28, left = eyeX - square / 2,
+  // top = eyeY - 0.4 * square, and divide each by the source width or height.
   {
     src: "leo.jpeg",
     out: "team-leonardo-castro-balbi",
-    crop: { left: 0.314, top: 0.109, width: 0.37, height: 0.37 },
+    crop: { left: 0.3340, top: 0.1240, width: 0.2930, height: 0.2930 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "nathan.jpeg",
+    out: "team-nathan-ye",
+    crop: { left: 0.2517, top: 0.5313, width: 0.4809, height: 0.2705 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "arjun.jpeg",
+    out: "team-arjun-garg",
+    crop: { left: 0.3094, top: 0.0693, width: 0.4252, height: 0.2832 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "raymondfull.jpeg",
+    out: "team-raymond-boamah",
+    crop: { left: 0.5853, top: 0.0374, width: 0.2196, height: 0.2928 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "armaan.jpeg",
+    out: "team-armaan-dhawan",
+    crop: { left: 0.1990, top: 0.1104, width: 0.6480, height: 0.5088 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "evelyn.jpeg",
+    out: "team-evelyn-wood",
+    crop: { left: 0.0777, top: 0.0459, width: 0.9194, height: 0.6123 },
     widths: AVATAR_WIDTHS,
   },
   ...Array.from({ length: 7 }, (_, i) => ({

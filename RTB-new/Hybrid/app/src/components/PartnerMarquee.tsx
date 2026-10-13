@@ -1,5 +1,20 @@
-import { partners, type Partner } from '../data/partners';
+import type { CSSProperties } from 'react';
+import { partners, type Partner, type PartnerLogo } from '../data/partners';
 import { DotField } from './Decor';
+
+/*
+ * Logos are sized to roughly the same visual area rather than the same height.
+ * At one shared height the long wordmarks (Glenn, Chess.com) read several
+ * times heavier than the near-square badges (US Chess, Kid Chess). Height is
+ * sqrt(area / aspect), capped so the square marks don't tower over the row.
+ * Desktop values; phones get 72% of each.
+ */
+const LOGO_AREA = 13000;
+const LOGO_MAX_H = 80;
+function logoHeight(logo: PartnerLogo) {
+  const aspect = logo.width / logo.height;
+  return Math.round(Math.min(LOGO_MAX_H, Math.sqrt(LOGO_AREA / aspect)));
+}
 
 function PartnerMark({ partner, decorative }: { partner: Partner; decorative?: boolean }) {
   if (!partner.logo) {
@@ -15,7 +30,8 @@ function PartnerMark({ partner, decorative }: { partner: Partner; decorative?: b
       width={partner.logo.width}
       height={partner.logo.height}
       alt={decorative ? '' : partner.name}
-      className="h-10 md:h-12 w-auto max-w-[220px] object-contain"
+      style={{ '--logo-h': `${logoHeight(partner.logo)}px` } as CSSProperties}
+      className="h-[calc(var(--logo-h)*0.72)] md:h-[var(--logo-h)] w-auto object-contain"
       loading="lazy"
       decoding="async"
     />
@@ -23,23 +39,12 @@ function PartnerMark({ partner, decorative }: { partner: Partner; decorative?: b
 }
 
 function PartnerItem({ partner, decorative }: { partner: Partner; decorative?: boolean }) {
-  const mark = <PartnerMark partner={partner} decorative={decorative} />;
   return (
-    <li className="shrink-0 flex items-center px-8 md:px-12">
-      {/* The second, seam-hiding copy of the list is plain images rather than
-          links, so screen readers and the tab order see each partner once. */}
-      {decorative ? (
-        mark
-      ) : (
-        <a
-          href={partner.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center opacity-80 hover:opacity-100 transition-opacity"
-        >
-          {mark}
-        </a>
-      )}
+    <li className="shrink-0 flex items-center px-8 md:px-12 opacity-80">
+      {/* Not links, by request: the logos just scroll. The second, seam-hiding
+          copy of the list has empty alt text and is aria-hidden, so screen
+          readers hear each partner once. */}
+      <PartnerMark partner={partner} decorative={decorative} />
     </li>
   );
 }

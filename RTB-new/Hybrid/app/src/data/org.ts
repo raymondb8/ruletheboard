@@ -19,3 +19,6 @@ export const ODYSSEY_URL = 'https://www.odysseyatlanta.com';
 
 /** Every profile we want crawlers to tie back to the Organization node. */
 export const SOCIAL_PROFILES = [INSTAGRAM_URL, LINKEDIN_URL];
+
+/** The published annual report, served from public/. Linked from About and the footer. */
+export const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';

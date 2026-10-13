@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { Rook, Pawn, MarginMotif } from '../components/ChessMotifs';
 import { InstagramIcon, LinkedInIcon, Icon } from '../components/icons';
-import Placeholder from '../components/Placeholder';
+import { ApplyScholarSection, ApplyTrainerSection } from '../components/ApplySections';
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '../data/org';
 
 /*
@@ -80,30 +79,6 @@ const sponsorSteps = [
   },
 ];
 
-/*
- * Applications live on their own pages (/scholars, /trainers) rather than as
- * forms here: this page is for giving and partnership, and each application
- * flow needs room for its own eligibility rules. These cards are the hand-off,
- * and each links to its page's #eligibility anchor directly so someone
- * checking whether they qualify doesn't have to hunt for it.
- */
-const applyTracks = [
-  {
-    label: 'Students',
-    title: 'Apply as a student',
-    body: 'Grades K-12. One year of coaching, paid entries to rated tournaments, and a chess set you keep.',
-    to: '/scholars',
-    eligibility: '/scholars#eligibility',
-  },
-  {
-    label: 'Trainers',
-    title: 'Apply as a trainer',
-    body: 'Coach a scholar through a season. You don’t need a master title, just the game and a free hour each week.',
-    to: '/trainers',
-    eligibility: '/trainers#eligibility',
-  },
-];
-
 export default function GetInvolved() {
   return (
     <div className="max-w-container-max mx-auto px-4 md:px-margin-desktop py-12 relative">
@@ -120,8 +95,10 @@ export default function GetInvolved() {
         </p>
       </section>
 
-      {/* 1. Donate — first on the page and full width, since giving is what most
-          people come here to do and the Givebutter form needs the room. */}
+      {/* 1. Donate: first on the page and full width, since giving is what most
+          people come here to do and the Givebutter form needs the room. The
+          fundraising goal box that used to follow it now lives, unused, in
+          components/FundraisingGoal.tsx for future campaigns. */}
       <section
         id="donate" aria-labelledby="donate-heading"
         className="scroll-mt-28 bg-primary text-on-primary rounded-xl p-8 md:p-10 border border-transparent"
@@ -183,7 +160,7 @@ export default function GetInvolved() {
         <div className="grid lg:grid-cols-2 gap-gutter mb-10">
           <div className="bg-white rounded-2xl border border-outline-variant p-8">
             <h3 className="font-headline-md text-headline-md text-primary mb-5">What sponsors get</h3>
-            <ul className="space-y-4 mb-6">
+            <ul className="space-y-4">
               {sponsorBenefits.map((benefit) => (
                 <li key={benefit} className="flex items-start gap-3">
                   <Icon name="check_circle" className="text-secondary mt-0.5" />
@@ -191,9 +168,7 @@ export default function GetInvolved() {
                 </li>
               ))}
             </ul>
-            <p className="font-label-sm text-label-sm text-on-surface-variant">
-              <Placeholder>Sponsorship tiers and amounts: confirm with team</Placeholder>
-            </p>
+            {/* TODO(RTB): sponsorship tiers and amounts, once the team sets them. */}
           </div>
 
           <div className="bg-white rounded-2xl border border-outline-variant p-8 flex flex-col">
@@ -230,47 +205,21 @@ export default function GetInvolved() {
             </div>
           ))}
         </div>
+
+        {/* TODO(RTB): sponsor sign-up form. Questions and fields are still to
+            be decided by the team. It goes here, under "How it works". */}
       </section>
 
-      {/* 3. Apply — hand-off cards to the two application pages. */}
-      <section id="apply" aria-labelledby="apply-heading" className="scroll-mt-28 mt-16">
-        <div className="max-w-2xl mb-8">
-          <h2 id="apply-heading" className="font-headline-lg text-headline-lg text-primary mb-4">Apply</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
-            Two ways to join us. Students apply for the scholarship, and coaches apply to teach.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-          {applyTracks.map((track) => (
-            <div
-              key={track.to}
-              className="bg-white rounded-xl border border-outline-variant card-shadow p-8 flex flex-col"
-            >
-              <span className="font-label-bold text-label-sm uppercase tracking-widest text-on-surface-variant mb-6">
-                {track.label}
-              </span>
-              <h3 className="font-headline-md text-headline-md text-primary mb-3">{track.title}</h3>
-              <p className="font-body-md text-on-surface-variant mb-8">{track.body}</p>
-              <div className="mt-auto flex flex-col gap-4">
-                <Link
-                  to={track.to}
-                  className="tactile-button focus-ring-invert bg-secondary-strong text-on-secondary py-4 rounded-xl font-label-bold uppercase w-full text-center"
-                >
-                  {track.title}
-                </Link>
-                <Link
-                  to={track.eligibility}
-                  className="font-label-bold text-label-bold text-primary hover:text-secondary hover:underline transition-colors text-center"
-                >
-                  Read the eligibility guidelines
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 3 and 4. Apply to be a scholar, apply to be a trainer. Kept as two
+          standalone components (components/ApplySections.tsx) so they can move
+          to their own Apply page later. The wrapper keeps the #apply anchor the
+          nav links to. */}
+      <div id="apply" className="scroll-mt-28 mt-16 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+        <ApplyScholarSection />
+        <ApplyTrainerSection />
+      </div>
 
-      {/* 4. Community + Contact */}
+      {/* 5. Community + Contact */}
       <div className="bento-grid mt-16">
         <section
           id="community" aria-labelledby="community-heading"
