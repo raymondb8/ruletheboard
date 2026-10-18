@@ -97,6 +97,24 @@ const jobs = [
     crop: { left: 0.0777, top: 0.0459, width: 0.9194, height: 0.6123 },
     widths: AVATAR_WIDTHS,
   },
+  {
+    src: "abbie.jpg",
+    out: "team-abbie-yuan",
+    crop: { left: 0.1412, top: 0.0941, width: 0.7647, height: 0.5098 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "sammy.jpeg",
+    out: "team-sammy-drucker",
+    crop: { left: 0.0021, top: 0.1738, width: 0.6369, height: 0.2930 },
+    widths: AVATAR_WIDTHS,
+  },
+  {
+    src: "david.jpeg",
+    out: "team-david-katz",
+    crop: { left: 0, top: 0.1554, width: 1, height: 0.75 },
+    widths: AVATAR_WIDTHS,
+  },
   ...Array.from({ length: 7 }, (_, i) => ({
     src: `impact-report-page-${i + 1}.png`,
     out: `impact-report-page-${i + 1}`,

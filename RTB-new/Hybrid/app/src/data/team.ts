@@ -30,11 +30,11 @@ export const team: TeamMember[] = [
   { name: 'Nathan Ye', founder: true, role: 'Operations Director', photo: 'team-nathan-ye' },
   { name: 'Arjun Garg', founder: true, role: 'Education Director & Head Coach', photo: 'team-arjun-garg' },
   { name: 'Raymond Boamah', role: 'Technology Director', photo: 'team-raymond-boamah' },
-  { name: 'Abbie Yuan', role: 'Communications Director' },
+  { name: 'Abbie Yuan', role: 'Communications Director', photo: 'team-abbie-yuan' },
   { name: 'Evelyn Wood', role: 'Creative Director', photo: 'team-evelyn-wood' },
   { name: 'Armaan Dhawan', role: 'Director of Development', photo: 'team-armaan-dhawan' },
-  { name: 'Sammy Drucker', role: 'Programs Director & Lead Coach' },
-  { name: 'David Katz', role: 'Lead Coach' },
+  { name: 'Sammy Drucker', role: 'Programs Director & Lead Coach', photo: 'team-sammy-drucker' },
+  { name: 'David Katz', role: 'Lead Coach', photo: 'team-david-katz' },
 ];
 
 /** How the About page groups the grid: founders, then directors, then coaches. */

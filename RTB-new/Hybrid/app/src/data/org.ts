@@ -22,3 +22,7 @@ export const SOCIAL_PROFILES = [INSTAGRAM_URL, LINKEDIN_URL];
 
 /** The published annual report, served from public/. Linked from About and the footer. */
 export const IMPACT_REPORT_PDF = '/rule-the-board-25-26-impact-report.pdf';
+
+/** The two program documents, served from public/. Linked from the footer and under each Programs card. */
+export const SCHOLARSHIP_DOC_PDF = '/rule-the-board-scholarship.pdf';
+export const CYS_DOC_PDF = '/checkmate-your-summer.pdf';

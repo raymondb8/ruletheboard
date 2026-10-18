@@ -5,7 +5,7 @@ import { WaveDivider, DotField, DashedRule } from '../components/Decor';
 import { Icon } from '../components/icons';
 import Img from '../components/Img';
 import { images } from '../assets/images';
-import { ODYSSEY_URL } from '../data/org';
+import { CYS_DOC_PDF, ODYSSEY_URL, SCHOLARSHIP_DOC_PDF } from '../data/org';
 import { currentStats } from '../data/stats';
 import { formatCount } from '../hooks/useCountUp';
 
@@ -32,11 +32,7 @@ export default function Programs() {
       <section className="pt-12 pb-10 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto relative">
         <MarginMotif side="left" className="top-4 -translate-x-full -ml-10" piece={<Pawn className="w-24 h-24 text-accent-teal/30" />} />
         <MarginMotif side="right" className="top-4 translate-x-full -mr-10" piece={<Knight className="w-28 h-28 text-accent-orange/30" />} />
-        <h1 className="font-headline-xl text-headline-xl mb-6 text-primary">Chess programs for grades K-12</h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant">
-          We run two programs for grades K-12. One is a summer class for students who have never touched a chess
-          piece. The other is a year-long scholarship for students who are ready to compete.
-        </p>
+        <h1 className="font-headline-xl text-headline-xl text-primary">Chess programs for grades K-12</h1>
       </section>
 
       {/* Programs Grid */}
@@ -84,6 +80,15 @@ export default function Programs() {
                 </Link>
                 {/* TODO(RTB): application deadline, once the team sets it. */}
               </div>
+              <a
+                href={SCHOLARSHIP_DOC_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 self-start text-primary font-medium underline underline-offset-4"
+              >
+                Read the scholarship document
+                <span className="sr-only"> (PDF, opens in a new tab)</span>
+              </a>
             </div>
           </div>
 
@@ -133,6 +138,15 @@ export default function Programs() {
                 </a>
                 <p className="font-label-sm text-on-surface-variant">No prior experience required</p>
               </div>
+              <a
+                href={CYS_DOC_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 self-start text-primary font-medium underline underline-offset-4"
+              >
+                Read the program document
+                <span className="sr-only"> (PDF, opens in a new tab)</span>
+              </a>
             </div>
           </div>
         </div>

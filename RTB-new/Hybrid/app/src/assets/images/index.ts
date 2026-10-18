@@ -51,6 +51,11 @@ import teamArmaanDhawan448 from './team-armaan-dhawan-448.webp';
 import teamArmaanDhawan224 from './team-armaan-dhawan-224.webp';
 import teamEvelynWood448 from './team-evelyn-wood-448.webp';
 import teamEvelynWood224 from './team-evelyn-wood-224.webp';
+import teamAbbieYuan130 from './team-abbie-yuan-130.webp';
+import teamSammyDrucker300 from './team-sammy-drucker-300.webp';
+import teamSammyDrucker224 from './team-sammy-drucker-224.webp';
+import teamDavidKatz448 from './team-david-katz-448.webp';
+import teamDavidKatz224 from './team-david-katz-224.webp';
 import impactReportPage11236 from './impact-report-page-1-1236.webp';
 import impactReportPage1989 from './impact-report-page-1-989.webp';
 import impactReportPage1742 from './impact-report-page-1-742.webp';
@@ -168,6 +173,24 @@ export const images = {
   'team-evelyn-wood': {
     src: teamEvelynWood448,
     srcSet: `${teamEvelynWood448} 448w, ${teamEvelynWood224} 224w`,
+    width: 448,
+    height: 448,
+  },
+  'team-abbie-yuan': {
+    src: teamAbbieYuan130,
+    srcSet: `${teamAbbieYuan130} 130w`,
+    width: 130,
+    height: 130,
+  },
+  'team-sammy-drucker': {
+    src: teamSammyDrucker300,
+    srcSet: `${teamSammyDrucker300} 300w, ${teamSammyDrucker224} 224w`,
+    width: 300,
+    height: 300,
+  },
+  'team-david-katz': {
+    src: teamDavidKatz448,
+    srcSet: `${teamDavidKatz448} 448w, ${teamDavidKatz224} 224w`,
     width: 448,
     height: 448,
   },

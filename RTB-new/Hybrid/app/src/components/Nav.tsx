@@ -15,6 +15,9 @@ type NavLinkItem = { to: string; label: string; sections: NavSection[] };
 
 // Resolve a sub-item to its href: an explicit `to` (a standalone page) wins,
 // otherwise it's an anchor on the parent page.
+// Dismisses every desktop dropdown at once.
+const ALL = '*';
+
 const sectionHref = (parent: string, section: NavSection) =>
   section.to ?? `${parent}#${section.id}`;
 
@@ -83,6 +86,23 @@ const links: NavLinkItem[] = [
  */
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  // The desktop dropdown opens on :hover and :focus-within. After a click the
+  // pointer is still over it and the clicked link keeps focus, so it would stay
+  // open. `dismissed` holds it shut until the pointer leaves that item.
+  // `ALL` is set on scroll or a top-level click so no dropdown lingers.
+  const [dismissed, setDismissed] = useState<string | null>(null);
+
+  // Scrolling moves the page under a resting pointer without a mouseleave, and
+  // focus can still be inside the bar, so close every dropdown on scroll.
+  useEffect(() => {
+    const onScroll = () => {
+      setDismissed(ALL);
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && active.closest('nav[aria-label="Main"]')) active.blur();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { pathname, hash } = useLocation();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -170,10 +190,14 @@ export default function Nav() {
 
         <nav aria-label="Main" className="hidden lg:flex items-center gap-8">
           {links.map((link) => (
-            <div key={link.to} className="relative group">
+            <div key={link.to} className="relative group" onMouseLeave={() => setDismissed(null)}>
               <NavLink
                 to={link.to}
                 end={link.to === '/'}
+                onClick={(event) => {
+                  event.currentTarget.blur();
+                  setDismissed(link.to);
+                }}
                 className={({ isActive }) =>
                   isActive
                     ? 'text-primary font-bold border-b-2 border-secondary pb-1 font-label-bold text-label-bold transition-all duration-200'
@@ -186,12 +210,22 @@ export default function Nav() {
               {link.sections.length > 0 && (
                 // pt-3 bridges the gap between the link and the panel so the
                 // pointer never crosses dead space and dismisses the menu.
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200 z-50">
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 transition-all duration-200 z-50 ${
+                    dismissed === link.to || dismissed === ALL
+                      ? ''
+                      : 'group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0'
+                  }`}
+                >
                   <div className="min-w-[13rem] bg-background border border-outline-variant rounded-xl p-2 card-shadow">
                     {link.sections.map((section) => (
                       <Link
                         key={section.label}
                         to={sectionHref(link.to, section)}
+                        onClick={(event) => {
+                          event.currentTarget.blur();
+                          setDismissed(link.to);
+                        }}
                         className="block whitespace-nowrap px-3 py-2 rounded-lg font-label-bold text-label-sm text-on-surface-variant hover:text-primary hover:bg-primary-soft transition-colors"
                       >
                         {section.label}

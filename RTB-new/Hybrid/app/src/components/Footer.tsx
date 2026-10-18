@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import logoWords from '../assets/rtb-words.webp';
 import { InstagramIcon, LinkedInIcon, Icon } from './icons';
-import { CONTACT_EMAIL, EIN, IMPACT_REPORT_PDF, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '../data/org';
+import { CONTACT_EMAIL, EIN, CYS_DOC_PDF, IMPACT_REPORT_PDF, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL, SCHOLARSHIP_DOC_PDF } from '../data/org';
 
 /*
  * The guides and documents people come back for, in one row along the bottom
@@ -10,6 +10,8 @@ import { CONTACT_EMAIL, EIN, IMPACT_REPORT_PDF, INSTAGRAM_HANDLE, INSTAGRAM_URL,
  */
 const resourceLinks: { label: string; to?: string; href?: string }[] = [
   { label: 'Tournament Guide', to: '/tournament-guide' },
+  { label: 'Rule the Board Scholarship', href: SCHOLARSHIP_DOC_PDF },
+  { label: 'Checkmate Your Summer', href: CYS_DOC_PDF },
   { label: '2025-26 Impact Report', href: IMPACT_REPORT_PDF },
   { label: 'Privacy Policy', to: '/privacy' },
 ];
