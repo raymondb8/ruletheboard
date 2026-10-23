@@ -93,8 +93,9 @@ const altToSources = new Map();
 for (const [file, { page, html, route }] of docs) {
   const head = html.slice(0, html.indexOf('</head>'));
   const body = html.slice(html.indexOf('<body'));
-  // Vite hoists the module <script> into <head>, so #root runs to </body>.
-  const rootMatch = body.match(/<div id="root">([\s\S]*)<\/div>\s*<\/body>/);
+  // Vite hoists the module <script> into <head>, so #root runs to </body>,
+  // apart from any third-party <script> tags (e.g. Givebutter) left at the end.
+  const rootMatch = body.match(/<div id="root">([\s\S]*)<\/div>\s*(?:<script[\s\S]*?<\/script>\s*)*<\/body>/);
   // Tag scans below must not see JS text (React can emit an inline script).
   const rootHtml = (rootMatch ? rootMatch[1] : '').replace(/<script[\s\S]*?<\/script>/gi, '');
 
