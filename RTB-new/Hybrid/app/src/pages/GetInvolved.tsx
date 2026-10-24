@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Rook, Pawn, MarginMotif } from '../components/ChessMotifs';
 import { InstagramIcon, LinkedInIcon, Icon } from '../components/icons';
 import { ApplyScholarSection, ApplyTrainerSection } from '../components/ApplySections';
@@ -20,21 +20,12 @@ import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LINKEDIN_URL } from '..
  * Until both are set, the card below falls back to a mailto so it's never
  * a dead button.
  */
-const GIVEBUTTER_ACCOUNT_ID: string | null = null;
-const GIVEBUTTER_WIDGET_ID: string | null = null;
+const GIVEBUTTER_ACCOUNT_ID: string | null = 'AlaEdn26Mo4i7pPd';
+const GIVEBUTTER_WIDGET_ID: string | null = 'j2Oel2';
 
-function GivebutterWidget({ accountId, widgetId }: { accountId: string; widgetId: string }) {
+// The widgets library itself is loaded once from index.html.
+function GivebutterWidget({ widgetId }: { widgetId: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scriptSrc = `https://widgets.givebutter.com/latest.umd.cjs?acct=${accountId}`;
-    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = scriptSrc;
-      document.head.appendChild(script);
-    }
-  }, [accountId]);
 
   return (
     <div
@@ -124,7 +115,7 @@ export default function GetInvolved() {
           <div className="flex flex-col justify-center">
             {GIVEBUTTER_ACCOUNT_ID && GIVEBUTTER_WIDGET_ID ? (
               <div className="bg-white rounded-xl p-1 sm:p-4">
-                <GivebutterWidget accountId={GIVEBUTTER_ACCOUNT_ID} widgetId={GIVEBUTTER_WIDGET_ID} />
+                <GivebutterWidget widgetId={GIVEBUTTER_WIDGET_ID} />
               </div>
             ) : (
               <>
