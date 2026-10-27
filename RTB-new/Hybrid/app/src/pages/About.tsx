@@ -115,7 +115,15 @@ export default function About() {
             <ul key={i} className="flex flex-wrap justify-center gap-gutter">
               {row.map((member) => (
                 <li className="group text-center w-[calc(50%-12px)] sm:w-44 md:w-52" key={member.name}>
-                  <div className="aspect-square rounded-full overflow-hidden mb-6 soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
+                  {/* Founders get a coral ring and a "Founder" tab that overlaps
+                      the bottom of the portrait, so the first row reads as the
+                      three who started it without needing a separate heading. */}
+                  <div className={`relative mb-6 ${member.founder ? 'pb-3' : ''}`}>
+                    <div
+                      className={`aspect-square rounded-full overflow-hidden soft-card border-4 border-white bg-surface-muted flex items-center justify-center transition-transform group-hover:scale-105 duration-300 ${
+                        member.founder ? 'ring-4 ring-secondary ring-offset-2 ring-offset-white' : ''
+                      }`}
+                    >
                     {member.photo ? (
                       // The name is in the heading right below, so the portrait
                       // adds nothing for a screen reader and takes an empty alt.
@@ -127,6 +135,13 @@ export default function About() {
                       />
                     ) : (
                       <Icon name="person" className="text-outline text-5xl" />
+                    )}
+                    </div>
+                    {member.founder && (
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-secondary-strong text-on-secondary text-label-sm font-label-sm uppercase tracking-wider px-3 py-1 rounded-full border-2 border-white whitespace-nowrap">
+                        <Icon name="workspace_premium" filled className="text-sm" />
+                        Founder
+                      </span>
                     )}
                   </div>
                   <h3 className="font-label-bold text-label-bold text-primary uppercase">{member.name}</h3>

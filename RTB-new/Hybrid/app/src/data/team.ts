@@ -28,7 +28,7 @@ export const team: TeamMember[] = [
     photo: 'team-leonardo-castro-balbi',
   },
   { name: 'Nathan Ye', founder: true, role: 'Operations Director', photo: 'team-nathan-ye' },
-  { name: 'Arjun Garg', founder: true, role: 'Education Director & Head Coach', photo: 'team-arjun-garg' },
+  { name: 'Arjun Garg', founder: true, role: 'Board President', photo: 'team-arjun-garg' },
   { name: 'Raymond Boamah', role: 'Technology Director', photo: 'team-raymond-boamah' },
   { name: 'Abbie Yuan', role: 'Communications Director', photo: 'team-abbie-yuan' },
   { name: 'Evelyn Wood', role: 'Creative Director', photo: 'team-evelyn-wood' },
